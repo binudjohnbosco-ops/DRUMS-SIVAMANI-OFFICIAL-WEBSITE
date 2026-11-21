@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#edf2ec">
+    <title>Drums Sivamani — The Rhythm Is Now</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --paper: #edf2ec;
+            --ink: #172720;
+            --muted: #66766b;
+            --green: #28765c;
+            --line: #17272030;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Manrope', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .shell {
+            width: min(1280px, 91%);
+            margin: auto;
+        }
+
+        .top {
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .22em;
+            white-space: nowrap;
+        }
+
+        .brand b {
+            color: var(--green);
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav a,
+        .book {
+            font: 10px 'DM Mono', monospace;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .nav a {
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            transition: background .25s, color .25s;
+        }
+
+        .nav a:hover {
+            background: var(--ink);
+            color: white;
+        }
+
+        .book {
+            padding: 12px 15px;
+            border: 1px solid var(--ink);
+        }
+
+        .menu {
+            display: none;
+            background: transparent;
+            border: 0;
+            font-size: 27px;
+            cursor: pointer;
+            color: var(--ink);
+        }
+
+        .hero {
+            min-height: 700px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 55px;
+            padding: 48px 0;
+        }
+
+        .overline {
+            color: var(--green);
+            font: 10px 'DM Mono', monospace;
+            letter-spacing: .19em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3,
+        .serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .hero h1 {
+            font-size: clamp(62px, 8vw, 108px);
+            line-height: .89;
+            letter-spacing: -.065em;
+            font-weight: 500;
+            margin: 24px 0;
+        }
+
+        .hero h1 em {
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .hero p {
+            max-width: 450px;
+            color: #536259;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 27px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 18px;
+            background: var(--ink);
+            color: var(--paper);
+            font: 10px 'DM Mono', monospace;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+            transition: transform .25s, background .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: var(--green);
+        }
+
+        .btn.outline {
+            background: transparent;
+            color: var(--ink);
+            border: 1px solid var(--ink);
+        }
+
+        .carousel {
+            height: 555px;
+            position: relative;
+            overflow: hidden;
+            background: #29221c;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform .8s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .carousel-track img {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 24%;
+            filter: saturate(.8);
+        }
+
+        .carousel::after {
+            content: "";
+            position: absolute;
+            inset: 45% 0 0;
+            pointer-events: none;
+            background: linear-gradient(transparent, #110e0cbb);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 24px;
+            left: 25px;
+            z-index: 2;
+            color: white;
+            font: 10px 'DM Mono', monospace;
+            letter-spacing: .15em;
+        }
+
+        .photo-index {
+            position: absolute;
+            z-index: 2;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font: 10px 'DM Mono', monospace;
+            writing-mode: vertical-rl;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            z-index: 3;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: 1px solid #ffffffaa;
+            border-radius: 50%;
+            background: #172720aa;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .carousel-button:hover {
+            background: var(--green);
+        }
+
+        .carousel-button.prev {
+            left: 15px;
+        }
+
+        .carousel-button.next {
+            right: 15px;
+        }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            background: var(--green);
+            color: white;
+            padding: 15px 0;
+            font: 10px 'DM Mono', monospace;
+            letter-spacing: .2em;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+
+        .marquee-track span {
+            padding-right: 35px;
+        }
+
+        .marquee-track i {
+            padding: 0 20px;
+            color: #c7dfbf;
+            font-style: normal;
+        }
+
+        @keyframes marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .section {
+            padding: 105px 0;
+        }
+
+        .bio {
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            gap: 90px;
+        }
+
+        .section h2 {
+            margin: 15px 0;
+            font-size: clamp(42px, 5.5vw, 69px);
+            line-height: .98;
+            font-weight: 500;
+            letter-spacing: -.05em;
+        }
+
+        .bio-copy {
+            color: #536259;
+            font-size: 14px;
+            line-height: 1.95;
+        }
+
+        .bio-copy p {
+            margin-bottom: 20px;
+        }
+
+        .bio-copy strong {
+            color: var(--green);
+        }
+
+        .bio-quote {
+            margin: 28px 0 18px;
+            padding: 5px 0 5px 20px;
+            border-left: 2px solid var(--green);
+            color: var(--green);
+            font: italic 25px 'Playfair Display', Georgia, serif;
+        }
+
+        .smallnote {
+            color: var(--muted);
+            font: 9px 'DM Mono', monospace;
+            letter-spacing: .13em;
+            line-height: 1.8;
+            text-transform: uppercase;
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 28px;
+            padding: 22px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .fact strong {
+            display: block;
+            font: 30px 'Playfair Display', serif;
+            color: var(--green);
+        }
+
+        .fact span {
+            display: block;
+            margin-top: 5px;
+            color: var(--muted);
+            font: 9px 'DM Mono', monospace;
+            letter-spacing: .07em;
+            line-height: 1.7;
+        }
+
+        .dark {
+            background: #182b23;
+            color: var(--paper);
+        }
+
+        .dark .overline,
+        .dark .year {
+            color: #7cba91;
+        }
+
+        .journey-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .journey-head h2 {
+            max-width: 650px;
+        }
+
+        .journey-list {
+            padding-left: 22px;
+            margin-bottom: 45px;
+            color: #d2ddd4;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .journey-list li {
+            padding-left: 8px;
+            margin-bottom: 12px;
+        }
+
+        .journey-list strong {
+            color: #a8d7b4;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid #ffffff35;
+        }
+
+        .timecard {
+            position: relative;
+            margin-right: 25px;
+            padding: 24px 25px 8px 0;
+            border-right: 1px solid #ffffff30;
+        }
+
+        .timecard:last-child {
+            margin: 0;
+            border: 0;
+        }
+
+        .timecard::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #7cba91;
+        }
+
+        .timecard h3 {
+            margin: 24px 0 12px;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .timecard p {
+            color: #c2cfc5;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .year {
+            font: 10px 'DM Mono', monospace;
+            letter-spacing: .15em;
+        }
+
+        .gallery-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            grid-template-rows: 260px 260px;
+            gap: 16px;
+        }
+
+        .shot {
+            position: relative;
+            overflow: hidden;
+            background: #3e3127;
+        }
+
+        .shot:first-child {
+            grid-row: span 2;
+        }
+
+        .shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(.75);
+            transition: transform .7s, filter .7s;
+        }
+
+        .shot:hover img {
+            transform: scale(1.05);
+            filter: saturate(1);
+        }
+
+        .shot::after {
+            content: "";
+            position: absolute;
+            inset: 45% 0 0;
+            background: linear-gradient(transparent, #100d0bbb);
+            pointer-events: none;
+        }
+
+        .shot figcaption {
+            position: absolute;
+            z-index: 1;
+            left: 18px;
+            bottom: 17px;
+            color: white;
+            font: 9px 'DM Mono', monospace;
+            letter-spacing: .13em;
+        }
+
+        .statement {
+            text-align: center;
+            padding: 105px 0;
+        }
+
+        .statement blockquote {
+            max-width: 850px;
+            margin: 25px auto;
+            font: clamp(32px, 5vw, 58px)/1.15 'Playfair Display', serif;
+            letter-spacing: -.04em;
+        }
+
+        .statement blockquote em {
+            color: var(--green);
+        }
+
+        .statement cite {
+            color: var(--muted);
+            font: 9px 'DM Mono', monospace;
+            letter-spacing: .16em;
+            font-style: normal;
+            text-transform: uppercase;
+        }
+
+        .listen {
+            padding: 68px 0;
+            background: #d3e1d6;
+        }
+
+        .listen-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .listen h2 {
+            margin: 13px 0;
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: .95;
+        }
+
+        .footer {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font: 9px 'DM Mono', monospace;
+            letter-spacing: .1em;
+        }
+
+        .footer a {
+            color: var(--ink);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay1 {
+            transition-delay: .12s;
+        }
+
+        .delay2 {
+            transition-delay: .24s;
+        }
+
+        @media (max-width: 760px) {
+            .top {
+                min-height: 68px;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .book {
+                display: none;
+            }
+
+            .nav {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                padding: 20px 5%;
+                background: var(--paper);
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav.open {
+                display: flex;
+            }
+
+            .nav a {
+                text-align: center;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                min-height: auto;
+                padding: 55px 0 35px;
+            }
+
+            .hero h1 {
+                font-size: clamp(58px, 15vw, 94px);
+            }
+
+            .carousel {
+                height: 470px;
+            }
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .bio {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .journey-head,
+            .gallery-head {
+                display: block;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+                margin-left: 4px;
+                border-top: 0;
+                border-left: 1px solid #ffffff35;
+            }
+
+            .timecard {
+                margin: 0 0 22px;
+                padding: 0 0 15px 23px;
+                border-right: 0;
+            }
+
+            .timecard::before {
+                top: 4px;
+                left: -4px;
+            }
+
+            .timecard h3 {
+                margin: 10px 0;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                grid-template-rows: 330px 230px 230px;
+            }
+
+            .shot:first-child {
+                grid-row: auto;
+            }
+
+            .statement {
+                padding: 75px 0;
+            }
+
+            .listen-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 25px 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+
+        /* GALLERY SECTION */
+        .family-gallery {
+            width: 100%;
+            padding: 65px 0 45px;
+            background: linear-gradient(135deg,
+                    #f8f6ef,
+                    #edf2ec,
+                    #ffffff);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* HEADING */
+        .gallery-heading {
+            text-align: center;
+            padding: 0 20px 35px;
+        }
+
+        .gallery-label {
+            display: inline-block;
+            color: #9b7950;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+
+        .gallery-heading h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(25px, 4vw, 42px);
+            color: #263b30;
+            margin: 0 0 12px;
+        }
+
+        .gallery-heading p {
+            color: #77786f;
+            font-size: 14px;
+            letter-spacing: .4px;
+        }
+
+        /* MARQUEE */
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+
+            -webkit-mask-image: linear-gradient(to right,
+                    transparent,
+                    black 5%,
+                    black 95%,
+                    transparent);
+
+            mask-image: linear-gradient(to right,
+                    transparent,
+                    black 5%,
+                    black 95%,
+                    transparent);
+        }
+
+        /* CONTINUOUS TRACK */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: family-scroll 45s linear infinite;
+
+            /* NEVER STOP FOR MOUSE INTERACTION */
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        /* IMAGE GROUP */
+        .marquee-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-right: 20px;
+        }
+
+        /* PHOTOS */
+        .marquee-group img {
+            height: 220px;
+            width: 290px;
+            flex-shrink: 0;
+            object-fit: cover;
+
+            border-radius: 15px;
+            border: 4px solid #ffffff;
+
+            box-shadow:
+                0 8px 25px rgba(40, 50, 35, 0.13);
+
+            transition:
+                transform .45s ease,
+                box-shadow .45s ease;
+        }
+
+        /* ANIMATION */
+        @keyframes family-scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* FOOTER */
+        .gallery-footer {
+            text-align: center;
+            margin-top: 32px;
+            color: #77786f;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .gallery-footer span {
+            color: #b78b62;
+            margin-right: 7px;
+        }
+
+        /* TABLET */
+        @media (max-width: 768px) {
+            .family-gallery {
+                padding: 45px 0 35px;
+            }
+
+            .marquee-group img {
+                width: 230px;
+                height: 175px;
+            }
+
+            .marquee-group {
+                gap: 14px;
+                padding-right: 14px;
+            }
+
+            .marquee-track {
+                animation-duration: 35s;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 480px) {
+            .marquee-group img {
+                width: 190px;
+                height: 145px;
+                border-radius: 12px;
+            }
+
+            .gallery-heading p {
+                font-size: 12px;
+            }
+
+            .gallery-label {
+                letter-spacing: 2px;
+            }
+        }
+
+        /* ACCESSIBILITY */
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body style="padding: 10px;">
+
+    <header class="shell top">
+        <a class="brand" href="#home">DRUMS <b>SIVAMANI</b></a>
+        <nav class="nav" id="nav">
+            <a href="#story">The Artist</a>
+            <a href="#journey">Journey</a>
+            <a href="#moments">On Stage</a>
+        </nav>
+        <a class="book" href="https://www.sivamani.in/" target="_blank" rel="noopener">
+            Official Website ↗
+        </a>
+        <button class="menu" id="menuButton" aria-label="Toggle navigation" aria-expanded="false">
+            ☰
+        </button>
+    </header>
+
+    <main id="home">
+        <!-- HERO SECTION AND AUTOMATIC PHOTO SLIDESHOW -->
+        <section class="shell hero">
+            <div class="reveal">
+                <div class="overline">
+                    Percussionist · Composer · Performer
+                </div>
+                <h1>The rhythm<br>is <em>now.</em></h1>
+                <p>
+                    <b style="color: #28765c;">Anandan "Drums" Sivamani</b> (born 1 December 1959 in Chennai, Tamil
+                    Nadu) is a world-renowned Indian
+                    percussionist, drummer, and music composer. Celebrated for his exceptional showmanship, high-energy
+                    live performances, and ability to craft rhythms out of everyday household objects, he is widely
+                    regarded as one of India's iconic musical masters. His invention and unmistakable energy
+                    to every beat. Step into the world of one of India's most
+                    celebrated percussionists.
+                </p>
+                <div class="cta-row">
+                    <a class="btn" href="#story">Discover the Artist ↘</a>
+                    <a class="btn outline" href="https://www.sivamani.in/" target="_blank" rel="noopener">
+                        Official Website↗
+                    </a>
+                </div>
+            </div>
+
+            <div class="carousel" id="carousel" data-auto-carousel aria-label="Drums Sivamani photo slideshow">
+                <div class="carousel-track" id="carouselTrack">
+                    <img src="./s with ar.webp" alt="ar">
+                    <img src="./siva h1.jpg" alt="Drums Sivamani performing live">
+                    <img src="./sp2.jpg" alt="Sivamani playing percussion on stage">
+                    <img src="p3.jpg" alt="Sivamani surrounded by percussion instruments">
+                    <img src="./re p4.jpg" alt="Sivamani performing with a gong">
+
+                    <style>
+                        /* GALLERY SECTION */
+                        .family-gallery {
+                            width: 100%;
+                            padding: 65px 0 45px;
+                            background: linear-gradient(135deg,
+                                    #f8f6ef,
+                                    #edf2ec,
+                                    #ffffff);
+                            overflow: hidden;
+                            position: relative;
+                        }
+
+                        /* HEADING */
+                        .gallery-heading {
+                            text-align: center;
+                            padding: 0 20px 35px;
+                        }
+
+                        .gallery-label {
+                            display: inline-block;
+                            color: #9b7950;
+                            font-size: 11px;
+                            font-weight: 800;
+                            letter-spacing: 4px;
+                            margin-bottom: 12px;
+                        }
+
+                        .gallery-heading h2 {
+                            font-family: Georgia, serif;
+                            font-size: clamp(25px, 4vw, 42px);
+                            color: #263b30;
+                            margin: 0 0 12px;
+                        }
+
+                        .gallery-heading p {
+                            color: #77786f;
+                            font-size: 14px;
+                            letter-spacing: .4px;
+                        }
+
+                        /* MARQUEE */
+                        .marquee {
+                            width: 100%;
+                            overflow: hidden;
+                            position: relative;
+
+                            -webkit-mask-image: linear-gradient(to right,
+                                    transparent,
+                                    black 5%,
+                                    black 95%,
+                                    transparent);
+
+                            mask-image: linear-gradient(to right,
+                                    transparent,
+                                    black 5%,
+                                    black 95%,
+                                    transparent);
+                        }
+
+                        /* CONTINUOUS TRACK */
+                        .marquee-track {
+                            display: flex;
+                            width: max-content;
+                            animation: family-scroll 45s linear infinite;
+
+                            /* NEVER STOP FOR MOUSE INTERACTION */
+                            pointer-events: none;
+                            will-change: transform;
+                        }
+
+                        /* IMAGE GROUP */
+                        .marquee-group {
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+                            padding-right: 20px;
+                        }
+
+                        /* PHOTOS */
+                        .marquee-group img {
+                            height: 220px;
+                            width: 290px;
+                            flex-shrink: 0;
+                            object-fit: cover;
+
+                            border-radius: 15px;
+                            border: 4px solid #ffffff;
+
+                            box-shadow:
+                                0 8px 25px rgba(40, 50, 35, 0.13);
+
+                            transition:
+                                transform .45s ease,
+                                box-shadow .45s ease;
+                        }
+
+                        /* ANIMATION */
+                        @keyframes family-scroll {
+                            from {
+                                transform: translateX(0);
+                            }
+
+                            to {
+                                transform: translateX(-50%);
+                            }
+                        }
+
+                        /* FOOTER */
+                        .gallery-footer {
+                            text-align: center;
+                            margin-top: 32px;
+                            color: #77786f;
+                            font-size: 12px;
+                            letter-spacing: 2px;
+                            font-weight: 600;
+                        }
+
+                        .gallery-footer span {
+                            color: #b78b62;
+                            margin-right: 7px;
+                        }
+
+                        /* TABLET */
+                        @media (max-width: 768px) {
+                            .family-gallery {
+                                padding: 45px 0 35px;
+                            }
+
+                            .marquee-group img {
+                                width: 230px;
+                                height: 175px;
+                            }
+
+                            .marquee-group {
+                                gap: 14px;
+                                padding-right: 14px;
+                            }
+
+                            .marquee-track {
+                                animation-duration: 35s;
+                            }
+                        }
+
+                        /* MOBILE */
+                        @media (max-width: 480px) {
+                            .marquee-group img {
+                                width: 190px;
+                                height: 145px;
+                                border-radius: 12px;
+                            }
+
+                            .gallery-heading p {
+                                font-size: 12px;
+                            }
+
+                            .gallery-label {
+                                letter-spacing: 2px;
+                            }
+                        }
+
+                        /* ACCESSIBILITY */
+                        @media (prefers-reduced-motion: reduce) {
+                            .marquee-track {
+                                animation: none;
+                            }
+                        }
+
+                        /* GALLERY SECTION */
+                        .family-gallery {
+                            width: 100%;
+                            padding: 65px 0 45px;
+                            background: linear-gradient(135deg,
+                                    #f8f6ef,
+                                    #edf2ec,
+                                    #ffffff);
+                            overflow: hidden;
+                            position: relative;
+                        }
+
+                        /* HEADING */
+                        .gallery-heading {
+                            text-align: center;
+                            padding: 0 20px 35px;
+                        }
+
+                        .gallery-label {
+                            display: inline-block;
+                            color: #9b7950;
+                            font-size: 11px;
+                            font-weight: 800;
+                            letter-spacing: 4px;
+                            margin-bottom: 12px;
+                        }
+
+                        .gallery-heading h2 {
+                            font-family: Georgia, serif;
+                            font-size: clamp(25px, 4vw, 42px);
+                            color: #263b30;
+                            margin: 0 0 12px;
+                        }
+
+                        .gallery-heading p {
+                            color: #77786f;
+                            font-size: 14px;
+                            letter-spacing: .4px;
+                        }
+
+                        /* MARQUEE */
+                        .marquee {
+                            width: 100%;
+                            overflow: hidden;
+                            position: relative;
+
+                            -webkit-mask-image: linear-gradient(to right,
+                                    transparent,
+                                    black 5%,
+                                    black 95%,
+                                    transparent);
+
+                            mask-image: linear-gradient(to right,
+                                    transparent,
+                                    black 5%,
+                                    black 95%,
+                                    transparent);
+                        }
+
+                        /* CONTINUOUS TRACK */
+                        .marquee-track {
+                            display: flex;
+                            width: max-content;
+                            animation: family-scroll 45s linear infinite;
+
+                            /* NEVER STOP FOR MOUSE INTERACTION */
+                            pointer-events: none;
+                            will-change: transform;
+                        }
+
+                        /* IMAGE GROUP */
+                        .marquee-group {
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+                            padding-right: 20px;
+                        }
+
+                        /* PHOTOS */
+                        .marquee-group img {
+                            height: 220px;
+                            width: 290px;
+                            flex-shrink: 0;
+                            object-fit: cover;
+
+                            border-radius: 15px;
+                            border: 4px solid #ffffff;
+
+                            box-shadow:
+                                0 8px 25px rgba(40, 50, 35, 0.13);
+
+                            transition:
+                                transform .45s ease,
+                                box-shadow .45s ease;
+                        }
+
+                        /* ANIMATION */
+                        @keyframes family-scroll {
+                            from {
+                                transform: translateX(0);
+                            }
+
+                            to {
+                                transform: translateX(-50%);
+                            }
+                        }
+
+                        /* FOOTER */
+                        .gallery-footer {
+                            text-align: center;
+                            margin-top: 32px;
+                            color: #77786f;
+                            font-size: 12px;
+                            letter-spacing: 2px;
+                            font-weight: 600;
+                        }
+
+                        .gallery-footer span {
+                            color: #b78b62;
+                            margin-right: 7px;
+                        }
+
+                        /* TABLET */
+                        @media (max-width: 768px) {
+                            .family-gallery {
+                                padding: 45px 0 35px;
+                            }
+
+                            .marquee-group img {
+                                width: 230px;
+                                height: 175px;
+                            }
+
+                            .marquee-group {
+                                gap: 14px;
+                                padding-right: 14px;
+                            }
+
+                            .marquee-track {
+                                animation-duration: 35s;
+                            }
+                        }
+
+                        /* MOBILE */
+                        @media (max-width: 480px) {
+                            .marquee-group img {
+                                width: 190px;
+                                height: 145px;
+                                border-radius: 12px;
+                            }
+
+                            .gallery-heading p {
+                                font-size: 12px;
+                            }
+
+                            .gallery-label {
+                                letter-spacing: 2px;
+                            }
+                        }
+
+                        /* ACCESSIBILITY */
+                        @media (prefers-reduced-motion: reduce) {
+                            .marquee-track {
+                                animation: none;
+                            }
+                        }
+                    </style>
+                </div>
+                <div class="photo-index" id="photoIndex" aria-live="polite">01 / 04</div>
+                <div class="photo-caption">
+                    A. SIVAMANI · LIVE PERFORMANCE
+                </div>
+                <button class="carousel-button prev" id="previousSlide" aria-label="Previous photo">‹</button>
+                <button class="carousel-button next" id="nextSlide" aria-label="Next photo">›</button>
+            </div>
+        </section>
+
+
+        <!-- MOVING TEXT STRIP -->
+        <div class="marquee" aria-label="Rhythm has no borders">
+            <div class="marquee-track">
+                <span>
+                    RHYTHM HAS NO BORDERS <i>✳</i>
+                    ROOTED IN INDIA, MADE FOR THE WORLD <i>✳</i>
+                    RHYTHM HAS NO BORDERS <i>✳</i>
+                    ROOTED IN INDIA, MADE FOR THE WORLD <i>✳</i>
+                </span>
+                <span aria-hidden="true">
+                    RHYTHM HAS NO BORDERS <i>✳</i>
+                    ROOTED IN INDIA, MADE FOR THE WORLD <i>✳</i>
+                    RHYTHM HAS NO BORDERS <i>✳</i>
+                    ROOTED IN INDIA, MADE FOR THE WORLD <i>✳</i>
+                </span>
+
+            </div>
+        </div>
+        <!-- DUPLICATE PHOTOS FOR INFINITE LOOP -->
+
+
+
+
+
+
+
+
+        <!-- ABOUT THE ARTIST -->
+        <section class="shell section" id="story">
+            <div class="bio">
+                <div class="reveal">
+                    <div class="overline">01 / The Artist</div>
+                    <h2>Born to hear the beat.</h2>
+                </div>
+        </section>
+
+
+        <div class="marquee" style="background-color: #f8f6ef;">
+            <div class="marquee-track">
+
+                <!-- ORIGINAL PHOTOS -->
+                <div class="marquee-group" style="background-color: #f8f6ef;">
+                    <img src="./siv with other/group.av" alt="Family celebration">
+                    <img src="./family/ar mar.jpg" alt="Family memory">
+                    <img src="./family/all mar.jpg" alt="Family together">
+                    <img src="./family/famili func.jpg" alt="Family function">
+                    <img src="./family/daughter.jpg" alt="">
+                    <img src="./family/smal  fam.jpg" alt="Family portrait">
+                    <img src="./family/smal bab.jpg" alt="Baby memory">
+                    <img src="./family/mar.jpg" alt="Marriage memory">
+                </div>
+
+                <!-- DUPLICATE PHOTOS FOR INFINITE LOOP -->
+                <div class="marquee-group" aria-hidden="true">
+                    <img src="./family/certi fam.jpg" alt="">
+                    <img src="./family/ar mar.jpg" alt="">
+                    <img src="./family/all mar.jpg" alt="">
+                    <img src="./family/famili func.jpg" alt="">
+                    <img src="./family/family.jpg" alt="">
+                    <img src="./family/smal fam.jpg" alt="">
+                    <img src="./family/smal bab.jpg" alt="">
+                    <img src="./family/mar.jpg" alt="">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bio-copy reveal delay1">
+
+            <br>
+            <h3>
+                <p>
+                    <strong>Anandan Sivamani</strong> grew up in Chennai in a
+                    musical family. His father, <strong>S. M. Anandan</strong>,
+                    was a professional drummer who introduced him to music
+                    when he was seven. At first, his father hoped he would
+                    choose a different path; when he saw the young Sivamani
+                    playing with such focus, he recognized that music was
+                    his calling.
+                </p>
+                <p>
+                    As a child, Sivamani was fascinated by the rhythms around
+                    him. He started his musical career at <strong>12</strong>,
+                    learning through close contact with working musicians and
+                    the world of recording and performance. Those early years
+                    shaped the open-minded percussionist audiences know today.
+                </p>
+                <p>
+                    Sivamani <sup>’s</sup> career has been nothing but an extraordinary journey. He has shared
+                    the
+                    stage
+                    with
+                    the music legends in India and abroad. His earliest experiments with music were with
+                    Carnatic
+                    maestros including <b style="color: #28765c;"> KunnakudiVaidyanathan, T. V. Gopalakrishnan,
+                        ValliyapattiSubramaniam
+                        andPazhanivel, and L. Shankar.</b>
+                    Apart from sharing the stage with <b style="color: #28765c;">Zakir Hussain and TrilokGurtu
+                    </b>,
+                    he
+                    has collaborated with
+                    several musicians including <b style="color: #28765c;">M.S. Viswanathan, Illayaraja, A. R.
+                        Rahman
+                        and Louis
+                        Banks.Sivamanihas </b>done world tours with <b style="color: #28765c;"> A. R. Rahman</b>
+                    and
+                    collaborated with him for <b style="color: #28765c;"> Bombay</b>
+                    Dreams. He has also been a part of a musical group called <b style="color: #28765c;">Shraddha
+                    </b>which comprises <b style="color: #28765c;"> Shankar
+                        Mahadevan, Hariharan, U. Srinivas and Loy Mendonsa.</b> Shivamani has a band called <b
+                        style="color: #28765c;"> "Asia Electrik"</b>
+                    with <b style="color: #28765c;">Niladri Kumar, Louiz Banks and Ravi Chari.</b>
+                    Sivamani has played drums for many film score composers hailing from Kollywood. He has
+                    played
+                    drums for many Indian films including <b style="color: #28765c;">Roja, Rang De Basanti,
+                        Swades,
+                        Taal, Lagaan, Dil Se, Guru,
+                        Kabul Express and Rockstar</b>. Some of the songs that he has contributed to include <b
+                        style="color: #28765c;"> "KadhalRojave”,
+                        "PudhuVellaiMalai", “ChaiyaChaiya” and “NadaanParinde”</b>. In 1990, he shared the stage
+                    with
+                    Billy
+                    Cobham at Mumbai's Rang Bhavan.
+                    <br>
+                    <img src="./s1.jpg" alt="" style="padding: 100px;">
+                    <br>
+                    Sivamani has performed in Dubai, Moscow, New York, Doha and Toronto. During the Mumbai
+                    Festival
+                    2005, Coca-Cola India invited him to perform at the Limca Fresh Face 2005 event, where he
+                    created melody from Limca bottles. He has also worked on Galli Galli Sim Sim, an educational
+                    series on Pogo and Cartoon Network.
+                    He was affiliatedas a drummerand supporter for Chennai Super Kings of Indian Premier League
+                    (IPL),from 2008 to 2016. He endorses five biggest international brands in the live music
+                    industry, which includes Zildjian, Pearl, Roland, AKG and Remo. He is a member of world
+                    music
+                    outfits – the Zakir Hussain World Drums Ensemble, SILK, Asia Electrik and Shraddha.
+                </p>
+                <p>
+                    From Indian classical rhythms to <strong>jazz</strong>,
+                    film scores and global collaborations, Sivamani's
+                    performances are powered by spontaneity. The result is
+                    music that feels both deeply rooted and alive in the moment.
+                </p>
+
+                <div class="bio-quote">
+                    “Becoming a drummer is more of a choice than chance for me.”
+                </div>
+                <div class="smallnote">
+                    His father's encouragement and the sounds of Chennai
+                    became the first chapters of a life in rhythm.
+                </div>
+            </h3>
+
+            <div class="facts">
+                <div class="fact">
+                    <strong>7</strong>
+                    <span>INTRODUCED TO MUSIC</span>
+                </div>
+                <div class="fact">
+                    <strong>12</strong>
+                    <span>CAREER BEGAN</span>
+                </div>
+                <div class="fact">
+                    <strong>2009</strong>
+                    <span>KALAIMANI AWARD</span>
+                </div>
+                <div class="fact">
+                    <strong>2015</strong>
+                    <span>BEST INSTRUMENTAL ACT</span>
+                </div>
+                <div class="fact">
+                    <strong>2015</strong>
+                    <span>BEST MUSIC COMPOSER — ARIMA NAMBI</span>
+                </div>
+                <div class="fact">
+                    <strong>2019</strong>
+                    <span>PADMA SHRI</span>
+                </div>
+                <div class="fact">
+                    <strong>2021</strong>
+                    <span>BEST MUSIC COMPOSER — ATKAN CHATKAN</span>
+                </div>
+                <div class="fact">
+                    <strong>2024</strong>
+                    <span>HONORARY DOCTORATE</span>
+                </div>
+                <div class="fact">
+                    <strong>2026</strong>
+                    <span>WOW ASIA AWARD</span>
+                </div>
+            </div>
+        </div>
+        </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- CAREER AND ACHIEVEMENTS -->
+        <section class="dark section" id="journey">
+            <div class="shell">
+                <div class="journey-head reveal">
+
+                    <div>
+                        <div class="overline">02 / The Journey</div>
+                        <h2>One career.<br>A thousand rhythms.</h2>
+                    </div>
+                    <div>
+                        <img src="./siv pad.webp" alt="">
+                    </div>
+                </div>
+
+                <ul class="journey-list reveal">
+                    <li>
+                        <strong>A. R. Rahman:</strong>
+                        Gained widespread fame as a long-time lead percussionist
+                        for composer A. R. Rahman, collaborating on film scores
+                        including Roja, Dil Se, Taal, Lagaan, Guru and Rockstar,
+                        as well as international projects such as Bombay Dreams.
+                    </li>
+                    <li>
+                        <strong>Instruments Played:</strong>
+                        Drums, octoban, darbuka, udukai, ghatam and kanjira.
+                    </li>
+                    <li>
+                        <strong>Bands and Projects:</strong>
+                        Worked with cross-genre groups and artists, including
+                        Asia Electrik, Louiz Banks, Niladri Kumar, Shraddha and
+                        the Zakir Hussain World Drums Ensemble.
+                    </li>
+                    <li>
+                        <strong>Film Scoring:</strong>
+                        Made his feature-film music direction debut in Tamil
+                        cinema with Arima Nambi (2014) and later worked on
+                        Atkan Chatkan (2020).
+                    </li>
+                </ul>
+                <div>
+                    <img src="./s with sp.jpg" alt="">
+                </div>
+
+                <div class="timeline">
+                    <article class="timecard reveal">
+                        <span class="year">EARLY YEARS</span>
+                        <h3>Finding the pulse</h3>
+                        <p>
+                            Growing up in a musical family, Sivamani began
+                            performing as a young teenager and developed a
+                            distinctive approach to percussion.
+                        </p>
+                    </article>
+                    <article class="timecard reveal delay1">
+                        <span class="year">ACROSS THE WORLD</span>
+                        <h3>Collaborations without borders</h3>
+                        <p>
+                            He shared stages and projects with artists including
+                            A. R. Rahman, Zakir Hussain, Trilok Gurtu and many more.
+                        </p>
+                    </article>
+                    <article class="timecard reveal delay2">
+                        <span class="year">2019</span>
+                        <h3>Padma Shri</h3>
+                        <p>
+                            The Government of India recognized his contribution
+                            to music with one of the country's highest civilian
+                            honours.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PHOTO GALLERY WITH ORIGINAL LINKS -->
+        <section class="shell section" id="moments">
+            <div class="gallery-head reveal">
+                <div>
+                    <div class="overline">03 / On Stage</div>
+                    <h2>Feel the moment.</h2>
+                </div>
+                <div class="smallnote">
+                    Energy, craft and celebration
+                </div>
+            </div>
+
+
+
+
+            <div class="marquee" style="background-color: #f8f6ef;">
+                <div class="marquee-track">
+
+
+                    <!-- DUPLICATE PHOTOS FOR INFINITE LOOP -->
+                    <div class="marquee-group" style="background-color: #f8f6ef;">
+                        <img src="./siv with other/abdul.avif" alt="">
+                        <img src="./siv with other/sharukan.avif" alt="">
+                        <img src="./siv with other/vijay.avif" alt="">
+                        <img src="./siv with other/ms dhoni.avif" alt="">
+                        <img src="./siv with other/mohanlal.avif" alt="">
+                        <img src="./siv with other/mani.avif" alt="">
+                        <img src="./siv with other/african bro.avif" alt="">
+                        <img src="./siv with other/tr.avif" alt="">
+                        <img src="./siv with other/jayaram.avif" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="gallery">
+                <figure class="shot reveal">
+                    <a href="http://www.youtube.com/@drumsshivamani" target="_blank" rel="noopener">
+                        <img src="https://eternalmusic.com/EM_Photos/Musician_Bios/Sivamani/Sivamani9.jpg"
+                            alt="Sivamani playing percussion on stage" loading="lazy">
+                    </a>
+                    <figcaption>YOUTUBE LINK ↗</figcaption>
+                </figure>
+                <figure class="shot reveal delay1">
+                    <a href="https://www.instagram.com/asivamanidrums_official/?hl=en" target="_blank" rel="noopener">
+                        <img src="https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/cf9fa01e-4284-4737-b698-5c81e13fb8a1/Sivamani_2017I-embed.jpg?quality=80&w=1600"
+                            alt="Sivamani surrounded by percussion instruments" loading="lazy">
+                    </a>
+                    <figcaption>INSTAGRAM LINK ↗</figcaption>
+                </figure>
+                <figure class="shot reveal delay2">
+                    <a href="https://en.wikipedia.org/wiki/Sivamani_(percussionist)" target="_blank" rel="noopener">
+                        <img src="https://r2.theaudiodb.com/images/media/artist/thumb/xppvxp1553598347.jpg"
+                            alt="Sivamani performing with a large gong" loading="lazy">
+                    </a>
+                    <figcaption>WIKIPEDIA ↗</figcaption>
+                </figure>
+            </div>
+            <div class="marquee" style="background-color: #f8f6ef;">
+                <div class="marquee-track">
+
+
+
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+        <style>
+            .journey-image {
+                display: block;
+                width: 250px;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 15px;
+                margin: 20px auto;
+            }
+        </style>
+
+
+
+
+
+        <!-- =========================================
+     THE DEVELOPMENT / MUSICAL JOURNEY
+========================================= -->
+
+        <section class="dark section" id="journey">
+            <div class="shell">
+
+                <div class="journey-layout">
+
+                    <!-- HEADING -->
+                    <div class="journey-head reveal">
+                        <div class="overline">03 / THE DEVELOPMENT</div>
+
+                        <h2>
+                            On finding<br>
+                            music everywhere:
+                        </h2>
+                    </div>
+
+                    <!-- IMAGE -->
+                    <div class="journey-image-wrapper reveal">
+                        <a href="https://www.sivamani.in/"><img src="./siv own mus.avif"
+                                alt="Anandan Drums Sivamani – Finding Music Everywhere" class="journey-image"
+                                loading="lazy"></a>
+                    </div>
+
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="journey-content reveal">
+
+                    <p>
+                        The official website of renowned Indian percussionist
+                        Anandan "Drums" Sivamani serves as a comprehensive digital
+                        portfolio and a gateway to his extraordinary musical journey.
+                        Designed with a clean and engaging layout, the website
+                        introduces visitors to his artistic philosophy, summarized
+                        in his words: "Becoming a drummer is more of a choice than
+                        chance for me."
+
+                        It chronicles his remarkable journey from a seven-year-old
+                        prodigy, trained by his father, S. M. Anandan, to an
+                        internationally celebrated world percussionist.
+
+                        Through its dedicated Biography and Milestones sections,
+                        the platform explores his formative years in Chennai,
+                        mentorship under renowned musicians, and iconic
+                        collaborations with A. R. Rahman on landmark film scores
+                        such as Roja and Lagaan.
+
+                        It also highlights his prestigious achievements, including
+                        the Kalaimamani Award in 2009 and the Padma Shri in 2019,
+                        alongside his work as a film composer and his involvement
+                        in fusion ensembles such as Asia Electrik and Shraddha.
+                    </p>
+
+                    <p>
+                        Beyond biographical storytelling, the website functions
+                        as an interactive archive and professional platform for
+                        fans, music enthusiasts, and event organizers.
+
+                        Visitors can explore solo releases and collaborative works
+                        in the Albums section, browse photographs from international
+                        concerts and studio sessions in the Gallery, and connect
+                        with fellow percussion enthusiasts through the Fan Club.
+
+                        Finally, the Contact section provides communication
+                        channels for commercial, media, and event opportunities,
+                        including official management representation through
+                        AMG India.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <style>
+            /* =========================================
+   MUSICAL JOURNEY SECTION
+========================================= */
+
+            .journey-layout {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 55px;
+                margin-bottom: 45px;
+            }
+
+            /* HEADING */
+
+            .journey-head {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .journey-head .overline {
+                margin-bottom: 20px;
+            }
+
+            .journey-head h2 {
+                font-size: clamp(36px, 5vw, 62px);
+                line-height: 1.12;
+                font-weight: 800;
+                letter-spacing: -2px;
+                margin: 0;
+            }
+
+            /* IMAGE */
+
+            .journey-image-wrapper {
+                flex: 0 0 310px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .journey-image {
+                display: block;
+                width: 310px;
+                height: 310px;
+                object-fit: cover;
+                border-radius: 18px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+                transition: transform .4s ease;
+            }
+
+            .journey-image:hover {
+                transform: scale(1.035);
+            }
+
+            /* DESCRIPTION */
+
+            .journey-content {
+                width: 100%;
+                line-height: 1.9;
+            }
+
+            .journey-content p {
+                font-size: 15px;
+                line-height: 1.95;
+                margin-bottom: 24px;
+            }
+
+
+            /* =========================================
+   ARTIST FAMILY & LEGACY
+========================================= */
+
+            .artist-legacy {
+                position: relative;
+                padding-top: 110px;
+                padding-bottom: 110px;
+                overflow: hidden;
+            }
+
+            .legacy-heading {
+                max-width: 750px;
+                margin-bottom: 55px;
+            }
+
+            .legacy-heading .overline {
+                display: inline-block;
+                color: #c49a58;
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 4px;
+                margin-bottom: 20px;
+            }
+
+            .legacy-heading h2 {
+                font-size: clamp(36px, 5vw, 65px);
+                line-height: 1.1;
+                font-weight: 800;
+                letter-spacing: -2px;
+                margin-bottom: 20px;
+            }
+
+            .legacy-heading h2 span {
+                color: #c49a58;
+            }
+
+            .legacy-heading>p {
+                max-width: 570px;
+                font-size: 15px;
+                line-height: 1.9;
+                opacity: .72;
+            }
+
+
+            /* CARD GRID */
+
+            .legacy-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+
+            /* INDIVIDUAL CARDS */
+
+            .legacy-card {
+                position: relative;
+                padding: 32px 27px;
+                border: 1px solid rgba(196, 154, 88, .23);
+                border-radius: 18px;
+                background: linear-gradient(145deg,
+                        rgba(255, 255, 255, .055),
+                        rgba(255, 255, 255, .015));
+                backdrop-filter: blur(14px);
+                transition:
+                    transform .4s ease,
+                    border-color .4s ease,
+                    box-shadow .4s ease;
+                overflow: hidden;
+            }
+
+            .legacy-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: linear-gradient(90deg,
+                        transparent,
+                        #c49a58,
+                        transparent);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform .4s ease;
+            }
+
+            .legacy-card:hover {
+                transform: translateY(-9px);
+                border-color: rgba(196, 154, 88, .7);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, .22);
+            }
+
+            .legacy-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .legacy-icon {
+                width: 48px;
+                height: 48px;
+                display: grid;
+                place-items: center;
+                border-radius: 14px;
+                color: #c49a58;
+                background: rgba(196, 154, 88, .12);
+                font-size: 24px;
+                margin-bottom: 27px;
+            }
+
+            .legacy-number {
+                display: block;
+                color: #c49a58;
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: 2.5px;
+                margin-bottom: 12px;
+            }
+
+            .legacy-card h3 {
+                font-size: 25px;
+                font-weight: 750;
+                margin-bottom: 12px;
+            }
+
+            .legacy-description {
+                font-size: 13px;
+                line-height: 1.8;
+                opacity: .65;
+                min-height: 70px;
+                margin-bottom: 25px;
+            }
+
+
+            /* FAMILY DETAILS */
+
+            .legacy-person {
+                padding: 19px 0;
+                border-top: 1px solid rgba(255, 255, 255, .10);
+            }
+
+            .legacy-person span {
+                color: #c49a58;
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 2px;
+            }
+
+            .legacy-person h4 {
+                font-size: 17px;
+                font-weight: 750;
+                margin: 9px 0;
+            }
+
+            .legacy-person p {
+                font-size: 12px;
+                line-height: 1.8;
+                opacity: .7;
+                margin: 0;
+            }
+
+
+            /* CLOSING QUOTE */
+
+            .legacy-quote {
+                position: relative;
+                margin-top: 55px;
+                padding: 42px 35px;
+                text-align: center;
+                border-radius: 18px;
+                border: 1px solid rgba(196, 154, 88, .2);
+                background: rgba(196, 154, 88, .045);
+            }
+
+            .quote-mark {
+                display: block;
+                font-family: Georgia, serif;
+                font-size: 65px;
+                line-height: .8;
+                color: #c49a58;
+            }
+
+            .legacy-quote p {
+                max-width: 700px;
+                margin: 18px auto;
+                font-family: Georgia, serif;
+                font-size: clamp(18px, 2.5vw, 25px);
+                line-height: 1.7;
+                font-style: italic;
+            }
+
+            .quote-credit {
+                color: #c49a58;
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: 3px;
+            }
+
+
+            /* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+            @media (max-width: 900px) {
+
+                .journey-layout {
+                    gap: 30px;
+                }
+
+                .journey-image-wrapper {
+                    flex-basis: 260px;
+                }
+
+                .journey-image {
+                    width: 260px;
+                    height: 260px;
+                }
+
+                .legacy-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+
+
+            @media (max-width: 600px) {
+
+                /* JOURNEY MOBILE */
+
+                .journey-layout {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 25px;
+                }
+
+                .journey-head h2 {
+                    font-size: 38px;
+                }
+
+                .journey-image-wrapper {
+                    width: 100%;
+                    flex: none;
+                    justify-content: center;
+                }
+
+                .journey-image {
+                    width: 270px;
+                    height: 270px;
+                    max-width: 100%;
+                }
+
+                .journey-content p {
+                    font-size: 14px;
+                }
+
+
+                /* LEGACY MOBILE */
+
+                .artist-legacy {
+                    padding-top: 75px;
+                    padding-bottom: 75px;
+                }
+
+                .legacy-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .legacy-card {
+                    padding: 27px 23px;
+                }
+
+                .legacy-description {
+                    min-height: auto;
+                }
+
+                .legacy-quote {
+                    padding: 32px 20px;
+                }
+            }
+        </style>
+
+
+
+        <!-- ABOUT THE ARTIST / FAMILY LEGACY -->
+        <section class="shell section artist-legacy" id="story">
+
+            <div class="legacy-heading reveal">
+                <span class="overline">04 / THE BLOODLINE</span>
+                <h2>Born to hear the <span>beat.</span></h2>
+                <p>
+                    Behind every extraordinary rhythm is a story of family,
+                    inspiration, heritage and a lifelong connection to music.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <!-- PREMIUM FAMILY PHOTO MARQUEE -->
+            <section class="family-gallery">
+
+                <div class="gallery-heading">
+                    <span class="gallery-label">OUR PRECIOUS MEMORIES</span>
+                    <h2>Beautiful Moments Together</h2>
+                    <p>A collection of memories that will stay forever.</p>
+                </div>
+
+                <div class="marquee" style="background-color: #f8f6ef;">
+                    <div class="marquee-track">
+
+                        <!-- ORIGINAL PHOTOS -->
+                        <div class="marquee-group" style="background-color: #f8f6ef;">
+                            <img src="./family/certi fam.jpg" alt="Family celebration">
+                            <img src="./family/ar mar.jpg" alt="Family memory">
+                            <img src="./family/all mar.jpg" alt="Family together">
+                            <img src="./family/famili func.jpg" alt="Family function">
+                            <img src="./family/daughter.jpg" alt="">
+                            <img src="./family/smal  fam.jpg" alt="Family portrait">
+                            <img src="./family/smal bab.jpg" alt="Baby memory">
+                            <img src="./family/mar.jpg" alt="Marriage memory">
+                        </div>
+
+                        <!-- DUPLICATE PHOTOS FOR INFINITE LOOP -->
+                        <div class="marquee-group" aria-hidden="true">
+                            <img src="./family/certi fam.jpg" alt="">
+                            <img src="./family/ar mar.jpg" alt="">
+                            <img src="./family/all mar.jpg" alt="">
+                            <img src="./family/famili func.jpg" alt="">
+                            <img src="./family/family.jpg" alt="">
+                            <img src="./family/smal fam.jpg" alt="">
+                            <img src="./family/smal bab.jpg" alt="">
+                            <img src="./family/mar.jpg" alt="">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="gallery-footer">
+                    <span>♥</span> Memories Made With Love
+                </div>
+
+            </section>
+
+            <style>
+                /* GALLERY SECTION */
+                .family-gallery {
+                    width: 100%;
+                    padding: 65px 0 45px;
+                    background: linear-gradient(135deg,
+                            #f8f6ef,
+                            #edf2ec,
+                            #ffffff);
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                /* HEADING */
+                .gallery-heading {
+                    text-align: center;
+                    padding: 0 20px 35px;
+                }
+
+                .gallery-label {
+                    display: inline-block;
+                    color: #9b7950;
+                    font-size: 11px;
+                    font-weight: 800;
+                    letter-spacing: 4px;
+                    margin-bottom: 12px;
+                }
+
+                .gallery-heading h2 {
+                    font-family: Georgia, serif;
+                    font-size: clamp(25px, 4vw, 42px);
+                    color: #263b30;
+                    margin: 0 0 12px;
+                }
+
+                .gallery-heading p {
+                    color: #77786f;
+                    font-size: 14px;
+                    letter-spacing: .4px;
+                }
+
+                /* MARQUEE */
+                .marquee {
+                    width: 100%;
+                    overflow: hidden;
+                    position: relative;
+
+                    -webkit-mask-image: linear-gradient(to right,
+                            transparent,
+                            black 5%,
+                            black 95%,
+                            transparent);
+
+                    mask-image: linear-gradient(to right,
+                            transparent,
+                            black 5%,
+                            black 95%,
+                            transparent);
+                }
+
+                /* CONTINUOUS TRACK */
+                .marquee-track {
+                    display: flex;
+                    width: max-content;
+                    animation: family-scroll 45s linear infinite;
+
+                    /* NEVER STOP FOR MOUSE INTERACTION */
+                    pointer-events: none;
+                    will-change: transform;
+                }
+
+                /* IMAGE GROUP */
+                .marquee-group {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    padding-right: 20px;
+                }
+
+                /* PHOTOS */
+                .marquee-group img {
+                    height: 220px;
+                    width: 290px;
+                    flex-shrink: 0;
+                    object-fit: cover;
+
+                    border-radius: 15px;
+                    border: 4px solid #ffffff;
+
+                    box-shadow:
+                        0 8px 25px rgba(40, 50, 35, 0.13);
+
+                    transition:
+                        transform .45s ease,
+                        box-shadow .45s ease;
+                }
+
+                /* ANIMATION */
+                @keyframes family-scroll {
+                    from {
+                        transform: translateX(0);
+                    }
+
+                    to {
+                        transform: translateX(-50%);
+                    }
+                }
+
+                /* FOOTER */
+                .gallery-footer {
+                    text-align: center;
+                    margin-top: 32px;
+                    color: #77786f;
+                    font-size: 12px;
+                    letter-spacing: 2px;
+                    font-weight: 600;
+                }
+
+                .gallery-footer span {
+                    color: #b78b62;
+                    margin-right: 7px;
+                }
+
+                /* TABLET */
+                @media (max-width: 768px) {
+                    .family-gallery {
+                        padding: 45px 0 35px;
+                    }
+
+                    .marquee-group img {
+                        width: 230px;
+                        height: 175px;
+                    }
+
+                    .marquee-group {
+                        gap: 14px;
+                        padding-right: 14px;
+                    }
+
+                    .marquee-track {
+                        animation-duration: 35s;
+                    }
+                }
+
+                /* MOBILE */
+                @media (max-width: 480px) {
+                    .marquee-group img {
+                        width: 190px;
+                        height: 145px;
+                        border-radius: 12px;
+                    }
+
+                    .gallery-heading p {
+                        font-size: 12px;
+                    }
+
+                    .gallery-label {
+                        letter-spacing: 2px;
+                    }
+                }
+
+                /* ACCESSIBILITY */
+                @media (prefers-reduced-motion: reduce) {
+                    .marquee-track {
+                        animation: none;
+                    }
+                }
+            </style>
+
+
+
+
+
+
+
+
+            <div class="legacy-grid">
+
+                <!-- PARENTS -->
+                <article class="legacy-card">
+                    <div class="legacy-icon">✦</div>
+                    <span class="legacy-number">01 / ROOTS</span>
+                    <h3>His Parents</h3>
+                    <p class="legacy-description">
+                        The family foundation that introduced Sivamani
+                        to the world of rhythm.
+                    </p>
+
+                    <div class="legacy-person">
+                        <span>FATHER</span>
+                        <h4>S. M. Anandan</h4>
+                        <p>Renowned drummer in the South Indian film industry
+                            and Sivamani's first musical inspiration.</p>
+                    </div>
+
+                    <div class="legacy-person">
+                        <span>MOTHER</span>
+                        <h4>Lakshmi Anandan</h4>
+                        <p>A part of his family roots and upbringing.</p>
+                    </div>
+                </article>
+
+                <!-- SPOUSE -->
+                <article class="legacy-card">
+                    <div class="legacy-icon">♡</div>
+                    <span class="legacy-number">02 / PARTNERSHIP</span>
+                    <h3>His Marriage</h3>
+                    <p class="legacy-description">
+                        A personal journey shaped by relationships
+                        and a shared connection with music.
+                    </p>
+
+                    <div class="legacy-person">
+                        <span>WIFE</span>
+                        <h4>Runa Rizvi</h4>
+                        <p>Runa Rizvi (also known as Runa Rizvi Sivamani) is an accomplished Indian classical, ghazal,
+                            Sufi, and playback singer trained in the Kalavant Gharana. The two married in a private
+                            ceremony in Mumbai on November 10, 2014, and frequently perform and collaborate
+                            together—blending Sivamani's energetic percussion with Runa's expressive Sufi, ghazal,
+                            classical, and fusion vocals across live shows and film project</p>
+                    </div>
+
+                </article>
+
+                <!-- CHILDREN -->
+                <article class="legacy-card">
+                    <div class="legacy-icon">♬</div>
+                    <span class="legacy-number">03 / NEXT GENERATION</span>
+                    <h3>His Children</h3>
+                    <p class="legacy-description">
+                        The next generation of the Sivamani family.
+                    </p>
+
+                    <div class="legacy-person">
+                        <span>SON</span>
+                        <h4>Kumaran Sivamani</h4>
+                        <p>A percussionist and music programmer who
+                            has worked with A. R. Rahman's musical team.</p>
+                    </div>
+
+                    <div class="legacy-person">
+                        <span>FAMILY</span>
+                        <h4>Two Children</h4>
+                        <p>Sivamani has two children from his first marriage.</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- CLOSING STATEMENT -->
+            <div class="legacy-quote">
+                <span class="quote-mark">“</span>
+                <p>
+                    Music runs in his blood. His journey began with
+                    his father's guidance and grew into a lifetime
+                    dedicated to rhythm.
+                </p>
+                <span class="quote-credit">THE SIVAMANI LEGACY</span>
+            </div>
+
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h2 style="padding-left: 20px;"><b style="color: #28765c;">OFFICE :</b> <br>
+            "KANAKIA ATRIUM - 2", <br>
+            No. 603, 6th Floor, Next to Courtyard Marriott Hotel,<br>
+            Opp. Divine Child High School, Andheri Kurla Road, Andheri (East),<br>
+            Mumbai - 400093. INDIA</h2>
+
+        <!-- QUOTE -->
+        <section class="statement shell reveal">
+            <div class="overline">The Philosophy</div>
+            <blockquote>
+                “Rhythm is <em>everything, everywhere.</em>”
+            </blockquote>
+            <cite>— Sivamani · TED Performance</cite>
+        </section>
+
+        <!-- YOUTUBE CALL TO ACTION -->
+        <section class="listen">
+            <div class="shell listen-row">
+                <div>
+                    <div class="overline">Take it from here</div>
+                    <h2>Hear the rhythm<br>for yourself.</h2>
+                </div>
+                <a class="btn" href="https://www.youtube.com/results?search_query=Drums+Sivamani+live+performance"
+                    target="_blank" rel="noopener">
+                    Explore Performances ↗
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="shell footer">
+        <span>AN APPRECIATION OF A. SIVAMANI</span>
+        <span>
+            PHOTOGRAPHS LOAD FROM THEIR PUBLISHERS ·
+            <a href="https://www.sivamani.in/" target="_blank" rel="noopener">
+                OFFICIAL WEBSITE ↗
+            </a>
+        </span>
+    </footer>
+    <script>
+        /* MOBILE NAVIGATION */
+        const menuButton = document.getElementById("menuButton");
+        const navigation = document.getElementById("nav");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = navigation.classList.toggle("open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        navigation.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navigation.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.textContent = "☰";
+            });
+        });
+
+        /* SCROLL REVEAL ANIMATIONS */
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("in");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12
+            });
+
+            revealElements.forEach(element => {
+                revealObserver.observe(element);
+            });
+        } else {
+            revealElements.forEach(element => {
+                element.classList.add("in");
+            });
+        }
+
+        /* AUTOMATIC PHOTO SLIDESHOW */
+        const carousel = document.getElementById("carousel");
+        const carouselTrack = document.getElementById("carouselTrack");
+        const photoIndex = document.getElementById("photoIndex");
+        const previousButton = document.getElementById("previousSlide");
+        const nextButton = document.getElementById("nextSlide");
+
+        const slides = Array.from(carouselTrack.querySelectorAll("img"));
+        const totalSlides = slides.length;
+
+        let currentSlide = 0;
+        let slideshowTimer = null;
+
+        const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
+
+        function showSlide(index) {
+            currentSlide = (index + totalSlides) % totalSlides;
+
+            carouselTrack.style.transform =
+                `translateX(-${currentSlide * 100}%)`;
+
+            photoIndex.textContent =
+                `${String(currentSlide + 1).padStart(2, "0")} / ` +
+                `${String(totalSlides).padStart(2, "0")}`;
+        }
+
+        function stopSlideshow() {
+            if (slideshowTimer !== null) {
+                clearInterval(slideshowTimer);
+                slideshowTimer = null;
+            }
+        }
+
+        function startSlideshow() {
+            stopSlideshow();
+
+            if (reducedMotion.matches || document.hidden) {
+                return;
+            }
+
+            slideshowTimer = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 4000);
+        }
+
+        previousButton.addEventListener("click", () => {
+            showSlide(currentSlide - 1);
+            startSlideshow();
+        });
+
+        nextButton.addEventListener("click", () => {
+            showSlide(currentSlide + 1);
+            startSlideshow();
+        });
+
+        carousel.addEventListener("mouseenter", stopSlideshow);
+        carousel.addEventListener("mouseleave", startSlideshow);
+        carousel.addEventListener("focusin", stopSlideshow);
+        carousel.addEventListener("focusout", startSlideshow);
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                stopSlideshow();
+            } else {
+                startSlideshow();
+            }
+        });
+
+        if (reducedMotion.addEventListener) {
+            reducedMotion.addEventListener("change", startSlideshow);
+        }
+
+        showSlide(0);
+        startSlideshow();
+
+        const openingSound = document.getElementById("openingSound");
+
+        if (openingSound) {
+            openingSound.loop = false;
+            openingSound.volume = 1;
+
+            openingSound.play().catch(error => {
+                console.warn("The browser blocked automatic audio playback.", error);
+            });
+        }
+    </script>
+</body>
+
+</html>
