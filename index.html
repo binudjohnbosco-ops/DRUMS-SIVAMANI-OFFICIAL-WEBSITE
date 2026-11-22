@@ -966,58 +966,150 @@ html body #legacy .legacy-quote { border-color: rgba(138,100,28,.4) !important; 
 
 <body>
 
-    <!-- Custom Drumstick Cursor -->
-    <style>
-        * {
-            cursor: none !important;
+    <!-- Advanced animated drumstick cursor -->
+    <style id="advanced-drumstick-cursor-style">
+        @media (hover: hover) and (pointer: fine) {
+            html.has-drumstick-cursor,
+            html.has-drumstick-cursor body,
+            html.has-drumstick-cursor body * {
+                cursor: none !important;
+            }
+            #drumstick-cursor {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 156px;
+                height: 48px;
+                z-index: 10000;
+                pointer-events: none;
+                opacity: 0;
+                transform: translate3d(-18px,-24px,0) rotate(-18deg);
+                transform-origin: 18px 24px;
+                will-change: transform;
+                filter: drop-shadow(0 4px 5px rgba(0,0,0,.28));
+                transition: opacity .18s ease;
+            }
+            #drumstick-cursor.is-visible { opacity: 1; }
+            #drumstick-cursor .stick-shaft {
+                fill: url(#stickWood);
+                stroke: #80552e;
+                stroke-width: .8;
+            }
+            #drumstick-cursor .stick-highlight {
+                fill: none;
+                stroke: rgba(255,241,205,.9);
+                stroke-width: 1.5;
+                stroke-linecap: round;
+            }
+            #drumstick-cursor .stick-tip {
+                fill: #f2d6a5;
+                stroke: #80552e;
+                stroke-width: .8;
+            }
+            #drumstick-cursor.striking {
+                filter: drop-shadow(0 0 9px rgba(212,175,55,.8));
+            }
+            #drumstick-cursor.striking .stick-art {
+                transform: rotate(-30deg) translateY(3px);
+            }
+            #drumstick-cursor .stick-art {
+                transform-origin: 18px 24px;
+                transition: transform .12s cubic-bezier(.2,.8,.2,1);
+            }
+            .drumstick-spark {
+                position: fixed;
+                z-index: 9998;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient(circle, #fff4c2 0%, #d4af37 45%, transparent 75%);
+                animation: drumSpark .42s ease-out forwards;
+            }
+            @keyframes drumSpark {
+                from { opacity: .95; transform: translate(-50%,-50%) scale(.7); }
+                to { opacity: 0; transform: translate(-50%,-50%) scale(3.2); }
+            }
         }
-
-        #drumstick {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 140px;
-            height: 40px;
-            pointer-events: none;
-            z-index: 9999;
-            transform-origin: 12px 20px;
-            transform: translate(-12px, -20px) rotate(35deg);
-            transition: transform 0.06s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        #drumstick.striking {
-            transform: translate(-12px, -20px) rotate(-10deg);
+        @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+            #drumstick-cursor, .drumstick-spark { display: none !important; }
         }
     </style>
 
-    <div id="drumstick">
-        <svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://w3.org">
-            <path d="M18 18 L135 15 C138 15 140 17 140 20 C140 23 138 25 135 25 L18 22 Z" fill="#deb887" />
-            <path d="M18 20 L139 20 C139 23 137 25 135 25 L18 22 Z" fill="#c69c6d" />
-            <ellipse cx="12" cy="20" rx="8" ry="5.5" fill="#f5deb3" />
+    <div id="drumstick-cursor" aria-hidden="true">
+        <svg class="stick-art" width="156" height="48" viewBox="0 0 156 48"
+             fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="stickWood" x1="12" y1="12" x2="145" y2="35" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#f8e2b8"/>
+                    <stop offset=".28" stop-color="#d5a66d"/>
+                    <stop offset=".62" stop-color="#b77b43"/>
+                    <stop offset="1" stop-color="#f1d09b"/>
+                </linearGradient>
+            </defs>
+            <path class="stick-shaft" d="M17 21.5 L143 18.5 Q151 18.5 151 24 Q151 29.5 143 29.5 L17 26.5 Q12 26.5 12 24 Q12 21.5 17 21.5Z"/>
+            <path class="stick-highlight" d="M20 22.5 L141 20.5 Q146 20.5 148 22"/>
+            <ellipse class="stick-tip" cx="14" cy="24" rx="8.5" ry="5.8"/>
+            <ellipse cx="11.5" cy="22.5" rx="2.4" ry="1.2" fill="#fff0cf" opacity=".8"/>
         </svg>
     </div>
 
     <script>
-        const stick = document.getElementById('drumstick');
+        (() => {
+            const cursor = document.getElementById("drumstick-cursor");
+            if (!cursor || !window.matchMedia("(hover: hover) and (pointer: fine)").matches ||
+                window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        document.addEventListener('mousemove', (e) => {
-            stick.style.left = `${e.clientX}px`;
-            stick.style.top = `${e.clientY}px`;
-        });
+            document.documentElement.classList.add("has-drumstick-cursor");
+            let targetX = -100, targetY = -100, currentX = targetX, currentY = targetY;
+            let previousX = targetX, previousY = targetY, angle = -18;
+            let frame = 0;
 
-        document.addEventListener('mousedown', () => stick.classList.add('striking'));
-        document.addEventListener('mouseup', () => stick.classList.remove('striking'));
+            document.addEventListener("mousemove", event => {
+                targetX = event.clientX;
+                targetY = event.clientY;
+                cursor.classList.add("is-visible");
+            }, { passive: true });
+
+            document.addEventListener("mouseleave", () => cursor.classList.remove("is-visible"));
+            document.addEventListener("mouseenter", () => cursor.classList.add("is-visible"));
+
+            function animateCursor() {
+                currentX += (targetX - currentX) * .32;
+                currentY += (targetY - currentY) * .32;
+
+                const dx = currentX - previousX;
+                const dy = currentY - previousY;
+                if (Math.abs(dx) + Math.abs(dy) > .15) {
+                    const movementAngle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    angle += (Math.max(-38, Math.min(38, movementAngle * .22)) - angle) * .12;
+                }
+
+                cursor.style.transform =
+                    `translate3d(${currentX - 18}px,${currentY - 24}px,0) rotate(${angle}deg)`;
+                previousX = currentX;
+                previousY = currentY;
+                frame = requestAnimationFrame(animateCursor);
+            }
+            frame = requestAnimationFrame(animateCursor);
+
+            document.addEventListener("pointerdown", event => {
+                cursor.classList.add("striking");
+                const spark = document.createElement("span");
+                spark.className = "drumstick-spark";
+                spark.style.left = event.clientX + "px";
+                spark.style.top = event.clientY + "px";
+                document.body.appendChild(spark);
+                window.setTimeout(() => spark.remove(), 450);
+            });
+
+            ["pointerup", "pointercancel"].forEach(type =>
+                document.addEventListener(type, () => cursor.classList.remove("striking"))
+            );
+
+            window.addEventListener("pagehide", () => cancelAnimationFrame(frame), { once: true });
+        })();
     </script>
-
-
-
-
-
-
-
-
-
 
     <header class="site-header" style="background-color:lightgray;">
         <div class="shell top">
