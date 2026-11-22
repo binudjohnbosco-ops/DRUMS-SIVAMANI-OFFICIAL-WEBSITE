@@ -1301,16 +1301,20 @@ table { max-width:100%; }
         <div class="eyebrow">A celebration of rhythm</div>
         <h2>Share Your Wishes</h2>
         <p class="wishes-intro">Send your birthday wishes and messages for Music Director Sivamani. Join the conversation and celebrate the Rhythm Maestro!</p>
-        <div class="wishes-note">To post a wish, sign in with your GitHub account. Your GitHub profile name will appear with your message.</div>
+        <div class="wishes-note">Anyone can share a wish — no account or sign-in form is needed.</div>
+        <form class="wishes-form" id="birthday-wish-form">
+          <label for="wish-name">Your name</label>
+          <input id="wish-name" name="name" type="text" maxlength="50" placeholder="Enter your name" required>
+          <label for="wish-message">Your wishes</label>
+          <textarea id="wish-message" name="message" rows="4" maxlength="500" placeholder="Write your birthday wishes for Sivamani..." required></textarea>
+          <button type="submit" id="wish-submit">Post Wishes</button>
+          <p class="wishes-status" id="wishes-status" role="status" aria-live="polite">Add your Firebase project settings to enable posting.</p>
+        </form>
         <div class="wishes-comments" id="birthday-wishes-comments">
-          <script src="https://utteranc.es/client.js"
-            repo="binudjohnbosco-ops/DRUMS-SIVAMANI-OFFICIAL-WEBSITE"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-          </script>
+          <h3>Birthday Wishes</h3>
+          <div id="wishes-list" aria-live="polite"><p class="wishes-empty">Wishes will appear here once the comments database is connected.</p></div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -2432,11 +2436,91 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 .wishes-section h2{margin:10px 0 12px;color:#172720;font-size:clamp(2rem,5vw,3.3rem);line-height:1.1}
 .wishes-intro{max-width:680px;color:#52635a;line-height:1.8;margin:0 0 18px}
 .wishes-note{padding:13px 16px;margin:0 0 22px;border-left:4px solid #28765c;background:#fff;color:#405148;border-radius:8px;font-size:.92rem;line-height:1.6}
-.wishes-comments{padding:clamp(12px,2.5vw,24px);background:#fff;border:1px solid #d8e0d9;border-radius:16px;box-shadow:0 12px 35px rgba(23,39,32,.07);min-height:180px}
-.wishes-comments iframe{width:100%}
-@media(max-width:600px){.wishes-section{padding:42px 0}.wishes-comments{padding:10px;border-radius:12px}.wishes-note{font-size:.85rem}}
+.wishes-form,.wishes-comments{padding:clamp(16px,2.5vw,24px);background:#fff;border:1px solid #d8e0d9;border-radius:16px;box-shadow:0 12px 35px rgba(23,39,32,.07)}
+.wishes-form{display:grid;gap:10px;margin-bottom:22px}
+.wishes-form label{font-weight:700;color:#263b30}
+.wishes-form input,.wishes-form textarea{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #cbd6cd;border-radius:9px;background:#fbfdfb;color:#172720;font:inherit}
+.wishes-form input:focus,.wishes-form textarea:focus{outline:2px solid #28765c;outline-offset:1px}
+.wishes-form button{justify-self:start;border:0;border-radius:9px;padding:12px 22px;background:#28765c;color:white;font-weight:800;cursor:pointer}
+.wishes-form button:disabled{opacity:.6;cursor:wait}
+.wishes-status{margin:2px 0 0;color:#52635a;font-size:.9rem}
+.wishes-comments h3{margin:0 0 16px;color:#172720}
+.wish-item{padding:14px 0;border-bottom:1px solid #e3e9e4}
+.wish-item:last-child{border-bottom:0}
+.wish-item strong{color:#28765c}.wish-item p{margin:6px 0 0;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.wishes-empty{color:#65736a}
+@media(max-width:600px){.wishes-section{padding:42px 0}.wishes-form,.wishes-comments{padding:14px;border-radius:12px}.wishes-form button{width:100%}}
 </style>
 
+<script id="birthday-wishes-firebase">
+(() => {
+  // 1) Replace these placeholder values with your Firebase Web App config.
+  const firebaseConfig = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    appId: "YOUR_FIREBASE_APP_ID"
+  };
+  const status = document.getElementById("wishes-status");
+  const form = document.getElementById("birthday-wish-form");
+  const list = document.getElementById("wishes-list");
+  if (!form || !list || !status) return;
+  if (firebaseConfig.apiKey.startsWith("YOUR_") || firebaseConfig.projectId === "YOUR_PROJECT_ID") {
+    status.textContent = "Comments are ready. Add your Firebase Web App config in this script to activate public posting.";
+    return;
+  }
+  const load = async () => {
+    try {
+      await Promise.all([
+        new Promise((resolve, reject) => {
+          const a=document.createElement("script"); a.src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"; a.onload=resolve; a.onerror=reject; document.head.appendChild(a);
+        }),
+        new Promise((resolve, reject) => {
+          const a=document.createElement("script"); a.src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"; a.onload=resolve; a.onerror=reject; document.head.appendChild(a);
+        }),
+        new Promise((resolve, reject) => {
+          const a=document.createElement("script"); a.src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"; a.onload=resolve; a.onerror=reject; document.head.appendChild(a);
+        })
+      ]);
+      if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      await auth.signInAnonymously();
+      const wishes = db.collection("birthdayWishes");
+      wishes.orderBy("createdAt","desc").limit(100).onSnapshot(snapshot => {
+        list.replaceChildren();
+        if (snapshot.empty) {
+          const p=document.createElement("p"); p.className="wishes-empty"; p.textContent="Be the first to share a birthday wish!"; list.appendChild(p); return;
+        }
+        snapshot.forEach(doc => {
+          const data=doc.data();
+          const article=document.createElement("article"); article.className="wish-item";
+          const name=document.createElement("strong"); name.textContent=data.name || "Guest";
+          const message=document.createElement("p"); message.textContent=data.message || "";
+          article.append(name,message); list.appendChild(article);
+        });
+      }, error => { status.textContent="Unable to load wishes. Please check the Firebase database setup."; });
+      form.addEventListener("submit", async event => {
+        event.preventDefault();
+        const name=form.elements.name.value.trim();
+        const message=form.elements.message.value.trim();
+        if (!name || !message) { status.textContent="Please enter your name and wishes."; return; }
+        const button=document.getElementById("wish-submit");
+        button.disabled=true; status.textContent="Posting your wish...";
+        try {
+          await wishes.add({name:name.slice(0,50),message:message.slice(0,500),createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+          form.reset(); status.textContent="Your wish has been posted. Thank you!";
+        } catch(error) { status.textContent="Your wish could not be posted. Please try again."; }
+        finally { button.disabled=false; }
+      });
+      status.textContent="You can post a wish without creating an account.";
+    } catch(error) {
+      status.textContent="Comments could not connect. Check Firebase setup and anonymous sign-in.";
+    }
+  };
+  load();
+})();
+</script>
 </body>
 
 </html>
