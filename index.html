@@ -2791,7 +2791,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const extraEnglishWishes = [];
       extraWishOpenings.forEach((opening, openingIndex) => {
         extraWishEndings.forEach((ending, endingIndex) => {
-          extraEnglishWishes.push(opening + ending);
+          if (extraEnglishWishes.length < 870) extraEnglishWishes.push(opening + ending);
         });
       });
       sampleMessages.push(...extraEnglishWishes);
