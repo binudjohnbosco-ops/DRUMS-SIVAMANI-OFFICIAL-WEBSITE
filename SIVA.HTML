@@ -966,148 +966,165 @@ html body #legacy .legacy-quote { border-color: rgba(138,100,28,.4) !important; 
 
 <body>
 
-    <!-- Advanced animated drumstick cursor -->
-    <style id="advanced-drumstick-cursor-style">
+    <!-- Signature kinetic percussion cursor -->
+    <style id="signature-percussion-cursor">
         @media (hover: hover) and (pointer: fine) {
-            html.has-drumstick-cursor,
-            html.has-drumstick-cursor body,
-            html.has-drumstick-cursor body * {
-                cursor: none !important;
+            html.has-percussion-cursor, html.has-percussion-cursor body,
+            html.has-percussion-cursor body * { cursor: none !important; }
+            #percussion-cursor {
+                position: fixed; left: 0; top: 0; width: 112px; height: 112px;
+                z-index: 10000; pointer-events: none; opacity: 0;
+                transform: translate3d(-50%,-50%,0); will-change: transform;
+                transition: opacity .22s ease;
             }
-            #drumstick-cursor {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 156px;
-                height: 48px;
-                z-index: 10000;
-                pointer-events: none;
-                opacity: 0;
-                transform: translate3d(-18px,-24px,0) rotate(-18deg);
-                transform-origin: 18px 24px;
-                will-change: transform;
-                filter: drop-shadow(0 4px 5px rgba(0,0,0,.28));
-                transition: opacity .18s ease;
+            #percussion-cursor.is-visible { opacity: 1; }
+            #percussion-cursor .cursor-orbit {
+                position: absolute; inset: 7px; border: 1px solid rgba(195,145,66,.72);
+                border-radius: 50%; box-shadow: 0 0 18px rgba(191,139,48,.18), inset 0 0 15px rgba(191,139,48,.12);
+                animation: orbitBreath 2.4s ease-in-out infinite;
             }
-            #drumstick-cursor.is-visible { opacity: 1; }
-            #drumstick-cursor .stick-shaft {
-                fill: url(#stickWood);
-                stroke: #80552e;
-                stroke-width: .8;
+            #percussion-cursor .cursor-orbit::before,
+            #percussion-cursor .cursor-orbit::after {
+                content: ""; position: absolute; border: 1px solid rgba(195,145,66,.38);
+                border-radius: 50%; inset: 8px;
             }
-            #drumstick-cursor .stick-highlight {
-                fill: none;
-                stroke: rgba(255,241,205,.9);
-                stroke-width: 1.5;
-                stroke-linecap: round;
+            #percussion-cursor .cursor-orbit::after { inset: -7px; border-style: dashed; opacity: .48; animation: orbitSpin 12s linear infinite; }
+            #percussion-cursor .cursor-core {
+                position: absolute; inset: 0; transform-origin: 50% 50%;
+                transition: transform .16s cubic-bezier(.2,.8,.2,1);
             }
-            #drumstick-cursor .stick-tip {
-                fill: #f2d6a5;
-                stroke: #80552e;
-                stroke-width: .8;
+            #percussion-cursor svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+            #percussion-cursor .stick-one, #percussion-cursor .stick-two {
+                transform-box: fill-box; transform-origin: center;
+                filter: drop-shadow(0 2px 3px rgba(0,0,0,.32));
             }
-            #drumstick-cursor.striking {
-                filter: drop-shadow(0 0 9px rgba(212,175,55,.8));
+            #percussion-cursor .stick-one { transform: rotate(-43deg); }
+            #percussion-cursor .stick-two { transform: rotate(43deg); }
+            #percussion-cursor .cursor-jewel {
+                position: absolute; width: 13px; height: 13px; left: 50%; top: 50%;
+                transform: translate(-50%,-50%); border-radius: 50%;
+                background: radial-gradient(circle at 35% 30%, #fff7d7, #e5b85b 42%, #8e5b1d 80%);
+                box-shadow: 0 0 8px #f1c66b, 0 0 20px rgba(231,174,69,.85);
             }
-            #drumstick-cursor.striking .stick-art {
-                transform: rotate(-30deg) translateY(3px);
+            #percussion-cursor.is-moving .cursor-core { filter: drop-shadow(0 0 5px rgba(225,177,88,.55)); }
+            #percussion-cursor.is-striking .cursor-core { transform: scale(.78) rotate(-18deg); }
+            #percussion-cursor.is-striking .cursor-orbit { animation: strikeFlash .38s ease-out; }
+            #percussion-cursor.is-hovering .cursor-core { transform: scale(1.12); }
+            .percussion-ripple {
+                position: fixed; width: 20px; height: 20px; border: 1px solid rgba(221,174,83,.9);
+                border-radius: 50%; z-index: 9999; pointer-events: none;
+                transform: translate(-50%,-50%); animation: percussionRipple .62s ease-out forwards;
             }
-            #drumstick-cursor .stick-art {
-                transform-origin: 18px 24px;
-                transition: transform .12s cubic-bezier(.2,.8,.2,1);
+            .percussion-spark {
+                position: fixed; width: 4px; height: 4px; border-radius: 50%;
+                z-index: 9999; pointer-events: none; background: #ffe6a4;
+                box-shadow: 0 0 8px 2px rgba(228,176,80,.8);
+                animation: percussionSpark .48s ease-out forwards;
             }
-            .drumstick-spark {
-                position: fixed;
-                z-index: 9998;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                pointer-events: none;
-                background: radial-gradient(circle, #fff4c2 0%, #d4af37 45%, transparent 75%);
-                animation: drumSpark .42s ease-out forwards;
-            }
-            @keyframes drumSpark {
-                from { opacity: .95; transform: translate(-50%,-50%) scale(.7); }
-                to { opacity: 0; transform: translate(-50%,-50%) scale(3.2); }
-            }
+            @keyframes orbitBreath { 0%,100% { opacity:.65; transform:scale(.94); } 50% { opacity:1; transform:scale(1.04); } }
+            @keyframes orbitSpin { to { transform:rotate(360deg); } }
+            @keyframes strikeFlash { 0% { box-shadow:0 0 0 0 rgba(232,183,89,.8); } 100% { box-shadow:0 0 0 18px rgba(232,183,89,0); } }
+            @keyframes percussionRipple { to { opacity:0; width:92px; height:92px; border-width:1px; } }
+            @keyframes percussionSpark { to { opacity:0; transform:translate(var(--sx),var(--sy)) scale(.15); } }
         }
         @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
-            #drumstick-cursor, .drumstick-spark { display: none !important; }
+            #percussion-cursor, .percussion-ripple, .percussion-spark { display:none !important; }
         }
     </style>
 
-    <div id="drumstick-cursor" aria-hidden="true">
-        <svg class="stick-art" width="156" height="48" viewBox="0 0 156 48"
-             fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="stickWood" x1="12" y1="12" x2="145" y2="35" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#f8e2b8"/>
-                    <stop offset=".28" stop-color="#d5a66d"/>
-                    <stop offset=".62" stop-color="#b77b43"/>
-                    <stop offset="1" stop-color="#f1d09b"/>
-                </linearGradient>
-            </defs>
-            <path class="stick-shaft" d="M17 21.5 L143 18.5 Q151 18.5 151 24 Q151 29.5 143 29.5 L17 26.5 Q12 26.5 12 24 Q12 21.5 17 21.5Z"/>
-            <path class="stick-highlight" d="M20 22.5 L141 20.5 Q146 20.5 148 22"/>
-            <ellipse class="stick-tip" cx="14" cy="24" rx="8.5" ry="5.8"/>
-            <ellipse cx="11.5" cy="22.5" rx="2.4" ry="1.2" fill="#fff0cf" opacity=".8"/>
-        </svg>
+    <div id="percussion-cursor" aria-hidden="true">
+        <div class="cursor-orbit"></div>
+        <div class="cursor-core">
+            <svg viewBox="0 0 112 112" aria-hidden="true">
+                <defs>
+                    <linearGradient id="percussionWood" x1="0" y1="0" x2="1" y2="1">
+                        <stop stop-color="#fff0c9"/><stop offset=".32" stop-color="#d6a45e"/>
+                        <stop offset=".68" stop-color="#98602e"/><stop offset="1" stop-color="#f2d18d"/>
+                    </linearGradient>
+                    <linearGradient id="percussionMetal" x1="0" y1="0" x2="1" y2="1">
+                        <stop stop-color="#fff4c8"/><stop offset=".5" stop-color="#c18a36"/><stop offset="1" stop-color="#714719"/>
+                    </linearGradient>
+                </defs>
+                <g class="stick-one">
+                    <rect x="52.5" y="9" width="7" height="94" rx="3.5" fill="url(#percussionWood)" stroke="#74491f" stroke-width=".8"/>
+                    <path d="M54.2 17V94" stroke="#fff0c9" stroke-width="1.1" opacity=".78" stroke-linecap="round"/>
+                    <ellipse cx="56" cy="9" rx="5.2" ry="7" fill="url(#percussionMetal)" stroke="#714719" stroke-width=".8"/>
+                    <path d="M53 10 Q56 5 59 10" fill="none" stroke="#fff5d7" stroke-width="1"/>
+                </g>
+                <g class="stick-two">
+                    <rect x="52.5" y="9" width="7" height="94" rx="3.5" fill="url(#percussionWood)" stroke="#74491f" stroke-width=".8"/>
+                    <path d="M54.2 17V94" stroke="#fff0c9" stroke-width="1.1" opacity=".78" stroke-linecap="round"/>
+                    <ellipse cx="56" cy="9" rx="5.2" ry="7" fill="url(#percussionMetal)" stroke="#714719" stroke-width=".8"/>
+                </g>
+            </svg>
+            <span class="cursor-jewel"></span>
+        </div>
     </div>
 
     <script>
         (() => {
-            const cursor = document.getElementById("drumstick-cursor");
-            if (!cursor || !window.matchMedia("(hover: hover) and (pointer: fine)").matches ||
-                window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!finePointer || reducedMotion) return;
 
-            document.documentElement.classList.add("has-drumstick-cursor");
-            let targetX = -100, targetY = -100, currentX = targetX, currentY = targetY;
-            let previousX = targetX, previousY = targetY, angle = -18;
-            let frame = 0;
+            const cursor = document.getElementById("percussion-cursor");
+            if (!cursor) return;
+            document.documentElement.classList.add("has-percussion-cursor");
 
-            document.addEventListener("mousemove", event => {
-                targetX = event.clientX;
-                targetY = event.clientY;
-                cursor.classList.add("is-visible");
-            }, { passive: true });
+            let targetX = -100, targetY = -100, x = targetX, y = targetY;
+            let previousX = x, previousY = y, angle = 0, frame = 0, lastTrail = 0;
+            const lerp = (a,b,t) => a + (b-a)*t;
 
-            document.addEventListener("mouseleave", () => cursor.classList.remove("is-visible"));
-            document.addEventListener("mouseenter", () => cursor.classList.add("is-visible"));
-
-            function animateCursor() {
-                currentX += (targetX - currentX) * .32;
-                currentY += (targetY - currentY) * .32;
-
-                const dx = currentX - previousX;
-                const dy = currentY - previousY;
-                if (Math.abs(dx) + Math.abs(dy) > .15) {
-                    const movementAngle = Math.atan2(dy, dx) * 180 / Math.PI;
-                    angle += (Math.max(-38, Math.min(38, movementAngle * .22)) - angle) * .12;
-                }
-
-                cursor.style.transform =
-                    `translate3d(${currentX - 18}px,${currentY - 24}px,0) rotate(${angle}deg)`;
-                previousX = currentX;
-                previousY = currentY;
-                frame = requestAnimationFrame(animateCursor);
+            function animate() {
+                x = lerp(x, targetX, .27);
+                y = lerp(y, targetY, .27);
+                const dx = targetX - previousX, dy = targetY - previousY;
+                const speed = Math.min(1, Math.hypot(dx,dy) / 34);
+                const desiredAngle = Math.max(-22, Math.min(22, dx * .55));
+                angle = lerp(angle, desiredAngle, .16);
+                cursor.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%) rotate(${angle}deg)`;
+                cursor.classList.toggle("is-moving", speed > .08);
+                previousX = x; previousY = y;
+                frame = requestAnimationFrame(animate);
             }
-            frame = requestAnimationFrame(animateCursor);
+            frame = requestAnimationFrame(animate);
 
+            document.addEventListener("pointermove", event => {
+                targetX = event.clientX; targetY = event.clientY;
+                cursor.classList.add("is-visible");
+                const now = performance.now();
+                if (now - lastTrail > 85 && Math.hypot(targetX-x,targetY-y) > 22) {
+                    lastTrail = now;
+                    const spark = document.createElement("i");
+                    spark.className = "percussion-spark";
+                    spark.style.left = targetX + "px"; spark.style.top = targetY + "px";
+                    spark.style.setProperty("--sx", ((Math.random()-.5)*24) + "px");
+                    spark.style.setProperty("--sy", ((Math.random()-.5)*24) + "px");
+                    document.body.appendChild(spark);
+                    window.setTimeout(() => spark.remove(), 500);
+                }
+            }, { passive:true });
+
+            document.addEventListener("pointerleave", () => cursor.classList.remove("is-visible"));
+            document.addEventListener("pointerenter", () => cursor.classList.add("is-visible"));
             document.addEventListener("pointerdown", event => {
-                cursor.classList.add("striking");
-                const spark = document.createElement("span");
-                spark.className = "drumstick-spark";
-                spark.style.left = event.clientX + "px";
-                spark.style.top = event.clientY + "px";
-                document.body.appendChild(spark);
-                window.setTimeout(() => spark.remove(), 450);
+                cursor.classList.add("is-striking");
+                const ripple = document.createElement("i");
+                ripple.className = "percussion-ripple";
+                ripple.style.left = event.clientX + "px"; ripple.style.top = event.clientY + "px";
+                document.body.appendChild(ripple);
+                window.setTimeout(() => ripple.remove(), 700);
             });
-
-            ["pointerup", "pointercancel"].forEach(type =>
-                document.addEventListener(type, () => cursor.classList.remove("striking"))
+            ["pointerup","pointercancel"].forEach(type =>
+                document.addEventListener(type, () => cursor.classList.remove("is-striking"))
             );
-
-            window.addEventListener("pagehide", () => cancelAnimationFrame(frame), { once: true });
+            document.addEventListener("pointerover", event => {
+                if (event.target.closest("a,button,[role='button'],input,select,textarea")) cursor.classList.add("is-hovering");
+            });
+            document.addEventListener("pointerout", event => {
+                if (event.target.closest("a,button,[role='button'],input,select,textarea")) cursor.classList.remove("is-hovering");
+            });
+            window.addEventListener("pagehide", () => cancelAnimationFrame(frame), { once:true });
         })();
     </script>
 
