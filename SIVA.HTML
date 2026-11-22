@@ -1557,7 +1557,8 @@ table { max-width:100%; }
                 gap: 16px;
                 width: max-content;
                 min-height: 160px;
-                animation: collab-marquee-scroll 32s linear infinite;
+                animation: collab-marquee-scroll 32s linear infinite !important;
+                animation-play-state: running !important;
                 will-change: transform;
             }
             .collab-marquee-track img {
@@ -1575,32 +1576,21 @@ table { max-width:100%; }
                 from { transform: translateX(0); }
                 to { transform: translateX(-50%); }
             }
-            @media (prefers-reduced-motion: reduce) {
-                .collab-marquee-track { animation: none; }
-            }
+            /* Marquee intentionally keeps scrolling even when hovered or reduced-motion is enabled. */
         </style>
         <div class="collab-marquee" aria-label="Sivamani photographs and collaborations">
             <div class="collab-marquee-track">
                 <img src="./s with ar.webp" alt="Drums Sivamani with A. R. Rahman" loading="lazy">
-                <img src="./ar mar.jpg" alt="Sivamani with A. R. Rahman" loading="lazy">
-                <img src="./daughter.jpg" alt="Sivamani family photo" loading="lazy">
-                <img src="./famili func.jpg" alt="Family function" loading="lazy">
-                <img src="./mar.jpg" alt="Family photograph" loading="lazy">
-                <img src="./smal bab.jpg" alt="Family photograph" loading="lazy">
-                <img src="./family.jpg" alt="Family portrait" loading="lazy">
-                <img src="./certi fam.jpg" alt="Family celebration" loading="lazy">
-                <img src="./smal  fam.jpg" alt="Family photograph" loading="lazy">
-                <!-- Second set keeps the marquee scrolling continuously -->
-                <img src="./all mar.jpg" alt="Sivamani with family" loading="lazy">
-                <img src="./ar mar.jpg" alt="Sivamani with A. R. Rahman" loading="lazy">
-                <img src="./daughter.jpg" alt="Sivamani family photo" loading="lazy">
-                <img src="./famili func.jpg" alt="Family function" loading="lazy">
-                <img src="./mar.jpg" alt="Family photograph" loading="lazy">
-                <img src="./smal bab.jpg" alt="Family photograph" loading="lazy">
-                <img src="./family.jpg" alt="Family portrait" loading="lazy">
-                <img src="./certi fam.jpg" alt="Family celebration" loading="lazy">
-                <img src="./smal  fam.jpg" alt="Family photograph" loading="lazy">
+                <img src="./s1.jpg" alt="Drums Sivamani photograph" loading="lazy">
+                <img src="./siv own mus.avif" alt="Drums Sivamani with musicians" loading="lazy">
+                <img src="./siv pad.webp" alt="Drums Sivamani with a fellow public figure" loading="lazy">
+                <!-- Duplicate sequence creates a seamless continuous marquee -->
+                <img src="./s with ar.webp" alt="Drums Sivamani with A. R. Rahman" loading="lazy">
+                <img src="./s1.jpg" alt="Drums Sivamani photograph" loading="lazy">
+                <img src="./siv own mus.avif" alt="Drums Sivamani with musicians" loading="lazy">
+                <img src="./siv pad.webp" alt="Drums Sivamani with a fellow public figure" loading="lazy">
             </div>
+        </div>
         </div>
         <br><br>
 
