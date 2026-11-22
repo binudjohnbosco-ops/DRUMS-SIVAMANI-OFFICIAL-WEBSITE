@@ -1,591 +1,1963 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#edf2ec">
-  <meta name="description" content="An appreciation of Anandan Drums Sivamani — percussionist, composer and performer.">
-  <title>Drums Sivamani | The Rhythm Is Now</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#edf2ec">
+    <meta name="description"
+        content="An appreciation of Anandan Drums Sivamani — percussionist, composer and performer.">
+    <title>Drums Sivamani | The Rhythm Is Now</title>
+    <link rel="icon" href="./siv own mus.avif">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+        rel="stylesheet">
 
-  <style>
-    :root {
-      --paper: #edf2ec;
-      --paper-light: #f8f8f2;
-      --ink: #172720;
-      --muted: #66766b;
-      --green: #28765c;
-      --gold: #b78b62;
-      --line: rgba(23, 39, 32, .17);
-      --dark: #14231d;
-      --dark-soft: #1b3027;
-      --white: #fff;
-      --shadow: 0 18px 50px rgba(20, 35, 29, .12);
-      --radius: 18px;
-    }
+    <style>
+        :root {
+            --paper: #edf2ec;
+            --paper-light: #f8f8f2;
+            --ink: #172720;
+            --muted: #66766b;
+            --green: #28765c;
+            --gold: #b78b62;
+            --line: rgba(23, 39, 32, .17);
+            --dark: #14231d;
+            --dark-soft: #1b3027;
+            --white: #fff;
+            --shadow: 0 18px 50px rgba(20, 35, 29, .12);
+            --radius: 18px;
+        }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "Manrope", Arial, sans-serif;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    body, button, a { -webkit-tap-highlight-color: transparent; }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    .shell { width: min(1240px, 91%); margin-inline: auto; }
-    .section { padding-block: 105px; }
-    .eyebrow {
-      color: var(--green);
-      font: 500 10px "DM Mono", monospace;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-    h1, h2, h3, .serif { font-family: "Playfair Display", Georgia, serif; }
-    h2 { margin: 14px 0 22px; font-size: clamp(36px, 5vw, 64px); line-height: 1.08; font-weight: 500; letter-spacing: -.035em; }
-    p { margin: 0 0 18px; }
-    .muted { color: var(--muted); }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-    /* Header and navigation */
-    .site-header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(237, 242, 236, .92);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(16px);
-    }
-    .top {
-      min-height: 78px; display: flex; align-items: center;
-      justify-content: space-between; gap: 22px;
-    }
-    .brand { font-size: 12px; font-weight: 800; letter-spacing: .2em; white-space: nowrap; }
-    .brand span { color: var(--green); }
-    .nav { display: flex; align-items: center; gap: 7px; }
-    .nav a, .book {
-      padding: 10px 12px; border: 1px solid transparent;
-      font: 10px "DM Mono", monospace; letter-spacing: .1em; text-transform: uppercase;
-      transition: background .2s, color .2s, border-color .2s;
-    }
-    .nav a:hover, .nav a:focus-visible { background: var(--ink); color: var(--white); }
-    .book { border-color: var(--ink); }
-    .book:hover { background: var(--green); border-color: var(--green); color: var(--white); }
-    .menu {
-      display: none; border: 1px solid var(--line); background: transparent;
-      color: var(--ink); width: 42px; height: 42px; cursor: pointer; font-size: 22px;
-    }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
 
-    /* Hero */
-    .hero {
-      min-height: 680px; display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; gap: clamp(30px, 5vw, 65px); padding-block: 60px;
-    }
-    .hero h1 { margin: 22px 0; font-size: clamp(62px, 8vw, 108px); line-height: .9; letter-spacing: -.065em; font-weight: 500; }
-    .hero h1 em { color: var(--green); font-weight: 500; }
-    .hero-copy { max-width: 520px; color: #536259; font-size: 14px; line-height: 1.95; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 46px; padding: 13px 18px; border: 1px solid var(--ink);
-      background: var(--ink); color: var(--paper);
-      font: 10px "DM Mono", monospace; letter-spacing: .1em; text-transform: uppercase;
-      transition: transform .2s, background .2s, color .2s;
-    }
-    .btn:hover { transform: translateY(-3px); background: var(--green); border-color: var(--green); }
-    .btn.outline { background: transparent; color: var(--ink); }
-    .btn.outline:hover { color: var(--white); }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "Manrope", Arial, sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-    /* Slideshow */
-    .carousel {
-      height: min(560px, 66vw); min-height: 360px; position: relative;
-      overflow: hidden; background: #29221c; box-shadow: var(--shadow);
-    }
-    .carousel-track { display: flex; width: 100%; height: 100%; transition: transform .75s cubic-bezier(.2,.7,.2,1); }
-    .carousel-track img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
-    .carousel::after { content: ""; position: absolute; inset: 45% 0 0; pointer-events: none; background: linear-gradient(transparent, rgba(17,14,12,.72)); }
-    .photo-caption { position: absolute; z-index: 2; left: 24px; bottom: 23px; color: white; font: 10px "DM Mono", monospace; letter-spacing: .15em; }
-    .photo-index { position: absolute; z-index: 2; top: 18px; right: 18px; padding: 8px 11px; background: rgba(0,0,0,.5); color: white; font: 10px "DM Mono", monospace; }
-    .carousel-button {
-      position: absolute; z-index: 3; top: 50%; transform: translateY(-50%);
-      width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.7);
-      border-radius: 50%; background: rgba(0,0,0,.25); color: white;
-      font-size: 26px; line-height: 1; cursor: pointer;
-    }
-    .carousel-button:hover { background: var(--green); }
-    .carousel-button.prev { left: 14px; }
-    .carousel-button.next { right: 14px; }
+        body,
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    /* Moving type strip */
-    .ticker { overflow: hidden; padding: 17px 0; background: var(--green); color: white; }
-    .ticker-track { display: flex; width: max-content; animation: ticker 28s linear infinite; }
-    .ticker-group { display: flex; flex-shrink: 0; align-items: center; gap: 32px; padding-right: 32px; white-space: nowrap; font: 10px "DM Mono", monospace; letter-spacing: .17em; }
-    .ticker-group i { color: #e5c69e; font-style: normal; }
-    @keyframes ticker { to { transform: translateX(-50%); } }
+        img {
+            display: block;
+            max-width: 100%;
+        }
 
-    /* Biography */
-    .bio-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; }
-    .bio-heading { position: sticky; top: 120px; }
-    .bio-heading img { width: 100%; max-height: 390px; margin-top: 28px; object-fit: cover; object-position: center 25%; }
-    .bio-copy { color: #4f5e55; font-size: 14px; line-height: 2; }
-    .bio-copy strong { color: var(--green); }
-    .bio-quote { margin: 30px 0 15px; padding: 23px 26px; border-left: 3px solid var(--gold); background: rgba(255,255,255,.5); color: var(--ink); font: italic 21px "Playfair Display", Georgia, serif; }
-    .facts { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 35px; }
-    .fact { padding: 18px 14px; border: 1px solid var(--line); background: rgba(255,255,255,.38); }
-    .fact strong { display: block; color: var(--green); font: 500 30px "Playfair Display", Georgia, serif; }
-    .fact span { display: block; margin-top: 5px; color: var(--muted); font: 9px "DM Mono", monospace; letter-spacing: .08em; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    /* Dark career section */
-    .dark-section { background: var(--dark); color: var(--paper); }
-    .dark-section .eyebrow { color: #d3ad7e; }
-    .dark-section .muted { color: rgba(237,242,236,.65); }
-    .journey-top { display: grid; grid-template-columns: 1fr 280px; gap: 55px; align-items: center; margin-bottom: 45px; }
-    .journey-top img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
-    .journey-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
-    .journey-list li { padding: 24px; border: 1px solid rgba(237,242,236,.16); background: rgba(255,255,255,.035); color: rgba(237,242,236,.76); font-size: 13px; line-height: 1.9; }
-    .journey-list strong { display: block; margin-bottom: 7px; color: #d3ad7e; font-size: 14px; }
-    .timeline { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 15px; margin-top: 40px; }
-    .timecard { padding: 25px; border-top: 2px solid var(--gold); background: rgba(255,255,255,.045); }
-    .year { color: #d3ad7e; font: 10px "DM Mono", monospace; letter-spacing: .14em; }
-    .timecard h3 { margin: 12px 0 8px; font-size: 23px; font-weight: 500; }
-    .timecard p { margin: 0; color: rgba(237,242,236,.65); font-size: 12px; line-height: 1.8; }
+        button {
+            font: inherit;
+        }
 
-    /* Musical journey feature */
-    .development { display: grid; grid-template-columns: .85fr 1.15fr; gap: 65px; align-items: center; }
-    .development-image { width: 100%; max-width: 390px; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: var(--shadow); }
-    .development-copy { color: #536259; font-size: 14px; line-height: 2; }
+        .shell {
+            width: min(1240px, 91%);
+            margin-inline: auto;
+        }
 
-    /* Galleries */
-    .gallery-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 30px; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
-    .gallery-grid figure { margin: 0; overflow: hidden; background: var(--dark); }
-    .gallery-grid img { width: 100%; height: 310px; object-fit: cover; transition: transform .5s; }
-    .gallery-grid figure:hover img { transform: scale(1.045); }
-    .gallery-grid figcaption { padding: 13px 15px; color: white; font: 10px "DM Mono", monospace; letter-spacing: .12em; }
+        .section {
+            padding-block: 105px;
+        }
 
-    /* Legacy */
-    .legacy-intro { max-width: 690px; margin-bottom: 40px; }
-    .legacy-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
-    .legacy-card { padding: 28px 24px; border: 1px solid rgba(196,154,88,.28); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); }
-    .legacy-icon { width: 45px; height: 45px; display: grid; place-items: center; margin-bottom: 20px; border-radius: 13px; color: #d3ad7e; background: rgba(196,154,88,.13); font-size: 22px; }
-    .legacy-number, .legacy-person span { color: #d3ad7e; font: 10px "DM Mono", monospace; letter-spacing: .14em; }
-    .legacy-card h3 { margin: 10px 0; font-size: 25px; font-weight: 500; }
-    .legacy-description { min-height: 55px; color: rgba(237,242,236,.65); font-size: 12px; }
-    .legacy-person { padding-top: 17px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,.13); }
-    .legacy-person h4 { margin: 8px 0; font-size: 16px; }
-    .legacy-person p { margin: 0; color: rgba(237,242,236,.66); font-size: 12px; line-height: 1.8; }
-    @property --legacy-angle {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: 0deg;
-    }
-    @keyframes legacy-border-spin {
-      to { --legacy-angle: 360deg; }
-    }
-    .legacy-quote {
-      margin-top: 35px;
-      padding: 35px 25px;
-      border: 1px solid transparent;
-      text-align: center;
-      background:
-        linear-gradient(rgba(20,35,29,.96), rgba(20,35,29,.96)) padding-box,
-        conic-gradient(
-          from var(--legacy-angle),
-          rgba(196,154,88,.16) 0deg,
-          #b78b62 75deg,
-          #f1d8a8 115deg,
-          rgba(196,154,88,.16) 165deg,
-          rgba(196,154,88,.16) 360deg
-        ) border-box;
-      animation: legacy-border-spin 7s linear infinite;
-    }
-    .legacy-quote .quote-mark { color: #d3ad7e; font: 60px Georgia,serif; line-height: .8; }
-    .legacy-quote p { max-width: 700px; margin: 15px auto; font: italic clamp(18px,2.5vw,25px)/1.6 "Playfair Display", Georgia, serif; }
-    .quote-credit { color: #d3ad7e; font: 10px "DM Mono",monospace; letter-spacing: .18em; }
+        .eyebrow {
+            color: var(--green);
+            font: 500 10px "DM Mono", monospace;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+        }
 
-    /* Audio and contact */
-    .audio-panel { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 24px; background: var(--paper-light); border: 1px solid var(--line); }
-    .audio-panel p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
-    audio { width: min(440px, 100%); }
-    .office { margin-top: 55px; padding: 30px; border: 1px solid var(--line); background: rgba(255,255,255,.4); }
-    .office h3 { margin: 0 0 12px; color: var(--green); font: 700 12px "DM Mono", monospace; letter-spacing: .15em; }
-    .office address { color: #536259; font-size: 13px; line-height: 1.9; font-style: normal; }
-    .statement { padding-block: 80px; text-align: center; }
-    .statement blockquote { max-width: 800px; margin: 20px auto; font: 500 clamp(28px,5vw,54px)/1.2 "Playfair Display", Georgia,serif; }
-    .statement blockquote em { color: var(--green); }
-    .statement cite { color: var(--muted); font: 10px "DM Mono",monospace; letter-spacing: .12em; }
-    .listen { padding: 65px 0; background: #dce7dc; }
-    .listen-row { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
-    .listen h2 { margin-bottom: 0; }
-    .footer { display: flex; justify-content: space-between; gap: 20px; padding-block: 28px; color: var(--muted); font: 9px "DM Mono",monospace; letter-spacing: .1em; }
-    .footer a { color: var(--green); }
+        h1,
+        h2,
+        h3,
+        .serif {
+            font-family: "Playfair Display", Georgia, serif;
+        }
 
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+        h2 {
+            margin: 14px 0 22px;
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.08;
+            font-weight: 500;
+            letter-spacing: -.035em;
+        }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      .hero { min-height: auto; grid-template-columns: 1fr 1fr; }
-      .bio-grid, .development { grid-template-columns: 1fr; gap: 35px; }
-      .bio-heading { position: static; }
-      .bio-heading img { max-width: 420px; }
-      .journey-top { grid-template-columns: 1fr 220px; }
-      .legacy-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-    }
-    @media (max-width: 680px) {
-      .section { padding-block: 70px; }
-      .top { min-height: 68px; }
-      .menu { display: block; }
-      .nav {
-        display: none; position: absolute; top: 68px; left: 0; right: 0;
-        padding: 12px 4.5% 18px; background: var(--paper);
-        border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch;
-      }
-      .nav.open { display: flex; }
-      .nav a { padding: 13px; }
-      .book { display: none; }
-      .hero { grid-template-columns: 1fr; gap: 30px; padding-block: 48px; }
-      .hero h1 { font-size: clamp(60px,17vw,86px); }
-      .carousel { height: 105vw; min-height: 330px; max-height: 490px; }
-      .facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
-      .journey-top { grid-template-columns: 1fr; gap: 25px; }
-      .journey-top img { max-width: 260px; }
-      .journey-list, .timeline, .legacy-grid, .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-heading, .listen-row, .audio-panel { align-items: flex-start; flex-direction: column; }
-      .gallery-grid img { height: 270px; }
-      .development-image { max-width: 280px; margin-inline: auto; }
-      .footer { flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
+        p {
+            margin: 0 0 18px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        /* Header and navigation */
+        .site-header {
+            top: 0;
+            z-index: 50;
+            background: rgba(237, 242, 236, .92);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(16px);
+        }
+
+        .top {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .brand {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .2em;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: var(--green);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .nav a,
+        .book {
+            padding: 10px 12px;
+            border: 1px solid transparent;
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            transition: background .2s, color .2s, border-color .2s;
+        }
+
+        .nav a:hover,
+        .nav a:focus-visible {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .book {
+            border-color: var(--ink);
+        }
+
+        .book:hover {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+
+        .menu {
+            display: none;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 680px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: clamp(30px, 5vw, 65px);
+            padding-block: 60px;
+        }
+
+        .hero h1 {
+            margin: 22px 0;
+            font-size: clamp(62px, 8vw, 108px);
+            line-height: .9;
+            letter-spacing: -.065em;
+            font-weight: 500;
+        }
+
+        .hero h1 em {
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .hero-copy {
+            max-width: 520px;
+            color: #536259;
+            font-size: 14px;
+            line-height: 1.95;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 13px 18px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            transition: transform .2s, background .2s, color .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .btn.outline {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .btn.outline:hover {
+            color: var(--white);
+        }
+
+        /* Slideshow */
+        .carousel {
+            height: min(560px, 66vw);
+            min-height: 360px;
+            position: relative;
+            overflow: hidden;
+            background: #29221c;
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform .75s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .carousel-track img {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 28%;
+        }
+
+        .carousel::after {
+            content: "";
+            position: absolute;
+            inset: 45% 0 0;
+            pointer-events: none;
+            background: linear-gradient(transparent, rgba(17, 14, 12, .72));
+        }
+
+        .photo-caption {
+            position: absolute;
+            z-index: 2;
+            left: 24px;
+            bottom: 23px;
+            color: white;
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .15em;
+        }
+
+        .photo-index {
+            position: absolute;
+            z-index: 2;
+            top: 18px;
+            right: 18px;
+            padding: 8px 11px;
+            background: rgba(0, 0, 0, .5);
+            color: white;
+            font: 10px "DM Mono", monospace;
+        }
+
+        .carousel-button {
+            position: absolute;
+            z-index: 3;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, .7);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .25);
+            color: white;
+            font-size: 26px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .carousel-button:hover {
+            background: var(--green);
+        }
+
+        .carousel-button.prev {
+            left: 14px;
+        }
+
+        .carousel-button.next {
+            right: 14px;
+        }
+
+        /* Moving type strip */
+        .ticker {
+            overflow: hidden;
+            padding: 17px 0;
+            background: var(--green);
+            color: white;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker 28s linear infinite;
+        }
+
+        .ticker-group {
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            gap: 32px;
+            padding-right: 32px;
+            white-space: nowrap;
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .17em;
+        }
+
+        .ticker-group i {
+            color: #e5c69e;
+            font-style: normal;
+        }
+
+        @keyframes ticker {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Biography */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .bio-heading {
+            position: sticky;
+            top: 120px;
+        }
+
+        .bio-heading img {
+            width: 100%;
+            max-height: 390px;
+            margin-top: 28px;
+            object-fit: cover;
+            object-position: center 25%;
+        }
+
+        .bio-copy {
+            color: #4f5e55;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .bio-copy strong {
+            color: var(--green);
+        }
+
+        .bio-quote {
+            margin: 30px 0 15px;
+            padding: 23px 26px;
+            border-left: 3px solid var(--gold);
+            background: rgba(255, 255, 255, .5);
+            color: var(--ink);
+            font: italic 21px "Playfair Display", Georgia, serif;
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 35px;
+        }
+
+        .fact {
+            padding: 18px 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .38);
+        }
+
+        .fact strong {
+            display: block;
+            color: var(--green);
+            font: 500 30px "Playfair Display", Georgia, serif;
+        }
+
+        .fact span {
+            display: block;
+            margin-top: 5px;
+            color: var(--muted);
+            font: 9px "DM Mono", monospace;
+            letter-spacing: .08em;
+        }
+
+        /* Dark career section */
+        .dark-section {
+            background: var(--dark);
+            color: var(--paper);
+        }
+
+        .dark-section .eyebrow {
+            color: #d3ad7e;
+        }
+
+        .dark-section .muted {
+            color: rgba(237, 242, 236, .65);
+        }
+
+        .journey-top {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 55px;
+            align-items: center;
+            margin-bottom: 45px;
+        }
+
+        .journey-top img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: var(--radius);
+        }
+
+        .journey-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .journey-list li {
+            padding: 24px;
+            border: 1px solid rgba(237, 242, 236, .16);
+            background: rgba(255, 255, 255, .035);
+            color: rgba(237, 242, 236, .76);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .journey-list strong {
+            display: block;
+            margin-bottom: 7px;
+            color: #d3ad7e;
+            font-size: 14px;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .timecard {
+            padding: 25px;
+            border-top: 2px solid var(--gold);
+            background: rgba(255, 255, 255, .045);
+        }
+
+        .year {
+            color: #d3ad7e;
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .14em;
+        }
+
+        .timecard h3 {
+            margin: 12px 0 8px;
+            font-size: 23px;
+            font-weight: 500;
+        }
+
+        .timecard p {
+            margin: 0;
+            color: rgba(237, 242, 236, .65);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* Musical journey feature */
+        .development {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .development-image {
+            width: 100%;
+            max-width: 390px;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+        }
+
+        .development-copy {
+            color: #536259;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        /* Galleries */
+        .gallery-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .gallery-grid figure {
+            margin: 0;
+            overflow: hidden;
+            background: var(--dark);
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+            transition: transform .5s;
+        }
+
+        .gallery-grid figure:hover img {
+            transform: scale(1.045);
+        }
+
+        .gallery-grid figcaption {
+            padding: 13px 15px;
+            color: white;
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .12em;
+        }
+
+        /* Legacy */
+        .legacy-intro {
+            max-width: 690px;
+            margin-bottom: 40px;
+        }
+
+        .legacy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .legacy-card {
+            padding: 28px 24px;
+            border: 1px solid rgba(196, 154, 88, .28);
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
+        }
+
+        .legacy-icon {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 20px;
+            border-radius: 13px;
+            color: #d3ad7e;
+            background: rgba(196, 154, 88, .13);
+            font-size: 22px;
+        }
+
+        .legacy-number,
+        .legacy-person span {
+            color: #d3ad7e;
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .14em;
+        }
+
+        .legacy-card h3 {
+            margin: 10px 0;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .legacy-description {
+            min-height: 55px;
+            color: rgba(237, 242, 236, .65);
+            font-size: 12px;
+        }
+
+        .legacy-person {
+            padding-top: 17px;
+            margin-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, .13);
+        }
+
+        .legacy-person h4 {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .legacy-person p {
+            margin: 0;
+            color: rgba(237, 242, 236, .66);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .legacy-quote {
+            margin-top: 35px;
+            padding: 35px 25px;
+            border: 1px solid rgba(196, 154, 88, .24);
+            text-align: center;
+            background: rgba(196, 154, 88, .05);
+        }
+
+        .legacy-quote .quote-mark {
+            color: #d3ad7e;
+            font: 60px Georgia, serif;
+            line-height: .8;
+        }
+
+        .legacy-quote p {
+            max-width: 700px;
+            margin: 15px auto;
+            font: italic clamp(18px, 2.5vw, 25px)/1.6 "Playfair Display", Georgia, serif;
+        }
+
+        .quote-credit {
+            color: #d3ad7e;
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .18em;
+        }
+
+        /* Audio and contact */
+        .audio-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 24px;
+            background: var(--paper-light);
+            border: 1px solid var(--line);
+        }
+
+        .audio-panel p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        audio {
+            width: min(440px, 100%);
+        }
+
+        .office {
+            margin-top: 55px;
+            padding: 30px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .4);
+        }
+
+        .office h3 {
+            margin: 0 0 12px;
+            color: var(--green);
+            font: 700 12px "DM Mono", monospace;
+            letter-spacing: .15em;
+        }
+
+        .office address {
+            color: #536259;
+            font-size: 13px;
+            line-height: 1.9;
+            font-style: normal;
+        }
+
+        .statement {
+            padding-block: 80px;
+            text-align: center;
+        }
+
+        .statement blockquote {
+            max-width: 800px;
+            margin: 20px auto;
+            font: 500 clamp(28px, 5vw, 54px)/1.2 "Playfair Display", Georgia, serif;
+        }
+
+        .statement blockquote em {
+            color: var(--green);
+        }
+
+        .statement cite {
+            color: var(--muted);
+            font: 10px "DM Mono", monospace;
+            letter-spacing: .12em;
+        }
+
+        .listen {
+            padding: 65px 0;
+            background: #dce7dc;
+        }
+
+        .listen-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .listen h2 {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-block: 28px;
+            color: var(--muted);
+            font: 9px "DM Mono", monospace;
+            letter-spacing: .1em;
+        }
+
+        .footer a {
+            color: var(--green);
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                min-height: auto;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bio-grid,
+            .development {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .bio-heading {
+                position: static;
+            }
+
+            .bio-heading img {
+                max-width: 420px;
+            }
+
+            .journey-top {
+                grid-template-columns: 1fr 220px;
+            }
+
+            .legacy-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 680px) {
+            .section {
+                padding-block: 70px;
+            }
+
+            .top {
+                min-height: 68px;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .nav {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                padding: 12px 4.5% 18px;
+                background: var(--paper);
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav.open {
+                display: flex;
+            }
+
+            .nav a {
+                padding: 13px;
+            }
+
+            .book {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-block: 48px;
+            }
+
+            .hero h1 {
+                font-size: clamp(60px, 17vw, 86px);
+            }
+
+            .carousel {
+                height: 105vw;
+                min-height: 330px;
+                max-height: 490px;
+            }
+
+            .facts {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .journey-top {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .journey-top img {
+                max-width: 260px;
+            }
+
+            .journey-list,
+            .timeline,
+            .legacy-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-heading,
+            .listen-row,
+            .audio-panel {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .gallery-grid img {
+                height: 270px;
+            }
+
+            .development-image {
+                max-width: 280px;
+                margin-inline: auto;
+            }
+
+            .footer {
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="shell top">
-      <a class="brand" href="#home" aria-label="Drums Sivamani home">DRUMS <span>SIVAMANI</span></a>
-      <nav class="nav" id="nav" aria-label="Main navigation">
-        <a href="#story">The Artist</a>
-        <a href="#journey">Career</a>
-        <a href="#development">Journey</a>
-        <a href="#moments">Gallery</a>
-        <a href="#legacy">Family</a>
-      </nav>
-      <a class="book" href="https://www.sivamani.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
-      <button class="menu" id="menuButton" type="button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false">☰</button>
-    </div>
-  </header>
 
-  <main id="home">
-    <section class="shell hero">
-      <div class="reveal">
-        <div class="eyebrow">Percussionist · Composer · Performer</div>
-        <h1>The rhythm<br>is <em>now.</em></h1>
-        <p class="hero-copy">
-          Anandan “Drums” Sivamani is an acclaimed Indian percussionist, drummer and composer,
-          celebrated for his powerful live performances and imaginative approach to rhythm.
-          From traditional percussion to sounds found in everyday life, his performances bring
-          energy, spontaneity and musical curiosity to every stage.
-        </p>
-        <div class="cta-row">
-          <a class="btn" href="#story">Discover the artist ↘</a>
-          <a class="btn outline" href="https://www.sivamani.in/" target="_blank" rel="noopener noreferrer">Official website ↗</a>
-        </div>
-      </div>
+    <!-- Custom Drumstick Cursor -->
+    <style>
+        * {
+            cursor: none !important;
+        }
 
-      <div class="carousel reveal" id="carousel" aria-label="Drums Sivamani photo slideshow">
-        <div class="carousel-track" id="carouselTrack">
-          <img src="./s with ar.webp" alt="Drums Sivamani with A. R. Rahman" fetchpriority="high">
-          <img src="./sp2.jpg" alt="Drums Sivamani performing on stage" loading="lazy">
-          <img src="./p3.jpg" alt="Drums Sivamani with percussion instruments" loading="lazy">
-          <img src="./re p4.jpg" alt="Drums Sivamani performing live" loading="lazy">
-          <img src="./s1.jpg" alt="Drums Sivamani in a performance setting" loading="lazy">
-        </div>
-        <div class="photo-index" id="photoIndex" aria-live="polite">01 / 05</div>
-        <div class="photo-caption">A. SIVAMANI · LIVE PERFORMANCE</div>
-        <button class="carousel-button prev" id="previousSlide" type="button" aria-label="Previous photo">‹</button>
-        <button class="carousel-button next" id="nextSlide" type="button" aria-label="Next photo">›</button>
-      </div>
-    </section>
+        #drumstick {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 140px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 9999;
+            transform-origin: 12px 20px;
+            transform: translate(-12px, -20px) rotate(35deg);
+            transition: transform 0.06s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
 
-    <div class="ticker" aria-label="Rhythm has no borders">
-      <div class="ticker-track">
-        <div class="ticker-group">RHYTHM HAS NO BORDERS <i>✳</i> ROOTED IN INDIA, MADE FOR THE WORLD <i>✳</i> RHYTHM HAS NO BORDERS <i>✳</i></div>
-        <div class="ticker-group" aria-hidden="true">RHYTHM HAS NO BORDERS <i>✳</i> ROOTED IN INDIA, MADE FOR THE WORLD <i>✳</i> RHYTHM HAS NO BORDERS <i>✳</i></div>
-      </div>
+        #drumstick.striking {
+            transform: translate(-12px, -20px) rotate(-10deg);
+        }
+    </style>
+
+    <div id="drumstick">
+        <svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://w3.org">
+            <path d="M18 18 L135 15 C138 15 140 17 140 20 C140 23 138 25 135 25 L18 22 Z" fill="#deb887" />
+            <path d="M18 20 L139 20 C139 23 137 25 135 25 L18 22 Z" fill="#c69c6d" />
+            <ellipse cx="12" cy="20" rx="8" ry="5.5" fill="#f5deb3" />
+        </svg>
     </div>
 
-    <section class="shell section" id="story">
-      <div class="bio-grid">
-        <div class="bio-heading reveal">
-          <div class="eyebrow">01 / The Artist</div>
-          <h2>Born to hear<br>the beat.</h2>
-          <img src="./siv pad.webp" alt="Drums Sivamani with his percussion setup" loading="lazy">
-        </div>
-        <div class="bio-copy reveal">
-          <p><strong>Anandan Sivamani</strong> grew up in Chennai in a musical family. His father, <strong>S. M. Anandan</strong>, was a professional drummer who introduced him to music when he was young. His early exposure to instruments, recording sessions and working musicians helped shape the distinctive performer audiences know today.</p>
-          <p>As a child, Sivamani was fascinated by the rhythms around him. He began his musical journey at a young age, learning through close contact with musicians and the world of live performance. Those formative years helped develop an open-minded approach to percussion.</p>
-          <p>Over the years, he has shared stages and collaborated with celebrated musicians including <strong>A. R. Rahman, Zakir Hussain, Trilok Gurtu, M. S. Viswanathan, Ilaiyaraaja</strong> and <strong>Louis Banks</strong>. His work spans Indian film music, live concerts, fusion projects and international performances.</p>
-          <p>His film-related work includes contributions to soundtracks such as <strong>Roja, Bombay, Dil Se, Taal, Lagaan, Guru</strong> and <strong>Rockstar</strong>. His musical world also includes projects and ensembles such as <strong>Asia Electrik</strong>, <strong>Shraddha</strong> and the Zakir Hussain World Drums Ensemble.</p>
-          <p>From Indian classical rhythms to jazz, film scores and global collaborations, Sivamani’s performances are powered by spontaneity. The result is music that feels deeply rooted and alive in the moment.</p>
-          <div class="bio-quote">“Becoming a drummer is more of a choice than chance for me.”</div>
-          <p class="muted">His father’s encouragement and the sounds of Chennai became the first chapters of a life in rhythm.</p>
-          <div class="facts" aria-label="Career milestones">
-            <div class="fact"><strong>7</strong><span>INTRODUCED TO MUSIC</span></div>
-            <div class="fact"><strong>12</strong><span>EARLY CAREER BEGINNING</span></div>
-            <div class="fact"><strong>2009</strong><span>KALAIMAMANI AWARD</span></div>
-            <div class="fact"><strong>2019</strong><span>PADMA SHRI</span></div>
-            <div class="fact"><strong>2021</strong><span>ATKAN CHATKAN</span></div>
-            <div class="fact"><strong>2024</strong><span>HONORARY DOCTORATE</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <script>
+        const stick = document.getElementById('drumstick');
 
-    <section class="dark-section section" id="journey">
-      <div class="shell">
-        <div class="journey-top">
-          <div class="reveal">
-            <div class="eyebrow">02 / The Career</div>
-            <h2>One career.<br>A thousand rhythms.</h2>
-            <p class="muted">A musical path shaped by collaboration, experimentation and a fearless approach to live performance.</p>
-          </div>
-          <img class="reveal" src="./siv own mus.avif" alt="Drums Sivamani exploring music and percussion" loading="lazy">
-        </div>
-
-        <ul class="journey-list">
-          <li class="reveal"><strong>A. R. Rahman</strong>Collaborated extensively with composer A. R. Rahman on film scores and international projects, including Bombay Dreams.</li>
-          <li class="reveal"><strong>Instruments and sound</strong>Known for his command of drums and a wide range of percussion instruments, creating rhythms from both traditional instruments and unexpected objects.</li>
-          <li class="reveal"><strong>Bands and projects</strong>Worked across musical projects and ensembles including Asia Electrik, Shraddha and the Zakir Hussain World Drums Ensemble.</li>
-          <li class="reveal"><strong>Film composition</strong>Made his feature-film music direction debut with the Tamil film Arima Nambi (2014) and later worked on Atkan Chatkan (2020).</li>
-        </ul>
-
-        <div class="timeline">
-          <article class="timecard reveal"><span class="year">EARLY YEARS</span><h3>Finding the pulse</h3><p>Growing up in a musical family, Sivamani began performing at a young age and developed a distinctive approach to percussion.</p></article>
-          <article class="timecard reveal"><span class="year">ACROSS THE WORLD</span><h3>Collaborations without borders</h3><p>He shared stages and projects with artists including A. R. Rahman, Zakir Hussain, Trilok Gurtu and many more.</p></article>
-          <article class="timecard reveal"><span class="year">2019</span><h3>Padma Shri</h3><p>The Government of India recognized his contribution to music with one of the country’s highest civilian honours.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell section" id="development">
-      <div class="development">
-        <div class="reveal">
-          <div class="eyebrow">03 / The Development</div>
-          <h2>On finding<br>music everywhere.</h2>
-          <img class="development-image" src="./siv own mus.avif" alt="Drums Sivamani and his musical world" loading="lazy">
-        </div>
-        <div class="development-copy reveal">
-          <p>The musical journey of Anandan “Drums” Sivamani reflects a lifelong curiosity about sound. From his early years in Chennai to international stages, his approach has remained rooted in experimentation, collaboration and the joy of performance.</p>
-          <p>His collaborations with A. R. Rahman and other renowned musicians brought his percussion to audiences around the world. Alongside film recordings and live concerts, he has explored fusion ensembles and projects that bring together different musical traditions.</p>
-          <p>Beyond the stage, his work as a composer and his appearances at cultural events have introduced new audiences to the expressive possibilities of percussion. Every performance is an invitation to listen differently and discover rhythm in unexpected places.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell section" id="moments">
-      <div class="gallery-heading reveal">
-        <div><div class="eyebrow">04 / On Stage</div><h2>Feel the moment.</h2></div>
-        <p class="muted">Energy, craft and celebration.</p>
-      </div>
-      <div class="gallery-grid">
-        <figure class="reveal"><a href="https://www.youtube.com/@drumsshivamani" target="_blank" rel="noopener noreferrer"><img src="./sp2.jpg" alt="Sivamani performing live" loading="lazy"></a><figcaption>LIVE PERFORMANCE · YOUTUBE ↗</figcaption></figure>
-        <figure class="reveal"><a href="https://www.instagram.com/asivamanidrums_official/" target="_blank" rel="noopener noreferrer"><img src="./p3.jpg" alt="Sivamani with percussion instruments" loading="lazy"></a><figcaption>FOLLOW THE ARTIST · INSTAGRAM ↗</figcaption></figure>
-        <figure class="reveal"><a href="https://en.wikipedia.org/wiki/Sivamani_(percussionist)" target="_blank" rel="noopener noreferrer"><img src="./re p4.jpg" alt="Sivamani playing percussion" loading="lazy"></a><figcaption>ARTIST PROFILE · WIKIPEDIA ↗</figcaption></figure>
-      </div>
-    </section>
-
-    <section class="dark-section section" id="legacy">
-      <div class="shell">
-        <div class="legacy-intro reveal">
-          <div class="eyebrow">05 / The Bloodline</div>
-          <h2>Born to hear the <span style="color:#d3ad7e">beat.</span></h2>
-          <p class="muted">Behind every extraordinary rhythm is a story of family, inspiration, heritage and a lifelong connection to music.</p>
-        </div>
-
-        <div class="legacy-grid">
-          <article class="legacy-card reveal">
-            <div class="legacy-icon">✦</div><span class="legacy-number">01 / ROOTS</span><h3>His Parents</h3>
-            <p class="legacy-description">The family foundation that introduced Sivamani to the world of rhythm.</p>
-            <div class="legacy-person"><span>FATHER</span><h4>S. M. Anandan</h4><p>A drummer in the South Indian film industry and Sivamani’s early musical inspiration.</p></div>
-            <div class="legacy-person"><span>MOTHER</span><h4>Lakshmi Anandan</h4><p>Part of his family roots and upbringing.</p></div>
-          </article>
-
-          <article class="legacy-card reveal">
-            <div class="legacy-icon">♡</div><span class="legacy-number">02 / PARTNERSHIP</span><h3>His Marriage</h3>
-            <p class="legacy-description">A personal journey shaped by relationships and a shared connection with music.</p>
-            <div class="legacy-person"><span>WIFE</span><h4>Runa Rizvi</h4><p>Runa Rizvi (also known as Runa Rizvi Sivamani) is an Indian singer whose work spans classical, ghazal, Sufi and playback music. The couple also perform and collaborate together.</p></div>
-          </article>
-
-          <article class="legacy-card reveal">
-            <div class="legacy-icon">♬</div><span class="legacy-number">03 / NEXT GENERATION</span><h3>His Children</h3>
-            <p class="legacy-description">The next generation of the Sivamani family.</p>
-            <div class="legacy-person"><span>SON</span><h4>Kumaran Sivamani</h4><p>A percussionist and music programmer who has worked with A. R. Rahman’s musical team.</p></div>
-            <div class="legacy-person"><span>FAMILY</span><h4>Two Children</h4><p>Sivamani has two children.</p></div>
-          </article>
-        </div>
-
-        <div class="legacy-quote reveal">
-          <span class="quote-mark">“</span>
-          <p>Music runs in his blood. His journey began with his father’s guidance and grew into a lifetime dedicated to rhythm.</p>
-          <span class="quote-credit">THE SIVAMANI LEGACY</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell section">
-      <div class="audio-panel reveal">
-        <div><div class="eyebrow">Listen</div><strong>Drums Sivamani — live percussion</strong><p>Press play to listen. Audio will not start automatically.</p></div>
-        <audio controls controlsList="nodownload" preload="metadata">
-          <source src="./Shivamani Drums Playing _ A. R. Rahman_s lead percussionist _ Kerala Police Aspi.mp3" type="audio/mpeg">
-          Your browser does not support the audio player.
-        </audio>
-      </div>
-
-      <div class="office reveal">
-        <h3>OFFICE / MANAGEMENT</h3>
-        <address>
-          “KANAKIA ATRIUM - 2”,<br>
-          No. 603, 6th Floor, Next to Courtyard Marriott Hotel,<br>
-          Opp. Divine Child High School, Andheri Kurla Road, Andheri (East),<br>
-          Mumbai - 400093, India.
-        </address>
-      </div>
-    </section>
-
-    <section class="statement shell reveal">
-      <div class="eyebrow">The Philosophy</div>
-      <blockquote>“Rhythm is <em>everything, everywhere.</em>”</blockquote>
-      <cite>— SIVAMANI · TED PERFORMANCE</cite>
-    </section>
-
-    <section class="listen">
-      <div class="shell listen-row">
-        <div><div class="eyebrow">Take it from here</div><h2>Hear the rhythm<br>for yourself.</h2></div>
-        <a class="btn" href="https://www.youtube.com/results?search_query=Drums+Sivamani+live+performance" target="_blank" rel="noopener noreferrer">Explore performances ↗</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="shell footer">
-    <span>AN APPRECIATION OF A. SIVAMANI</span>
-    <span>PHOTOGRAPHS · <a href="https://www.sivamani.in/" target="_blank" rel="noopener noreferrer">OFFICIAL WEBSITE ↗</a></span>
-  </footer>
-
-  <script>
-    "use strict";
-
-    // Mobile navigation
-    const menuButton = document.getElementById("menuButton");
-    const navigation = document.getElementById("nav");
-
-    menuButton.addEventListener("click", function () {
-      const isOpen = navigation.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
-      menuButton.textContent = isOpen ? "×" : "☰";
-    });
-
-    navigation.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        navigation.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open navigation");
-        menuButton.textContent = "☰";
-      });
-    });
-
-    // Reveal sections as they enter the viewport
-    const revealElements = document.querySelectorAll(".reveal");
-    if ("IntersectionObserver" in window) {
-      const revealObserver = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            observer.unobserve(entry.target);
-          }
+        document.addEventListener('mousemove', (e) => {
+            stick.style.left = `${e.clientX}px`;
+            stick.style.top = `${e.clientY}px`;
         });
-      }, { threshold: 0.12 });
 
-      revealElements.forEach(function (element) {
-        revealObserver.observe(element);
-      });
-    } else {
-      revealElements.forEach(function (element) {
-        element.classList.add("in");
-      });
-    }
+        document.addEventListener('mousedown', () => stick.classList.add('striking'));
+        document.addEventListener('mouseup', () => stick.classList.remove('striking'));
+    </script>
 
-    // Accessible image carousel with pause-on-hover and reduced-motion support
-    const carousel = document.getElementById("carousel");
-    const carouselTrack = document.getElementById("carouselTrack");
-    const photoIndex = document.getElementById("photoIndex");
-    const previousButton = document.getElementById("previousSlide");
-    const nextButton = document.getElementById("nextSlide");
-    const slides = Array.from(carouselTrack.querySelectorAll("img"));
-    const totalSlides = slides.length;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let currentSlide = 0;
-    let slideshowTimer = null;
 
-    function showSlide(index) {
-      if (!totalSlides) return;
-      currentSlide = (index + totalSlides) % totalSlides;
-      carouselTrack.style.transform = "translateX(-" + (currentSlide * 100) + "%)";
-      photoIndex.textContent =
-        String(currentSlide + 1).padStart(2, "0") + " / " +
-        String(totalSlides).padStart(2, "0");
-    }
 
-    function stopSlideshow() {
-      if (slideshowTimer !== null) {
-        window.clearInterval(slideshowTimer);
-        slideshowTimer = null;
-      }
-    }
 
-    function startSlideshow() {
-      stopSlideshow();
-      if (reducedMotion.matches || document.hidden) return;
-      slideshowTimer = window.setInterval(function () {
-        showSlide(currentSlide + 1);
-      }, 4500);
-    }
 
-    previousButton.addEventListener("click", function () {
-      showSlide(currentSlide - 1);
-      startSlideshow();
-    });
-    nextButton.addEventListener("click", function () {
-      showSlide(currentSlide + 1);
-      startSlideshow();
-    });
-    carousel.addEventListener("mouseenter", stopSlideshow);
-    carousel.addEventListener("mouseleave", startSlideshow);
-    carousel.addEventListener("focusin", stopSlideshow);
-    carousel.addEventListener("focusout", startSlideshow);
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden) stopSlideshow();
-      else startSlideshow();
-    });
-    if (reducedMotion.addEventListener) {
-      reducedMotion.addEventListener("change", startSlideshow);
-    } else if (reducedMotion.addListener) {
-      reducedMotion.addListener(startSlideshow);
-    }
 
-    showSlide(0);
-    startSlideshow();
-  </script>
+
+
+
+
+    <header class="site-header" style="background-color:lightgray;">
+        <div class="shell top">
+            <img src="./siv own mus.avif" alt="">
+            <a class="brand" href="#home" aria-label="Drums Sivamani home">DRUMS <span>SIVAMANI</span></a>
+            <nav class="nav" id="nav" aria-label="Main navigation">
+                <a href="#story" style="border-radius: 10px;">The Artist</a>
+                <a href="#journey" style="border-radius: 10px;">Career</a>
+                <a href="#development" style="border-radius: 10px;">Journey</a>
+                <a href="#moments" style="border-radius: 10px;">Gallery</a>
+                <a href="#legacy" style="border-radius: 10px;">Family</a>
+            </nav>
+            <a class="book" href="https://www.sivamani.in/" target="_blank" rel="noopener noreferrer">Official Website
+                ↗</a>
+            <button class="menu" id="menuButton" type="button" aria-label="Open navigation" aria-controls="nav"
+                aria-expanded="false">☰</button>
+        </div>
+    </header>
+
+
+
+    <main id="home" style="background-color:lightgray">
+
+        <section class="shell hero">
+            <div class="reveal">
+                
+                <div class="eyebrow">Percussionist · Composer · Performer</div>
+                <h1>The rhythm<br>is <em>now.</em></h1>
+                <p class="hero-copy">
+                    Anandan “Drums” Sivamani is an acclaimed Indian percussionist, drummer and composer,
+                    celebrated for his powerful live performances and imaginative approach to rhythm.
+                    From traditional percussion to sounds found in everyday life, his performances bring
+                    energy, spontaneity and musical curiosity to every stage.
+                </p>
+
+                <div class="cta-row">
+                    <a class="btn" href="#story" style="border-radius: 10px;">Discover the artist ↘</a>
+                    <a class="btn outline" href="https://www.sivamani.in/" target="_blank" rel="noopener noreferrer"
+                        style="border-radius: 10px;">Official website ↗</a>
+                </div>
+            </div>
+
+
+            <div class="carousel reveal" id="carousel" aria-label="Drums Sivamani photo slideshow">
+                <div class="carousel-track" id="carouselTrack">
+                    <img src="./s with ar.webp" alt="Drums Sivamani with A. R. Rahman" fetchpriority="high">
+                    <img src="./sp2.jpg" alt="Drums Sivamani performing on stage" loading="lazy">
+                    <img src="./p3.jpg" alt="Drums Sivamani with percussion instruments" loading="lazy">
+                    <img src="./re p4.jpg" alt="Drums Sivamani performing live" loading="lazy">
+                    <img src="./s1.jpg" alt="Drums Sivamani in a performance setting" loading="lazy">
+                </div>
+                <div class="photo-index" id="photoIndex" aria-live="polite">01 / 05</div>
+                <div class="photo-caption">A. SIVAMANI · LIVE PERFORMANCE</div>
+                <button class="carousel-button prev" id="previousSlide" type="button"
+                    aria-label="Previous photo">‹</button>
+                <button class="carousel-button next" id="nextSlide" type="button" aria-label="Next photo">›</button>
+            </div>
+        </section>
+
+
+        <div class="audio-panel reveal" style="border: 5px solid goldenrod;">
+            <div>
+                <div class="eyebrow">Listen</div><strong>Drums Sivamani — live percussion</strong>
+                <p>Press play to listen. Audio will not start automatically.</p>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div>
+                <style>
+                    .sound-wave {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 6px;
+                        height: 60px;
+                    }
+
+                    .bar {
+                        width: 6px;
+                        height: 15px;
+                        background-color: #4f46e5;
+                        border-radius: 50px;
+                        animation: vibrate 1s ease-in-out infinite;
+                    }
+
+                    /* Stagger the animation timing for each bar */
+                    .bar:nth-child(1) {
+                        animation-delay: 0.1s;
+                    }
+
+                    .bar:nth-child(2) {
+                        animation-delay: 0.3s;
+                    }
+
+                    .bar:nth-child(3) {
+                        animation-delay: 0.5s;
+                    }
+
+                    .bar:nth-child(4) {
+                        animation-delay: 0.2s;
+                    }
+
+                    .bar:nth-child(5) {
+                        animation-delay: 0.4s;
+                    }
+
+                    @keyframes vibrate {
+
+                        0%,
+                        100% {
+                            height: 12px;
+                        }
+
+                        50% {
+                            height: 50px;
+                        }
+                    }
+                </style>
+
+
+
+                <div class="sound-wave">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+
+            </div>
+            <audio controls controlsList="nodownload" preload="metadata">
+                <source src="./Shivamani Drums Playing _ A. R. Rahman_s lead percussionist _ Kerala Police Aspi.mp3"
+                    type="audio/mpeg">
+                Your browser does not support the audio player.
+            </audio>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="ticker" aria-label="Rhythm has no borders">
+            <div class="ticker-track">
+                <div class="ticker-group">RHYTHM HAS NO BORDERS <i>✳</i> ROOTED IN INDIA, MADE FOR THE WORLD <i>✳</i>
+                    RHYTHM HAS NO BORDERS <i>✳</i></div>
+                <div class="ticker-group" aria-hidden="true">RHYTHM HAS NO BORDERS <i>✳</i> ROOTED IN INDIA, MADE FOR
+                    THE WORLD <i>✳</i> RHYTHM HAS NO BORDERS <i>✳</i></div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <style>
+            .bio-heading {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+
+            .bio-heading img {
+                max-width: 80%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            @media (max-width: 768px) {
+                .bio-heading {
+
+                    align-items: flex-start;
+                }
+
+                .bio-heading img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+
+
+
+
+        <br>
+
+
+
+        <div class="marquee">
+            <div class="marquee-track">
+                <img src="./siv with other/abdul.avif" alt="Family photo 1"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/african bro.avif" alt="Family photo 2"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/tr.avif" alt="Daughter"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/sharukan.avif" alt="Family function"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/zakir hussai.avif" alt="Family photo 3"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/vijay.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/ms dhoni.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/jayaram.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/ilaya.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/mohanlal.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/mani.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/miltry.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <!-- Duplicate images for seamless looping -->
+                <img src="./siv with other/abdul.avif" alt="Family photo 1"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/african bro.avif" alt="Family photo 2"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/tr.avif" alt="Daughter"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/sharukan.avif" alt="Family function"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/zakir hussai.avif" alt="Family photo 3"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/vijay.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/ms dhoni.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/jayaram.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/ilaya.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/mohanlal.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/mani.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <img src="./siv with other/miltry.avif" alt="Small baby"
+                    style="border-radius: 20px; border: 5px solid var(--gold);">
+                <!-- Duplicate images for seamless looping -->
+            </div>
+        </div>
+
+        <br><br>
+
+        <hr style="color: #14231d;">
+
+
+
+
+
+        <section class="shell section" id="story">
+            <table width="100%">
+                <tr>
+                    <td align="left" valign="middle">
+                        <div>01 / The Artist</div>
+                        <h2>Born to hear<br>the beat.</h2>
+                    </td>
+                    <td align="right" valign="middle">
+                        <img src="./siv pad.webp" alt="Drums Sivamani with his percussion setup" loading="lazy"
+                            width="400" style="border-radius: 10px;border: 4px solid var(--gold);">
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="bio-copy reveal" style="padding-left: 10px;">
+            <p><strong>Anandan Sivamani</strong> grew up in Chennai in a musical family. His father, <strong>S.
+                    M. Anandan</strong>, was a professional drummer who introduced him to music when he was
+                young. His early exposure to instruments, recording sessions and working musicians helped shape
+                the distinctive performer audiences know today.</p>
+            <p>As a child, Sivamani was fascinated by the rhythms around him. He began his musical journey at a
+                young age, learning through close contact with musicians and the world of live performance.
+                Those formative years helped develop an open-minded approach to percussion.</p>
+            <p>Over the years, he has shared stages and collaborated with celebrated musicians including
+                <strong>A. R. Rahman, Zakir Hussain, Trilok Gurtu, M. S. Viswanathan, Ilaiyaraaja</strong> and
+                <strong>Louis Banks</strong>. His work spans Indian film music, live concerts, fusion projects
+                and international performances.
+            </p>
+            <p>His film-related work includes contributions to soundtracks such as <strong>Roja, Bombay, Dil Se,
+                    Taal, Lagaan, Guru</strong> and <strong>Rockstar</strong>. His musical world also includes
+                projects and ensembles such as <strong>Asia Electrik</strong>, <strong>Shraddha</strong> and the
+                Zakir Hussain World Drums Ensemble.</p>
+            <p>From Indian classical rhythms to jazz, film scores and global collaborations, Sivamani’s
+                performances are powered by spontaneity. The result is music that feels deeply rooted and alive
+                in the moment.</p>
+
+
+
+
+
+
+            <style>
+                .bio-card-wrapper {
+                    position: relative;
+                    display: inline-block;
+                    padding: 3px;
+                    border-radius: 14px;
+                    overflow: hidden;
+                    background: white;
+                }
+
+                .bio-card-wrapper::before {
+                    content: "";
+                    position: absolute;
+                    inset: -60%;
+                    background: conic-gradient(from 0deg,
+                            transparent 0deg 90deg,
+                            #d4af37 140deg,
+                            #fff3b0 180deg,
+                            #d4af37 220deg,
+                            transparent 270deg 360deg);
+                    animation: spin-gold 4s linear infinite;
+                    z-index: 0;
+                }
+
+                .bio-card {
+                    position: relative;
+                    z-index: 1;
+                    background: white;
+                    color: #f5f5f5;
+                    padding: 20px 24px;
+                    border-radius: 12px;
+                    max-width: 450px;
+                    font-family: system-ui, -apple-system, sans-serif;
+                }
+
+                .bio-quote {
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    line-height: 1.5;
+                    margin-bottom: 10px;
+                }
+
+                .muted {
+                    font-size: 0.9rem;
+                    color: #b8b8b8;
+                    margin: 0;
+                }
+
+                @keyframes spin-gold {
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            </style>
+
+            <center>
+                <div class="bio-card-wrapper">
+                    <div class="bio-card" style="width: 500px;">
+                        <div class="bio-quote">Becoming a drummer is more of a choice than chance for me.</div>
+
+                    </div>
+                </div>
+                <p>His father's encouragement and the sounds of Chennai became the first chapters
+                    of a life in rhythm.</p>
+            </center>
+
+            <div class="facts" aria-label="Career milestones">
+                <div class="fact"><strong>7</strong><span>INTRODUCED TO MUSIC</span></div>
+                <div class="fact"><strong>12</strong><span>EARLY CAREER BEGINNING</span></div>
+                <div class="fact"><strong>2009</strong><span>KALAIMAMANI AWARD</span></div>
+                <div class="fact"><strong>2019</strong><span>PADMA SHRI</span></div>
+                <div class="fact"><strong>2021</strong><span>ATKAN CHATKAN</span></div>
+                <div class="fact"><strong>2024</strong><span>HONORARY DOCTORATE</span></div>
+            </div>
+        </div>
+        </div>
+        <br>
+
+
+        <section class="dark-section section" id="journey" style="padding: 10px;">
+            <div class="shell">
+                <table width="100%">
+                    <tr>
+                        <td align="left" valign="middle" width="50%">
+                            <div class="reveal">
+                                <div class="eyebrow">02 / The Career</div>
+                                <h2>One career.<br>A thousand rhythms.</h2>
+                                <p class="muted">A musical path shaped by collaboration, experimentation and a fearless
+                                    approach to live performance.</p>
+                            </div>
+                        </td>
+                        <td align="right" valign="middle" width="50%">
+                            <img class="reveal" src="./s with sp.jpg"
+                                alt="Drums Sivamani exploring music and percussion" loading="lazy" width="400">
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <br>
+
+
+            <ul class="journey-list">
+                <li class="reveal"><strong>A. R. Rahman</strong>Collaborated extensively with composer A. R. Rahman
+                    on film scores and international projects, including Bombay Dreams.</li>
+                <li class="reveal"><strong>Instruments and sound</strong>Known for his command of drums and a wide
+                    range of percussion instruments, creating rhythms from both traditional instruments and
+                    unexpected objects.</li>
+                <li class="reveal"><strong>Bands and projects</strong>Worked across musical projects and ensembles
+                    including Asia Electrik, Shraddha and the Zakir Hussain World Drums Ensemble.</li>
+                <li class="reveal"><strong>Film composition</strong>Made his feature-film music direction debut with
+                    the Tamil film Arima Nambi (2014) and later worked on Atkan Chatkan (2020).</li>
+            </ul>
+
+            <div class="timeline">
+                <article class="timecard reveal"><span class="year">EARLY YEARS</span>
+                    <h3>Finding the pulse</h3>
+                    <p>Growing up in a musical family, Sivamani began performing at a young age and developed a
+                        distinctive approach to percussion.</p>
+                </article>
+                <article class="timecard reveal"><span class="year">ACROSS THE WORLD</span>
+                    <h3>Collaborations without borders</h3>
+                    <p>He shared stages and projects with artists including A. R. Rahman, Zakir Hussain, Trilok
+                        Gurtu and many more.</p>
+                </article>
+                <article class="timecard reveal"><span class="year">2019</span>
+                    <h3>Padma Shri</h3>
+                    <p>The Government of India recognized his contribution to music with one of the country’s
+                        highest civilian honours.</p>
+                </article>
+            </div>
+            </div>
+        </section>
+
+        <section class="shell section" id="development">
+            <div class="development"
+                style="display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <div class="reveal" style="flex: 1; min-width: 280px;">
+                    <div class="eyebrow">03 / The Development</div>
+                    <h2>On finding<br>music everywhere.</h2>
+                </div>
+
+                <div style="flex: 1; min-width: 280px; max-width: 700px;">
+                    <a href="https://www.sivamani.in/" target="_blank" rel="noopener noreferrer"
+                        title="Visit Drums Sivamani's official website">
+                        <img class="development-image" src="./siv own mus.avif"
+                            alt="Drums Sivamani and his musical world" loading="lazy"
+                            style="width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block;">
+                    </a>
+                </div>
+            </div>
+
+            <div class="development-copy reveal" style="margin-bottom: 2.5rem;">
+                <p>The musical journey of Anandan “Drums” Sivamani reflects a lifelong curiosity about sound. From his
+                    early years in Chennai to international stages, his approach has remained rooted in experimentation,
+                    collaboration, and the joy of performance.</p>
+                <p>His collaborations with A. R. Rahman and other renowned musicians brought his percussion to audiences
+                    around the world. Alongside film recordings and live concerts, he has explored fusion ensembles and
+                    projects that bring together different musical traditions.</p>
+                <p>Beyond the stage, his work as a composer and his appearances at cultural events have introduced new
+                    audiences to the expressive possibilities of percussion. Every performance is an invitation to
+                    listen differently and discover rhythm in unexpected places.</p>
+            </div>
+
+            <div class="endorsements reveal">
+                <p><strong>Anandan "Drums" Sivamani is primarily known as an official artist and endorser for five major
+                        international musical instrument brands—Zildjian, Pearl, Roland, AKG, and Remo—as well as a
+                        former brand ambassador for Xone wireless headphones.</strong></p>
+
+                <h3>Musical Equipment Endorsements</h3>
+                <p>According to <a href="https://www.sivamani.in/" title="Drums Sivamani official website"
+                        target="_blank" rel="noopener noreferrer">Drums Sivamani's Official Website</a>, he is the only
+                    Indian musician to simultaneously endorse five leading global live-music and percussion brands:</p>
+                <ul>
+                    <li><strong>Zildjian:</strong> Cymbals and drumsticks.</li>
+                    <li><strong>Pearl:</strong> Acoustic drums and percussion hardware.</li>
+                    <li><strong>Roland:</strong> Electronic percussion pads and digital instruments.</li>
+                    <li><strong>AKG:</strong> Microphones and studio/stage audio gear.</li>
+                    <li><strong>Remo:</strong> Drumheads and world percussion instruments (featured on his <a
+                            href="https://remo.com" title="Anandan Sivamani Remo artist profile" target="_blank"
+                            rel="noopener noreferrer">Remo Artist Profile</a>).</li>
+                </ul>
+
+                <h3>Consumer &amp; Sports Associations</h3>
+                <ul>
+                    <li><strong>Xone:</strong> He served as the brand ambassador for Xone, an audio brand specializing
+                        in wireless headphones.</li>
+                    <li><strong>Chennai Super Kings (CSK):</strong> He was officially associated with the IPL franchise
+                        as their lead drummer and supporter between 2008 and 2016.</li>
+                    <li><strong>Limca (Coca-Cola India):</strong> He partnered with Coca-Cola India as a featured
+                        performer for the Limca Fresh Face campaign, creating rhythms using Limca bottles.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        </div>
+
+
+
+
+        <div style="background-color: #14231d;">
+
+
+            <section class="shell section" id="moments">
+                <div class="gallery-heading reveal">
+                    <div>
+                        <div class="eyebrow">04 / On Stage</div>
+                        <h2 style="color: whitesmoke;">Feel the moment.</h2>
+                    </div>
+                    <p class="muted">Energy, craft and celebration.</p>
+                </div>
+                <div class="gallery-grid">
+                    <figure class="reveal"><a href="https://www.youtube.com/@drumsshivamani" target="_blank"
+                            rel="noopener noreferrer"><img src="./sp2.jpg" alt="Sivamani performing live"
+                                loading="lazy"></a>
+                        <figcaption>LIVE PERFORMANCE · YOUTUBE ↗</figcaption>
+                    </figure>
+                    <figure class="reveal"><a href="https://www.instagram.com/asivamanidrums_official/" target="_blank"
+                            rel="noopener noreferrer"><img src="./p3.jpg" alt="Sivamani with percussion instruments"
+                                loading="lazy"></a>
+                        <figcaption>FOLLOW THE ARTIST · INSTAGRAM ↗</figcaption>
+                    </figure>
+                    <figure class="reveal"><a href="https://en.wikipedia.org/wiki/Sivamani_(percussionist)"
+                            target="_blank" rel="noopener noreferrer"><img src="./re p4.jpg"
+                                alt="Sivamani playing percussion" loading="lazy"></a>
+                        <figcaption>ARTIST PROFILE · WIKIPEDIA ↗</figcaption>
+                    </figure>
+                </div>
+
+
+                <div class="wave-container">
+                    <div class="wave-track">
+                        <svg viewBox="0 0 400 100" preserveAspectRatio="none">
+                            <path
+                                d="M 0 50 Q 25 10, 50 50 T 100 50 T 150 50 T 200 50 T 250 50 T 300 50 T 350 50 T 400 50" />
+                        </svg>
+                        <svg viewBox="0 0 400 100" preserveAspectRatio="none">
+                            <path
+                                d="M 0 50 Q 25 10, 50 50 T 100 50 T 150 50 T 200 50 T 250 50 T 300 50 T 350 50 T 400 50" />
+                        </svg>
+                    </div>
+                </div>
+
+                <style>
+                    .wave-container {
+                        width: 100%;
+                        /* Spans full parent/screen width */
+                        height: 100px;
+                        overflow: hidden;
+                        mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+                        -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+                    }
+
+                    .wave-track {
+                        display: flex;
+                        width: 200%;
+                        /* Twice the container width for 2 SVGs */
+                        animation: moveHorizontal 3s linear infinite;
+                    }
+
+                    .wave-track svg {
+                        width: 50%;
+                        /* Each SVG fills 100% of the visible container */
+                        height: 100px;
+                        flex-shrink: 0;
+                        fill: none;
+                        stroke: #38bdf8;
+                        stroke-width: 3;
+                        stroke-linecap: round;
+                        vector-effect: non-scaling-stroke;
+                        /* Prevents line thickness from stretching */
+                    }
+
+                    @keyframes moveHorizontal {
+                        0% {
+                            transform: translateX(0);
+                        }
+
+                        100% {
+                            transform: translateX(-50%);
+                            /* Moves exactly one full SVG width */
+                        }
+                    }
+                </style>
+            </section>
+
+
+
+        </div>
+
+
+
+
+
+        <div style="background-color:rgb(204, 255, 204);">
+
+            <section class="dark-section section" id="legacy"
+                style="background-color: rgb(204, 255, 204); color: black;">
+                <div class="shell">
+                    <div class="legacy-intro reveal">
+                        <div class="eyebrow">05 / The Bloodline</div>
+                        <h2>A Legacy of <span style="color:#d3ad7e">Rhythm.</span></h2>
+                        <p class="muted" style="color: #d3ad7e;">Behind every extraordinary rhythm is a story of family,
+                            inspiration, heritage
+                            and a
+                            lifelong connection to music.</p>
+                    </div>
+
+
+
+
+                    <div class="marquee">
+                        <div class="marquee-track">
+                            <img src="./family/all mar.jpg" alt="Family photo 1"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/ar mar.jpg" alt="Family photo 2"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/daughter.jpg" alt="Daughter"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/famili func.jpg" alt="Family function"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/mar.jpg" alt="Family photo 3"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/smal bab.jpg" alt="Small baby"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+
+                            <!-- Duplicate images for seamless looping -->
+                            <img src="./family/all mar.jpg" alt="Family photo 1"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/ar mar.jpg" alt="Family photo 2"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/daughter.jpg" alt="Daughter"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/famili func.jpg" alt="Family function"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/mar.jpg" alt="Family photo 3"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                            <img src="./family/smal bab.jpg" alt="Small baby"
+                                style="border-radius: 20px; border: 5px solid var(--gold);">
+                        </div>
+                    </div>
+
+
+                    <style>
+                        .marquee {
+                            width: 100%;
+                            overflow: hidden;
+                            position: relative;
+                        }
+
+                        .marquee-track {
+                            display: flex;
+                            width: max-content;
+                            gap: 16px;
+                            animation: marquee-scroll 25s linear infinite;
+                            will-change: transform;
+                        }
+
+                        .marquee-track img {
+                            height: 150px;
+                            width: auto;
+                            object-fit: cover;
+                            flex-shrink: 0;
+                            display: block;
+                        }
+
+                        /* Continuous right-to-left scrolling */
+                        @keyframes marquee-scroll {
+                            0% {
+                                transform: translateX(0);
+                            }
+
+                            100% {
+                                transform: translateX(-50%);
+                            }
+                        }
+                    </style>
+
+                    <div class="legacy-grid">
+                        <article class="legacy-card reveal">
+                            <div class="legacy-icon">✦</div><span class="legacy-number">01 / ROOTS</span>
+                            <h3>His Parents</h3>
+                            <p class="legacy-description" ;">The family foundation that introduced Sivamani to the world
+                                of
+                                rhythm.</p>
+                            <div class="legacy-person"><span>FATHER</span>
+                                <h4>S. M. Anandan</h4>
+                                <p>A drummer in the South Indian film industry and Sivamani’s early musical inspiration.
+                                </p>
+                            </div>
+                            <div class="legacy-person"><span>MOTHER</span>
+                                <h4>Lakshmi Anandan</h4>
+                                <p>Part of his family roots and upbringing.</p>
+                            </div>
+                        </article>
+
+                        <article class="legacy-card reveal">
+                            <div class="legacy-icon">♡</div><span class="legacy-number">02 / PARTNERSHIP</span>
+                            <h3>His Marriage</h3>
+                            <p class="legacy-description">A personal journey shaped by relationships and a shared
+                                connection
+                                with music.</p>
+                            <div class="legacy-person"><span>WIFE</span>
+                                <h4>Runa Rizvi</h4>
+                                <p style="color: black;">Runa Rizvi (also known as Runa Rizvi Sivamani) is an Indian
+                                    singer whose work spans
+                                    classical, ghazal, Sufi and playback music. The couple also perform and collaborate
+                                    together.</p>
+                            </div>
+                        </article>
+
+                        <article class="legacy-card reveal">
+                            <div class="legacy-icon">♬</div><span class="legacy-number">03 / NEXT GENERATION</span>
+                            <h3>His Children</h3>
+                            <p class="legacy-description">The next generation of the Sivamani family.</p>
+                            <div class="legacy-person"><span>SON</span>
+                                <h4>Kumaran Sivamani</h4>
+                                <p>A percussionist and music programmer who has worked with A. R. Rahman’s musical team.
+                                </p>
+                            </div>
+                            <div class="legacy-person"><span>FAMILY</span>
+                                <h4>Two Children</h4>
+                                <p>Sivamani has two children.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div style="background-color: rgb(204, 255, 204); color: black;">
+                        <div class="legacy-quote reveal" style="background-color: rgb(204, 255, 204);">
+                            <span class="quote-mark">“</span>
+                            <p style="background-color: rgb(204, 255, 204); color: black;">Music runs in his blood. His
+                                journey began with his
+                                father’s guidance and grew into a
+                                lifetime dedicated to rhythm.</p>
+                            <span class="quote-credit">THE SIVAMANI LEGACY</span>
+                        </div>
+                    </div>
+                    <style>
+                        .legacy-quote {
+                            position: relative;
+                            isolation: isolate;
+                            overflow: hidden;
+                            border-radius: 18px;
+                            padding: 35px;
+                            background: rgb(204, 255, 204);
+                            ;
+                            z-index: 1;
+                        }
+
+                        /* Rotating golden border */
+                        .legacy-quote::before {
+                            content: "";
+                            position: absolute;
+                            inset: -150%;
+                            background: conic-gradient(from 0deg,
+                                    transparent 0deg,
+                                    transparent 240deg,
+                                    #8a641c 270deg,
+                                    #ffd700 300deg,
+                                    #fff4b0 315deg,
+                                    #d4af37 330deg,
+                                    transparent 360deg);
+                            animation: goldenRotate 4s linear infinite;
+                            z-index: -2;
+                        }
+
+                        /* Inner background */
+                        .legacy-quote::after {
+                            content: "";
+                            position: absolute;
+                            inset: 3px;
+                            background: rgb(204, 255, 204);
+                            border-radius: 15px;
+                            z-index: -1;
+                        }
+
+                        /* Golden rotation */
+                        @keyframes goldenRotate {
+                            from {
+                                transform: rotate(0deg);
+                            }
+
+                            to {
+                                transform: rotate(360deg);
+                            }
+                        }
+
+                        /* Quote styling */
+                        .legacy-quote .quote-mark {
+                            color: #ffd700;
+                        }
+
+                        .legacy-quote .quote-credit {
+                            color: #d4af37;
+                        }
+                    </style>
+                </div>
+            </section>
+
+        </div>
+
+        <section class="shell section">
+
+
+            <div class="office reveal">
+                <h3>OFFICE / MANAGEMENT</h3>
+                <a href="https://maps.app.goo.gl/NKciEQdhnmJxv2bt8" target="_blank">
+
+                    <address>
+                        <div style="color: lightblue;">
+                            di “KANAKIA ATRIUM - 2”,<br>
+                            No. 603, 6th Floor, Next to Courtyard Marriott Hotel,<br>
+                            Opp. Divine Child High School, Andheri Kurla Road, Andheri (East),<br>
+                            Mumbai - 400093, India.
+                        </div>
+                        click the address to see the live location
+                    </address>
+                </a>
+            </div>
+        </section>
+
+        <section class="statement shell reveal">
+            <div class="eyebrow">The Philosophy</div>
+            <blockquote>“Rhythm is <em>everything, everywhere.</em>”</blockquote>
+            <cite>— SIVAMANI · TED PERFORMANCE</cite>
+        </section>
+
+        <section class="listen">
+            <div class="shell listen-row">
+                <div>
+                    <div class="eyebrow">Take it from here</div>
+                    <h2>Hear the rhythm<br>for yourself.</h2>
+                </div>
+                <a class="btn" href="https://www.youtube.com/results?search_query=Drums+Sivamani+live+performance"
+                    target="_blank" rel="noopener noreferrer">Explore performances ↗</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell footer">
+        <p style="color:#28765c;">©Sivamani © Copyright 2026. All Rights Reserved</p>
+        <p>
+        <h4 style="padding-left: 50px;"><strong>
+                site developed by <a href="https://www.instagram.com/d_john_bosco/" target="_blank">BINU.D. JOHN
+                    BOSCO</a>
+                <br>
+                contact; <a href="tel:7200614883">7200614883</a>
+            </strong>
+        </h4>
+        </p>
+    </footer>
+
+    <script>
+        "use strict";
+
+        // Mobile navigation
+        const menuButton = document.getElementById("menuButton");
+        const navigation = document.getElementById("nav");
+
+        menuButton.addEventListener("click", function () {
+            const isOpen = navigation.classList.toggle("open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        navigation.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navigation.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation");
+                menuButton.textContent = "☰";
+            });
+        });
+
+        // Reveal sections as they enter the viewport
+        const revealElements = document.querySelectorAll(".reveal");
+        if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("in");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealElements.forEach(function (element) {
+                revealObserver.observe(element);
+            });
+        } else {
+            revealElements.forEach(function (element) {
+                element.classList.add("in");
+            });
+        }
+
+        // Accessible image carousel with pause-on-hover and reduced-motion support
+        const carousel = document.getElementById("carousel");
+        const carouselTrack = document.getElementById("carouselTrack");
+        const photoIndex = document.getElementById("photoIndex");
+        const previousButton = document.getElementById("previousSlide");
+        const nextButton = document.getElementById("nextSlide");
+        const slides = Array.from(carouselTrack.querySelectorAll("img"));
+        const totalSlides = slides.length;
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let currentSlide = 0;
+        let slideshowTimer = null;
+
+        function showSlide(index) {
+            if (!totalSlides) return;
+            currentSlide = (index + totalSlides) % totalSlides;
+            carouselTrack.style.transform = "translateX(-" + (currentSlide * 100) + "%)";
+            photoIndex.textContent =
+                String(currentSlide + 1).padStart(2, "0") + " / " +
+                String(totalSlides).padStart(2, "0");
+        }
+
+        function stopSlideshow() {
+            if (slideshowTimer !== null) {
+                window.clearInterval(slideshowTimer);
+                slideshowTimer = null;
+            }
+        }
+
+        function startSlideshow() {
+            stopSlideshow();
+            if (reducedMotion.matches || document.hidden) return;
+            slideshowTimer = window.setInterval(function () {
+                showSlide(currentSlide + 1);
+            }, 4500);
+        }
+
+        previousButton.addEventListener("click", function () {
+            showSlide(currentSlide - 1);
+            startSlideshow();
+        });
+        nextButton.addEventListener("click", function () {
+            showSlide(currentSlide + 1);
+            startSlideshow();
+        });
+        carousel.addEventListener("mouseenter", stopSlideshow);
+        carousel.addEventListener("mouseleave", startSlideshow);
+        carousel.addEventListener("focusin", stopSlideshow);
+        carousel.addEventListener("focusout", startSlideshow);
+        document.addEventListener("visibilitychange", function () {
+            if (document.hidden) stopSlideshow();
+            else startSlideshow();
+        });
+        if (reducedMotion.addEventListener) {
+            reducedMotion.addEventListener("change", startSlideshow);
+        } else if (reducedMotion.addListener) {
+            reducedMotion.addListener(startSlideshow);
+        }
+
+        showSlide(0);
+        startSlideshow();
+    </script>
 </body>
+
 </html>
