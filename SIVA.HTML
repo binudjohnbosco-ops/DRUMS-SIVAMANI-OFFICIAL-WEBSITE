@@ -2512,7 +2512,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           const message=document.createElement("p"); message.textContent=data.message || "";
           article.append(name,message); list.appendChild(article);
         });
-      }, error => { status.textContent="Unable to load wishes. Please check the Firebase database setup."; });
+      }, error => { status.textContent="Unable to load wishes: " + (error.code || error.message || "Unknown Firebase error"); });
       form.addEventListener("submit", async event => {
         event.preventDefault();
         const name=form.elements.name.value.trim();
@@ -2523,12 +2523,12 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         try {
           await wishes.add({name:name.slice(0,50),message:message.slice(0,500),createdAt:firebase.firestore.FieldValue.serverTimestamp()});
           form.reset(); status.textContent="Your wish has been posted. Thank you!";
-        } catch(error) { status.textContent="Your wish could not be posted. Please try again."; }
+        } catch(error) { status.textContent="Posting failed: " + (error.code || error.message || "Unknown Firebase error"); }
         finally { button.disabled=false; }
       });
       status.textContent="You can post a wish without creating an account.";
     } catch(error) {
-      status.textContent="Comments could not connect. Check Firebase setup and anonymous sign-in.";
+      status.textContent="Firebase connection failed: " + (error.code || error.message || "Unknown error");
     }
   };
   load();
