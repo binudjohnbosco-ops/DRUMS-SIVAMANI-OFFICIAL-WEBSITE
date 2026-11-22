@@ -3020,17 +3020,17 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 })();
 </script>
     <style id="website-like-widget-style">
-      #website-like-widget{position:fixed;right:22px;bottom:22px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 14px;border-radius:18px;background:#fff;box-shadow:0 5px 24px rgba(0,0,0,.2);border:1px solid #d7d7d7;text-align:center;max-width:220px}
+      #website-like-widget{position:fixed!important;right:22px!important;bottom:22px!important;z-index:2147483647!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:14px 16px;border-radius:18px;background:#fff;box-shadow:0 5px 24px rgba(0,0,0,.24);border:1px solid #bfc8c3;text-align:center;min-width:190px;max-width:230px;visibility:visible!important;opacity:1!important}
       #website-like-button{border:0;border-radius:999px;padding:11px 18px;background:#28765c;color:#fff;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
       #website-like-button:disabled{opacity:.85;cursor:default}
       #website-like-button.is-liked{background:#b8325b}
-      #website-like-count{font-weight:800;color:#202020;font-size:19px}
-      #website-like-status{font-size:11px;color:#555;max-width:190px}
+      #website-like-count{display:block!important;visibility:visible!important;opacity:1!important;font-weight:900!important;color:#111!important;font-size:30px!important;line-height:1.15;min-height:35px;text-align:center}
+      #website-like-status{display:block;visibility:visible!important;opacity:1!important;font-size:11px;color:#444;max-width:190px}
       @media(max-width:600px){#website-like-widget{right:12px;bottom:12px;padding:9px 10px}#website-like-button{padding:9px 13px;font-size:12px}}
     </style>
     <div id="website-like-widget" aria-label="Like this website">
       <button id="website-like-button" type="button">♡ Like this website</button>
-      <div><span id="website-like-count">—</span> <span>website likes</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;"><span id="website-like-count" aria-live="polite">Loading…</span><span style="font-size:12px;font-weight:700;color:#333;letter-spacing:.3px;">TOTAL WEBSITE LIKES</span></div>
       <div id="website-like-status" aria-live="polite">Loading like button…</div>
     </div>
 </body>
