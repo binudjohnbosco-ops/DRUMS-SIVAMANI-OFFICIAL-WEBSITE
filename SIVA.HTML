@@ -179,7 +179,31 @@
     .legacy-person { padding-top: 17px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,.13); }
     .legacy-person h4 { margin: 8px 0; font-size: 16px; }
     .legacy-person p { margin: 0; color: rgba(237,242,236,.66); font-size: 12px; line-height: 1.8; }
-    .legacy-quote { margin-top: 35px; padding: 35px 25px; border: 1px solid rgba(196,154,88,.24); text-align: center; background: rgba(196,154,88,.05); }
+    @property --legacy-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    @keyframes legacy-border-spin {
+      to { --legacy-angle: 360deg; }
+    }
+    .legacy-quote {
+      margin-top: 35px;
+      padding: 35px 25px;
+      border: 1px solid transparent;
+      text-align: center;
+      background:
+        linear-gradient(rgba(20,35,29,.96), rgba(20,35,29,.96)) padding-box,
+        conic-gradient(
+          from var(--legacy-angle),
+          rgba(196,154,88,.16) 0deg,
+          #b78b62 75deg,
+          #f1d8a8 115deg,
+          rgba(196,154,88,.16) 165deg,
+          rgba(196,154,88,.16) 360deg
+        ) border-box;
+      animation: legacy-border-spin 7s linear infinite;
+    }
     .legacy-quote .quote-mark { color: #d3ad7e; font: 60px Georgia,serif; line-height: .8; }
     .legacy-quote p { max-width: 700px; margin: 15px auto; font: italic clamp(18px,2.5vw,25px)/1.6 "Playfair Display", Georgia, serif; }
     .quote-credit { color: #d3ad7e; font: 10px "DM Mono",monospace; letter-spacing: .18em; }
