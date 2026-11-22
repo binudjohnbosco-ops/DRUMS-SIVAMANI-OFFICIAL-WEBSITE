@@ -2665,6 +2665,9 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         "আসামীয়া ভাষাতো আপোনালৈ আন্তৰিক জন্মদিনৰ শুভেচ্ছা জনালোঁ। আপোনাৰ জীৱন আনন্দ আৰু সুস্বাস্থ্যৰে ভৰি থাকক!"
       ];
 
+      // Include the complete multilingual greetings in the visible sample list.
+      sampleMessages.push(...additionalMultilingualWishes);
+
       const sampleWishes = sampleMessages.map((message, index) => ({
         name: sampleNames[index] || ("Music fan " + String(index + 1).padStart(4, "0")),
         message
