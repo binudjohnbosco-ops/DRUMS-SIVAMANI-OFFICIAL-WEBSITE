@@ -2519,6 +2519,47 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const auth = firebase.auth();
       const db = firebase.firestore();
       await auth.signInAnonymously();
+      // Whole-website likes: one like document per anonymous visitor account.
+      const websiteLikeButton = document.getElementById("website-like-button");
+      const websiteLikeCount = document.getElementById("website-like-count");
+      const websiteLikeStatus = document.getElementById("website-like-status");
+      if (websiteLikeButton && websiteLikeCount && websiteLikeStatus) {
+        const websiteLikes = db.collection("websiteLikes");
+        const visitorLikeRef = websiteLikes.doc(auth.currentUser.uid);
+        websiteLikes.onSnapshot(snapshot => {
+          websiteLikeCount.textContent = snapshot.size.toLocaleString();
+        }, error => {
+          websiteLikeStatus.textContent = "Like count could not load. Check Firebase Firestore rules.";
+          console.error("Website like count error:", error);
+        });
+        visitorLikeRef.get().then(doc => {
+          const alreadyLiked = doc.exists;
+          websiteLikeButton.disabled = alreadyLiked;
+          websiteLikeButton.classList.toggle("is-liked", alreadyLiked);
+          websiteLikeButton.innerHTML = alreadyLiked ? "♥ Liked" : "♡ Like this website";
+          websiteLikeStatus.textContent = alreadyLiked ? "Thank you for supporting this website!" : "You can like this website once."; 
+        }).catch(error => {
+          websiteLikeStatus.textContent = "Could not check your like. Please refresh.";
+          console.error("Website like check error:", error);
+        });
+        websiteLikeButton.addEventListener("click", async () => {
+          websiteLikeButton.disabled = true;
+          try {
+            await db.runTransaction(async transaction => {
+              const existing = await transaction.get(visitorLikeRef);
+              if (existing.exists) return;
+              transaction.set(visitorLikeRef, { liked: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+            });
+            websiteLikeButton.classList.add("is-liked");
+            websiteLikeButton.innerHTML = "♥ Liked";
+            websiteLikeStatus.textContent = "Thank you for supporting this website!";
+          } catch (error) {
+            websiteLikeButton.disabled = false;
+            websiteLikeStatus.textContent = "Like could not be saved. Check Firebase Firestore rules.";
+            console.error("Website like save error:", error);
+          }
+        });
+      }
 
       // These are demonstration wishes, not messages submitted by real visitors.
       const sampleNames = ["Arun Kumar","Priya S","Karthik Raj","Divya M","Santhosh Kumar","Meena Lakshmi","Vijay Anand","Anitha R","Rahul Dev","Kavitha S","Praveen Kumar","Nithya R","Suresh Babu","Keerthana V","Ajay Krishna","Deepa M","Mohan Raj","Swathi P","Dinesh Kumar","Revathi S","Harishankar","Janani K","Ramesh Balan","Sneha Thomas","Gokul Raj","Anjali Menon","Bala Murugan","Shalini R","Vignesh S","Aishwarya K","Manoj Kumar","Pavithra S","Naveen Raj","Lakshmi Priya","Sathish Kumar","Monisha R","Aravind S","Reshma K","Prakash M","Sowmya V","Yogesh B","Nandhini S","Ravi Shankar","Abinaya R","Sanjay Kumar","Madhumitha P","Kiran Raj","Fathima N","Siva Prakash","Harini S","Joseph Mathew","Maria Joseph","Antony Raj","Esther Mary","David Raj","Merlin Rose","Michael D","Rebecca S","Samuel Paul","Grace Mary","Imran Khan","Ayesha Banu","Mohammed Asif","Nisha Fathima","Abdul Rahman","Zara Ahmed","Farhan Ali","Sana Parveen","Irfan M","Noor Jahan","Rohit Sharma","Neha Verma","Amit Kumar","Pooja Singh","Vikram Patel","Riya Nair","Aditya Rao","Snehal Joshi","Kunal Mehta","Ishita Das","Peter Paul","Jerin Thomas","Anand Kumar","Sindhu R","Srinivasan M","Malathi S","Pradeep Raj","Roshini K","Bharath S","Gayathri M","Charles Antony","Angel Mary","Francis Xavier","Catherine D","Dilip Kumar","Sanjana R","Lokesh B","Sangeetha P","Akash S","Tamil Selvan"];
@@ -2978,6 +3019,20 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
   load();
 })();
 </script>
+    <style id="website-like-widget-style">
+      #website-like-widget{position:fixed;right:22px;bottom:22px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 14px;border-radius:18px;background:#fff;box-shadow:0 5px 24px rgba(0,0,0,.2);border:1px solid #d7d7d7;text-align:center;max-width:220px}
+      #website-like-button{border:0;border-radius:999px;padding:11px 18px;background:#28765c;color:#fff;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
+      #website-like-button:disabled{opacity:.85;cursor:default}
+      #website-like-button.is-liked{background:#b8325b}
+      #website-like-count{font-weight:800;color:#202020;font-size:19px}
+      #website-like-status{font-size:11px;color:#555;max-width:190px}
+      @media(max-width:600px){#website-like-widget{right:12px;bottom:12px;padding:9px 10px}#website-like-button{padding:9px 13px;font-size:12px}}
+    </style>
+    <div id="website-like-widget" aria-label="Like this website">
+      <button id="website-like-button" type="button">♡ Like this website</button>
+      <div><span id="website-like-count">—</span> <span>website likes</span></div>
+      <div id="website-like-status" aria-live="polite">Loading like button…</div>
+    </div>
 </body>
 
 </html>
