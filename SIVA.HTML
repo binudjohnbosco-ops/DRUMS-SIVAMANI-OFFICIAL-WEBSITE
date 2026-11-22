@@ -2468,6 +2468,12 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 .wish-item{padding:14px 0;border-bottom:1px solid #e3e9e4}
 .wish-item:last-child{border-bottom:0}
 .wish-item strong{color:#28765c}.wish-item p{margin:6px 0 0;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.wish-actions{display:flex;align-items:center;gap:12px;margin-top:10px}
+.wish-like{display:inline-flex;align-items:center;gap:6px;border:1px solid #d8e2da;border-radius:999px;padding:6px 12px;background:#f8fbf8;color:#52635a;font:600 .88rem inherit;cursor:pointer;transition:background .18s,border-color .18s,color .18s}
+.wish-like:hover{background:#edf7ef;border-color:#28765c}
+.wish-like.liked{background:#e5f3e9;border-color:#28765c;color:#28765c}
+.wish-like:disabled{opacity:.55;cursor:wait}
+.wish-like-icon{font-size:1rem;line-height:1}
 .wishes-empty{color:#65736a}
 @media(max-width:600px){.wishes-section{padding:42px 0}.wishes-form{padding:14px;border-radius:12px}.wishes-comments-toggle{padding:16px}.wishes-comments-content{padding:0 16px 14px}.wishes-form button{width:100%}}
 </style>
@@ -2511,8 +2517,11 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       await auth.signInAnonymously();
       const wishes = db.collection("birthdayWishes");
       const wishesCount = document.getElementById("wishes-count");
+      const likeListeners = new Map();
       wishes.orderBy("createdAt","desc").limit(100).onSnapshot(snapshot => {
         if (wishesCount) wishesCount.textContent = String(snapshot.size);
+        likeListeners.forEach(unsubscribe => unsubscribe());
+        likeListeners.clear();
         list.replaceChildren();
         if (snapshot.empty) {
           const p=document.createElement("p"); p.className="wishes-empty"; p.textContent="Be the first to share a birthday wish!"; list.appendChild(p); return;
@@ -2522,7 +2531,35 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           const article=document.createElement("article"); article.className="wish-item";
           const name=document.createElement("strong"); name.textContent=data.name || "Guest";
           const message=document.createElement("p"); message.textContent=data.message || "";
-          article.append(name,message); list.appendChild(article);
+          const actions=document.createElement("div"); actions.className="wish-actions";
+          const likeButton=document.createElement("button"); likeButton.type="button"; likeButton.className="wish-like"; likeButton.setAttribute("aria-label","Like this birthday wish");
+          const icon=document.createElement("span"); icon.className="wish-like-icon"; icon.textContent="♡";
+          const label=document.createElement("span"); label.textContent="Like";
+          const count=document.createElement("span"); count.textContent="0";
+          likeButton.append(icon,label,count); actions.appendChild(likeButton);
+          article.append(name,message,actions); list.appendChild(article);
+          const likesRef=doc.ref.collection("likes");
+          likeButton.addEventListener("click", async () => {
+            likeButton.disabled=true;
+            try {
+              const myLike=likesRef.doc(auth.currentUser.uid);
+              const existing=await myLike.get();
+              if(existing.exists) await myLike.delete();
+              else await myLike.set({uid:auth.currentUser.uid,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+            } catch(error) {
+              status.textContent="Like failed: "+(error.code || error.message || "Unknown Firebase error");
+            } finally { likeButton.disabled=false; }
+          });
+          const unsubscribe=likesRef.onSnapshot(likeSnapshot => {
+            const total=likeSnapshot.size;
+            const liked=likeSnapshot.docs.some(likeDoc => likeDoc.id===auth.currentUser.uid);
+            count.textContent=String(total);
+            label.textContent=liked?"Liked":"Like";
+            icon.textContent=liked?"♥":"♡";
+            likeButton.classList.toggle("liked",liked);
+            likeButton.setAttribute("aria-pressed",String(liked));
+          }, error => { status.textContent="Unable to load likes: "+(error.code || error.message || "Unknown Firebase error"); });
+          likeListeners.set(doc.id,unsubscribe);
         });
       }, error => { status.textContent="Unable to load wishes: " + (error.code || error.message || "Unknown Firebase error"); });
       form.addEventListener("submit", async event => {
