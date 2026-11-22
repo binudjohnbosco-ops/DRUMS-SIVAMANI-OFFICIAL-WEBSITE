@@ -2522,6 +2522,13 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 
       // These are demonstration wishes, not messages submitted by real visitors.
       const sampleNames = ["Arun Kumar","Priya S","Karthik Raj","Divya M","Santhosh Kumar","Meena Lakshmi","Vijay Anand","Anitha R","Rahul Dev","Kavitha S","Praveen Kumar","Nithya R","Suresh Babu","Keerthana V","Ajay Krishna","Deepa M","Mohan Raj","Swathi P","Dinesh Kumar","Revathi S","Harishankar","Janani K","Ramesh Balan","Sneha Thomas","Gokul Raj","Anjali Menon","Bala Murugan","Shalini R","Vignesh S","Aishwarya K","Manoj Kumar","Pavithra S","Naveen Raj","Lakshmi Priya","Sathish Kumar","Monisha R","Aravind S","Reshma K","Prakash M","Sowmya V","Yogesh B","Nandhini S","Ravi Shankar","Abinaya R","Sanjay Kumar","Madhumitha P","Kiran Raj","Fathima N","Siva Prakash","Harini S","Joseph Mathew","Maria Joseph","Antony Raj","Esther Mary","David Raj","Merlin Rose","Michael D","Rebecca S","Samuel Paul","Grace Mary","Imran Khan","Ayesha Banu","Mohammed Asif","Nisha Fathima","Abdul Rahman","Zara Ahmed","Farhan Ali","Sana Parveen","Irfan M","Noor Jahan","Rohit Sharma","Neha Verma","Amit Kumar","Pooja Singh","Vikram Patel","Riya Nair","Aditya Rao","Snehal Joshi","Kunal Mehta","Ishita Das","Peter Paul","Jerin Thomas","Anand Kumar","Sindhu R","Srinivasan M","Malathi S","Pradeep Raj","Roshini K","Bharath S","Gayathri M","Charles Antony","Angel Mary","Francis Xavier","Catherine D","Dilip Kumar","Sanjana R","Lokesh B","Sangeetha P","Akash S","Tamil Selvan"];
+      const generatedFirstNames = ["Aarav","Aadhya","Aarushi","Abhinav","Akash","Amala","Ananya","Arjun","Bhavana","Charan","Chitra","Deepak","Devika","Dhanush","Diya","Eshan","Gautham","Geetha","Hema","Ishaan","Jeeva","Kavya","Keshav","Krishna","Madhav","Mahima","Maya","Nikhil","Nila","Niranjan","Pallavi","Parth","Pranav","Preethi","Raghav","Rahul","Rithika","Sanjay","Saranya","Shreya","Siddharth","Sowmya","Tarun","Tejas","Varsha","Vedant","Vidhya","Yash","Yamini","Zoya"];
+      const generatedFamilyNames = ["Iyer","Reddy","Menon","Nair","Sharma","Verma","Patel","Rao","Pillai","Mishra","Gupta","Kapoor","Chatterjee","Banerjee","Das","Bose","Kulkarni","Joshi","Desai","Naidu","Gowda","Shetty","Hegde","Khan","Ansari","Shaikh","Thomas","Mathew","Varghese","Fernandes","D'Souza","Pereira","Joseph","Samuel","Raj","Kumar","Krishnan","Subramanian","Murugan","Pandian","Selvan","Balan","Mohan","Prasad","Saxena","Singh","Kaur","Gill","Sethi","Chauhan"];
+      const generatedHumanNames = Array.from(
+        { length: generatedFirstNames.length * generatedFamilyNames.length },
+        (_, index) => generatedFirstNames[Math.floor(index / generatedFamilyNames.length)] + " " + generatedFamilyNames[index % generatedFamilyNames.length]
+      );
+
       // Individually written demonstration messages; these are not visitor submissions.
       // 100 individually written demo messages in varied voices and styles; not visitor submissions.
       const sampleMessages = [
@@ -2810,7 +2817,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         "Ananya Das", "Subham Mohanty", "Pranab Saikia"
       ];
       const multilingualNameByMessage = new Map(
-        additionalMultilingualWishes.map((message, index) => [message, multilingualNames[index] || ("Music Fan " + (index + 1))])
+        additionalMultilingualWishes.map((message, index) => [message, multilingualNames[index]])
       );
       const englishOnlyMessages = sampleMessages.filter(message => !multilingualNameByMessage.has(message));
 
@@ -2830,7 +2837,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       });
 
       const sampleWishes = distributedMessages.map((message, index) => ({
-        name: multilingualNameByMessage.get(message) || sampleNames[index] || ("Music fan " + String(index + 1).padStart(4, "0")),
+        name: multilingualNameByMessage.get(message) || sampleNames[index] || generatedHumanNames[index - sampleNames.length],
         message
       }));
       const wishesCount = document.getElementById("wishes-count");
