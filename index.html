@@ -2538,21 +2538,26 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         "Three cheers for our Rhythm Maestro! 🥳"
       ];
       const sampleEndings = [
-        "May your beats continue to bring the world together. Keep shining! 🎶",
-        "May the coming year bring health, happiness and wonderful memories. 🎊",
-        "Your performances give us goosebumps every time. Stay legendary! 🌟",
-        "Thank you for inspiring musicians everywhere. Much love and respect! 🙏",
-        "May every stage welcome you with applause and joy. 🎸",
-        "Keep creating rhythms that make hearts dance. Wishing you success always! 🥁",
-        "May your life be filled with peace, laughter and beautiful music. ✨",
-        "Your dedication is an inspiration to us all. Keep reaching new heights! 🏆",
-        "May this birthday start another wonderful chapter in your journey. 🌺",
-        "Stay healthy, stay happy and keep rocking the world! 🔥"
+        "May your beats continue to bring the world together. Keep shining!",
+        "May the coming year bring health, happiness and wonderful memories.",
+        "Your performances give us goosebumps every time. Stay legendary!",
+        "Thank you for inspiring musicians everywhere. Much love and respect!",
+        "May every stage welcome you with applause and joy.",
+        "Keep creating rhythms that make hearts dance. Wishing you success always!",
+        "May your life be filled with peace, laughter and beautiful music.",
+        "Your dedication is an inspiration to us all. Keep reaching new heights!",
+        "May this birthday start another wonderful chapter in your journey.",
+        "Stay healthy, stay happy and keep rocking the world!"
       ];
+      // 10 x 10 combinations give every one of the 100 wishes a different ending emoji pair.
+      const emojiFirst = ["🎶","🎂","🥁","🌟","🎉","❤️","🎸","🎤","✨","🏆"];
+      const emojiSecond = ["🌈","🎊","💐","🔥","🙏","🎧","🕺","🌺","🚀","😊"];
       const sampleWishes = sampleNames.map((name, index) => ({
         name,
         message: sampleStarts[index % sampleStarts.length] + " " +
-          sampleEndings[Math.floor(index / sampleStarts.length) % sampleEndings.length]
+          sampleEndings[Math.floor(index / sampleStarts.length) % sampleEndings.length] +
+          " " + emojiFirst[index % emojiFirst.length] +
+          emojiSecond[Math.floor(index / emojiFirst.length) % emojiSecond.length]
       }));
       const wishesCount = document.getElementById("wishes-count");
       function appendSampleWishes() {
