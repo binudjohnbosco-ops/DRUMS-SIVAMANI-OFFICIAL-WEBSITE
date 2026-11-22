@@ -3020,8 +3020,9 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 })();
 </script>
     <style id="website-like-widget-style">
-      #website-like-widget{position:fixed!important;right:22px!important;bottom:22px!important;z-index:2147483647!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:14px 16px;border-radius:18px;background:#fff;box-shadow:0 5px 24px rgba(0,0,0,.24);border:1px solid #bfc8c3;text-align:center;min-width:190px;max-width:230px;visibility:visible!important;opacity:1!important}
-      #website-like-button{border:0;border-radius:999px;padding:11px 18px;background:#28765c;color:#fff;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
+      #website-like-widget{position:fixed!important;right:22px!important;bottom:22px!important;z-index:2147483647!important;isolation:isolate!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:14px 16px;border-radius:18px;background:#fff;box-shadow:0 5px 24px rgba(0,0,0,.24);border:1px solid #bfc8c3;text-align:center;min-width:190px;max-width:230px;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+      #website-like-widget, #website-like-widget *{pointer-events:auto!important;cursor:auto!important}
+      #website-like-button{position:relative;z-index:1;pointer-events:auto!important;border:0;border-radius:999px;padding:11px 18px;background:#28765c;color:#fff;font-weight:700;font-size:14px;cursor:pointer!important;white-space:nowrap}
       #website-like-button:disabled{opacity:.85;cursor:default}
       #website-like-button.is-liked{background:#b8325b}
       #website-like-count{display:block!important;visibility:visible!important;opacity:1!important;font-weight:900!important;color:#111!important;font-size:30px!important;line-height:1.15;min-height:35px;text-align:center}
