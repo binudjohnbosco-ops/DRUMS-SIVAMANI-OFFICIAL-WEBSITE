@@ -1336,10 +1336,13 @@ table { max-width:100%; }
           <button type="submit" id="wish-submit">Post Wishes</button>
           <p class="wishes-status" id="wishes-status" role="status" aria-live="polite">Add your Firebase project settings to enable posting.</p>
         </form>
-        <div class="wishes-comments" id="birthday-wishes-comments">
-          <h3>Birthday Wishes</h3>
-          <div id="wishes-list" aria-live="polite"><p class="wishes-empty">Wishes will appear here once the comments database is connected.</p></div>
-        </div>
+        <details class="wishes-comments" id="birthday-wishes-comments">
+          <summary class="wishes-comments-toggle">
+            <span class="wishes-comments-title">Birthday Wishes</span>
+            <span class="wishes-comments-meta"><span id="wishes-count">0</span> wishes <span class="wishes-chevron" aria-hidden="true">⌄</span></span>
+          </summary>
+          <div class="wishes-comments-content" id="wishes-list" aria-live="polite"><p class="wishes-empty">Wishes will appear here once the comments database is connected.</p></div>
+        </details>
       </div>
     </section>
 
@@ -2454,12 +2457,19 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 .wishes-form button{justify-self:start;border:0;border-radius:9px;padding:12px 22px;background:#28765c;color:white;font-weight:800;cursor:pointer}
 .wishes-form button:disabled{opacity:.6;cursor:wait}
 .wishes-status{margin:2px 0 0;color:#52635a;font-size:.9rem}
-.wishes-comments h3{margin:0 0 16px;color:#172720}
+.wishes-comments{padding:0;overflow:hidden}
+.wishes-comments-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;cursor:pointer;list-style:none;color:#172720;font-weight:800;user-select:none}
+.wishes-comments-toggle::-webkit-details-marker{display:none}
+.wishes-comments-title{font-size:1.08rem}
+.wishes-comments-meta{display:flex;align-items:center;gap:7px;color:#65736a;font-size:.88rem;font-weight:600}
+.wishes-chevron{display:inline-block;color:#28765c;font-size:1.5rem;line-height:1;transition:transform .22s ease}
+.wishes-comments[open] .wishes-chevron{transform:rotate(180deg)}
+.wishes-comments-content{padding:0 22px 18px;border-top:1px solid #edf1ed}
 .wish-item{padding:14px 0;border-bottom:1px solid #e3e9e4}
 .wish-item:last-child{border-bottom:0}
 .wish-item strong{color:#28765c}.wish-item p{margin:6px 0 0;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
 .wishes-empty{color:#65736a}
-@media(max-width:600px){.wishes-section{padding:42px 0}.wishes-form,.wishes-comments{padding:14px;border-radius:12px}.wishes-form button{width:100%}}
+@media(max-width:600px){.wishes-section{padding:42px 0}.wishes-form{padding:14px;border-radius:12px}.wishes-comments-toggle{padding:16px}.wishes-comments-content{padding:0 16px 14px}.wishes-form button{width:100%}}
 </style>
 
 <script id="birthday-wishes-firebase">
@@ -2500,7 +2510,9 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const db = firebase.firestore();
       await auth.signInAnonymously();
       const wishes = db.collection("birthdayWishes");
+      const wishesCount = document.getElementById("wishes-count");
       wishes.orderBy("createdAt","desc").limit(100).onSnapshot(snapshot => {
+        if (wishesCount) wishesCount.textContent = String(snapshot.size);
         list.replaceChildren();
         if (snapshot.empty) {
           const p=document.createElement("p"); p.className="wishes-empty"; p.textContent="Be the first to share a birthday wish!"; list.appendChild(p); return;
