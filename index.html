@@ -2525,8 +2525,30 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 
       // These are clearly labelled demonstration wishes, not messages submitted by real visitors.
       const sampleNames = ["Arun Kumar","Priya S","Karthik Raj","Divya M","Santhosh Kumar","Meena Lakshmi","Vijay Anand","Anitha R","Rahul Dev","Kavitha S","Praveen Kumar","Nithya R","Suresh Babu","Keerthana V","Ajay Krishna","Deepa M","Mohan Raj","Swathi P","Dinesh Kumar","Revathi S","Harishankar","Janani K","Ramesh Balan","Sneha Thomas","Gokul Raj","Anjali Menon","Bala Murugan","Shalini R","Vignesh S","Aishwarya K","Manoj Kumar","Pavithra S","Naveen Raj","Lakshmi Priya","Sathish Kumar","Monisha R","Aravind S","Reshma K","Prakash M","Sowmya V","Yogesh B","Nandhini S","Ravi Shankar","Abinaya R","Sanjay Kumar","Madhumitha P","Kiran Raj","Fathima N","Siva Prakash","Harini S","Joseph Mathew","Maria Joseph","Antony Raj","Esther Mary","David Raj","Merlin Rose","Michael D","Rebecca S","Samuel Paul","Grace Mary","Imran Khan","Ayesha Banu","Mohammed Asif","Nisha Fathima","Abdul Rahman","Zara Ahmed","Farhan Ali","Sana Parveen","Irfan M","Noor Jahan","Rohit Sharma","Neha Verma","Amit Kumar","Pooja Singh","Vikram Patel","Riya Nair","Aditya Rao","Snehal Joshi","Kunal Mehta","Ishita Das","Peter Paul","Jerin Thomas","Anand Kumar","Sindhu R","Srinivasan M","Malathi S","Pradeep Raj","Roshini K","Bharath S","Gayathri M","Charles Antony","Angel Mary","Francis Xavier","Catherine D","Dilip Kumar","Sanjana R","Lokesh B","Sangeetha P","Akash S","Tamil Selvan"];
-      const sampleStarts = ["Happy Birthday, Maestro! 🎂","Wishing you a wonderful birthday, Sivamani sir! 🎉","Many happy returns of the day! 🥁","Happy Birthday to the Rhythm King! 👑","Sending you warm birthday wishes! ❤️","Have a fantastic birthday, sir! 🎶","Best wishes on your special day! 🌟","A very happy birthday to you! 🙏","Celebrate big, Rhythm Maestro! 🎊","Birthday greetings to a true musical inspiration! ✨"];
-      const sampleEndings = ["Your beats bring happiness to people everywhere. Keep inspiring us! 🥁❤️","May your year be filled with good health, peace and new musical milestones. 🙏🎵","Your energy on stage is unforgettable. Keep rocking every stage! 🔥👏","Thank you for making rhythm feel like magic. Stay blessed always! ✨🎶","May every day ahead bring fresh inspiration and wonderful opportunities. 🌈","Your passion for percussion inspires the next generation. Much respect! 🙌🥁","Keep creating unforgettable moments through music. Wishing you endless success! 🎼","May happiness and music fill your life today and always. 💐❤️","Your talent has touched so many hearts. Have a joyful year ahead! 🌟","Keep the rhythm alive, sir. Lots of love and respect! 🥁💛"];
+      const sampleStarts = [
+        "Happy Birthday, Sivamani sir! 🎂",
+        "Wishing the Rhythm Maestro an amazing birthday! 🥁",
+        "Many happy returns, music legend! 🎉",
+        "A big birthday salute to you, sir! 🫡",
+        "Have a magical birthday filled with music! 🎼",
+        "Happy birthday to the king of percussion! 👑",
+        "Sending smiles and warm wishes your way! 😊",
+        "Celebrating your incredible talent today! 🌟",
+        "Wishing you a joyful and memorable birthday! 🎈",
+        "Three cheers for our Rhythm Maestro! 🥳"
+      ];
+      const sampleEndings = [
+        "May your beats continue to bring the world together. Keep shining! 🌍💫",
+        "May the coming year bring health, happiness and wonderful memories. 💐",
+        "Your performances give us goosebumps every time. Stay legendary! ⚡👏",
+        "Thank you for inspiring musicians everywhere. Much love and respect! ❤️🎧",
+        "May every stage welcome you with applause and joy. 🎤🙌",
+        "Keep creating rhythms that make hearts dance. Wishing you success always! 💃🕺",
+        "May your life be filled with peace, laughter and beautiful music. 🕊️🎹",
+        "Your dedication is an inspiration to us all. Keep reaching new heights! 🚀",
+        "May this birthday start another wonderful chapter in your journey. 📖✨",
+        "Stay healthy, stay happy and keep rocking the world! 🤘🌈"
+      ];
       const sampleWishes = sampleNames.map((name, index) => ({
         name,
         message: sampleStarts[index % sampleStarts.length] + " " +
