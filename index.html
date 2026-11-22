@@ -2796,8 +2796,41 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       });
       sampleMessages.push(...extraEnglishWishes);
 
-      const sampleWishes = sampleMessages.map((message, index) => ({
-        name: sampleNames[index] || ("Music fan " + String(index + 1).padStart(4, "0")),
+      // Give each Indian-language greeting its own realistic display name.
+      const multilingualNames = [
+        "Kavya R", "Arun Prakash", "Meera Krishnan",
+        "Aarav Sharma", "Neha Verma", "Rohan Mishra",
+        "Sravani K", "Venkatesh Rao", "Anusha P",
+        "Anjali Menon", "Nikhil Das", "Lakshmi S",
+        "Pooja Hegde", "Kiran Kumar", "Divya Gowda",
+        "Ritwick Sen", "Moumita Roy", "Sayan Ghosh",
+        "Sneha Patil", "Aditya Kulkarni", "Madhura Joshi",
+        "Dhruv Shah", "Hetal Mehta", "Nirav Patel",
+        "Gurpreet Singh", "Simran Kaur", "Harjit Gill",
+        "Ananya Das", "Subham Mohanty", "Pranab Saikia"
+      ];
+      const multilingualNameByMessage = new Map(
+        additionalMultilingualWishes.map((message, index) => [message, multilingualNames[index] || ("Music Fan " + (index + 1))])
+      );
+      const englishOnlyMessages = sampleMessages.filter(message => !multilingualNameByMessage.has(message));
+
+      // Randomly distribute the Indian-language greetings through the 1,000 wishes.
+      // Keep at least 8 entries between them so they never appear as one block.
+      const distributedMessages = [...englishOnlyMessages];
+      const multilingualPositions = [];
+      additionalMultilingualWishes.forEach(message => {
+        let position;
+        let attempts = 0;
+        do {
+          position = Math.floor(Math.random() * (distributedMessages.length + 1));
+          attempts++;
+        } while (multilingualPositions.some(existing => Math.abs(existing - position) < 8) && attempts < 5000);
+        multilingualPositions.push(position);
+        distributedMessages.splice(position, 0, message);
+      });
+
+      const sampleWishes = distributedMessages.map((message, index) => ({
+        name: multilingualNameByMessage.get(message) || sampleNames[index] || ("Music fan " + String(index + 1).padStart(4, "0")),
         message
       }));
       const wishesCount = document.getElementById("wishes-count");
