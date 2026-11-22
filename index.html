@@ -2522,17 +2522,80 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const auth = firebase.auth();
       const db = firebase.firestore();
       await auth.signInAnonymously();
-      const wishes = db.collection("birthdayWishes");
+
+      // These are clearly labelled demonstration wishes, not messages submitted by real visitors.
+      const sampleNames = ["Arun Kumar","Priya S","Karthik Raj","Divya M","Santhosh Kumar","Meena Lakshmi","Vijay Anand","Anitha R","Rahul Dev","Kavitha S","Praveen Kumar","Nithya R","Suresh Babu","Keerthana V","Ajay Krishna","Deepa M","Mohan Raj","Swathi P","Dinesh Kumar","Revathi S","Harishankar","Janani K","Ramesh Balan","Sneha Thomas","Gokul Raj","Anjali Menon","Bala Murugan","Shalini R","Vignesh S","Aishwarya K","Manoj Kumar","Pavithra S","Naveen Raj","Lakshmi Priya","Sathish Kumar","Monisha R","Aravind S","Reshma K","Prakash M","Sowmya V","Yogesh B","Nandhini S","Ravi Shankar","Abinaya R","Sanjay Kumar","Madhumitha P","Kiran Raj","Fathima N","Siva Prakash","Harini S","Joseph Mathew","Maria Joseph","Antony Raj","Esther Mary","David Raj","Merlin Rose","Michael D","Rebecca S","Samuel Paul","Grace Mary","Imran Khan","Ayesha Banu","Mohammed Asif","Nisha Fathima","Abdul Rahman","Zara Ahmed","Farhan Ali","Sana Parveen","Irfan M","Noor Jahan","Rohit Sharma","Neha Verma","Amit Kumar","Pooja Singh","Vikram Patel","Riya Nair","Aditya Rao","Snehal Joshi","Kunal Mehta","Ishita Das","Peter Paul","Jerin Thomas","Anand Kumar","Sindhu R","Srinivasan M","Malathi S","Pradeep Raj","Roshini K","Bharath S","Gayathri M","Charles Antony","Angel Mary","Francis Xavier","Catherine D","Dilip Kumar","Sanjana R","Lokesh B","Sangeetha P","Akash S","Tamil Selvan"];
+      const sampleStarts = ["Happy Birthday, Maestro! 🎂","Wishing you a wonderful birthday, Sivamani sir! 🎉","Many happy returns of the day! 🥁","Happy Birthday to the Rhythm King! 👑","Sending you warm birthday wishes! ❤️","Have a fantastic birthday, sir! 🎶","Best wishes on your special day! 🌟","A very happy birthday to you! 🙏","Celebrate big, Rhythm Maestro! 🎊","Birthday greetings to a true musical inspiration! ✨"];
+      const sampleEndings = ["Your beats bring happiness to people everywhere. Keep inspiring us! 🥁❤️","May your year be filled with good health, peace and new musical milestones. 🙏🎵","Your energy on stage is unforgettable. Keep rocking every stage! 🔥👏","Thank you for making rhythm feel like magic. Stay blessed always! ✨🎶","May every day ahead bring fresh inspiration and wonderful opportunities. 🌈","Your passion for percussion inspires the next generation. Much respect! 🙌🥁","Keep creating unforgettable moments through music. Wishing you endless success! 🎼","May happiness and music fill your life today and always. 💐❤️","Your talent has touched so many hearts. Have a joyful year ahead! 🌟","Keep the rhythm alive, sir. Lots of love and respect! 🥁💛"];
+      const sampleWishes = sampleNames.map((name, index) => ({
+        name,
+        message: sampleStarts[index % sampleStarts.length] + " " +
+          sampleEndings[Math.floor(index / sampleStarts.length) % sampleEndings.length]
+      }));
       const wishesCount = document.getElementById("wishes-count");
+      function appendSampleWishes() {
+        sampleWishes.forEach((wish, index) => {
+          const article = document.createElement("article");
+          article.className = "wish-item sample-wish";
+          const heading = document.createElement("div");
+          heading.style.display = "flex";
+          heading.style.flexWrap = "wrap";
+          heading.style.alignItems = "center";
+          heading.style.gap = "8px";
+          const name = document.createElement("strong");
+          name.textContent = wish.name;
+          const tag = document.createElement("span");
+          tag.textContent = "SAMPLE WISH";
+          tag.style.cssText = "font:700 9px 'DM Mono',monospace;letter-spacing:.08em;color:#65736a;background:#eef2ee;border-radius:20px;padding:3px 7px";
+          heading.append(name, tag);
+          const message = document.createElement("p");
+          message.textContent = wish.message;
+          const actions = document.createElement("div");
+          actions.className = "wish-actions";
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "wish-like";
+          button.setAttribute("aria-label", "Like this sample birthday wish");
+          const icon = document.createElement("span");
+          icon.className = "wish-like-icon";
+          const label = document.createElement("span");
+          const count = document.createElement("span");
+          const storageKey = "sivamani-sample-wish-like-" + index;
+          let liked = false;
+          try { liked = localStorage.getItem(storageKey) === "1"; } catch (_) {}
+          let likes = liked ? 1 : 0;
+          function paintLike() {
+            icon.textContent = liked ? "♥" : "♡";
+            label.textContent = liked ? "Liked" : "Like";
+            count.textContent = String(likes);
+            button.classList.toggle("liked", liked);
+            button.setAttribute("aria-pressed", String(liked));
+          }
+          button.append(icon, label, count);
+          button.addEventListener("click", () => {
+            liked = !liked;
+            likes = liked ? 1 : 0;
+            try { if (liked) localStorage.setItem(storageKey, "1"); else localStorage.removeItem(storageKey); } catch (_) {}
+            paintLike();
+          });
+          paintLike();
+          actions.appendChild(button);
+          article.append(heading, message, actions);
+          list.appendChild(article);
+        });
+      }
+      appendSampleWishes();
+      if (wishesCount) wishesCount.textContent = "100";
+
+      const wishes = db.collection("birthdayWishes");
       const likeListeners = new Map();
       wishes.orderBy("createdAt","desc").limit(100).onSnapshot(snapshot => {
-        if (wishesCount) wishesCount.textContent = String(snapshot.size);
+        if (wishesCount) wishesCount.textContent = String(sampleWishes.length + snapshot.size);
         likeListeners.forEach(unsubscribe => unsubscribe());
         likeListeners.clear();
         list.replaceChildren();
-        if (snapshot.empty) {
-          const p=document.createElement("p"); p.className="wishes-empty"; p.textContent="Be the first to share a birthday wish!"; list.appendChild(p); return;
-        }
+        appendSampleWishes();
+        if (snapshot.empty) return;
         snapshot.forEach(doc => {
           const data=doc.data();
           const article=document.createElement("article"); article.className="wish-item";
