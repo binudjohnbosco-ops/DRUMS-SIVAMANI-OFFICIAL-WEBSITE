@@ -2523,7 +2523,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const db = firebase.firestore();
       await auth.signInAnonymously();
 
-      // These are clearly labelled demonstration wishes, not messages submitted by real visitors.
+      // These are demonstration wishes, not messages submitted by real visitors.
       const sampleNames = ["Arun Kumar","Priya S","Karthik Raj","Divya M","Santhosh Kumar","Meena Lakshmi","Vijay Anand","Anitha R","Rahul Dev","Kavitha S","Praveen Kumar","Nithya R","Suresh Babu","Keerthana V","Ajay Krishna","Deepa M","Mohan Raj","Swathi P","Dinesh Kumar","Revathi S","Harishankar","Janani K","Ramesh Balan","Sneha Thomas","Gokul Raj","Anjali Menon","Bala Murugan","Shalini R","Vignesh S","Aishwarya K","Manoj Kumar","Pavithra S","Naveen Raj","Lakshmi Priya","Sathish Kumar","Monisha R","Aravind S","Reshma K","Prakash M","Sowmya V","Yogesh B","Nandhini S","Ravi Shankar","Abinaya R","Sanjay Kumar","Madhumitha P","Kiran Raj","Fathima N","Siva Prakash","Harini S","Joseph Mathew","Maria Joseph","Antony Raj","Esther Mary","David Raj","Merlin Rose","Michael D","Rebecca S","Samuel Paul","Grace Mary","Imran Khan","Ayesha Banu","Mohammed Asif","Nisha Fathima","Abdul Rahman","Zara Ahmed","Farhan Ali","Sana Parveen","Irfan M","Noor Jahan","Rohit Sharma","Neha Verma","Amit Kumar","Pooja Singh","Vikram Patel","Riya Nair","Aditya Rao","Snehal Joshi","Kunal Mehta","Ishita Das","Peter Paul","Jerin Thomas","Anand Kumar","Sindhu R","Srinivasan M","Malathi S","Pradeep Raj","Roshini K","Bharath S","Gayathri M","Charles Antony","Angel Mary","Francis Xavier","Catherine D","Dilip Kumar","Sanjana R","Lokesh B","Sangeetha P","Akash S","Tamil Selvan"];
       const sampleStarts = [
         "Happy Birthday, Sivamani sir! 🎂",
@@ -2538,16 +2538,16 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         "Three cheers for our Rhythm Maestro! 🥳"
       ];
       const sampleEndings = [
-        "May your beats continue to bring the world together. Keep shining! 🌍💫",
-        "May the coming year bring health, happiness and wonderful memories. 💐",
-        "Your performances give us goosebumps every time. Stay legendary! ⚡👏",
-        "Thank you for inspiring musicians everywhere. Much love and respect! ❤️🎧",
-        "May every stage welcome you with applause and joy. 🎤🙌",
-        "Keep creating rhythms that make hearts dance. Wishing you success always! 💃🕺",
-        "May your life be filled with peace, laughter and beautiful music. 🕊️🎹",
-        "Your dedication is an inspiration to us all. Keep reaching new heights! 🚀",
-        "May this birthday start another wonderful chapter in your journey. 📖✨",
-        "Stay healthy, stay happy and keep rocking the world! 🤘🎵"
+        "May your beats continue to bring the world together. Keep shining! 🎶",
+        "May the coming year bring health, happiness and wonderful memories. 🎊",
+        "Your performances give us goosebumps every time. Stay legendary! 🌟",
+        "Thank you for inspiring musicians everywhere. Much love and respect! 🙏",
+        "May every stage welcome you with applause and joy. 🎸",
+        "Keep creating rhythms that make hearts dance. Wishing you success always! 🥁",
+        "May your life be filled with peace, laughter and beautiful music. ✨",
+        "Your dedication is an inspiration to us all. Keep reaching new heights! 🏆",
+        "May this birthday start another wonderful chapter in your journey. 🌺",
+        "Stay healthy, stay happy and keep rocking the world! 🔥"
       ];
       const sampleWishes = sampleNames.map((name, index) => ({
         name,
@@ -2566,10 +2566,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           heading.style.gap = "8px";
           const name = document.createElement("strong");
           name.textContent = wish.name;
-          const tag = document.createElement("span");
-          tag.textContent = "SAMPLE WISH";
-          tag.style.cssText = "font:700 9px 'DM Mono',monospace;letter-spacing:.08em;color:#65736a;background:#eef2ee;border-radius:20px;padding:3px 7px";
-          heading.append(name, tag);
+          heading.appendChild(name);
           const message = document.createElement("p");
           message.textContent = wish.message;
           const actions = document.createElement("div");
