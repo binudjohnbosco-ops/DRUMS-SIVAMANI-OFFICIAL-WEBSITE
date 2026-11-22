@@ -2826,9 +2826,16 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           const label = document.createElement("span");
           const count = document.createElement("span");
           const storageKey = "sivamani-sample-wish-like-" + index;
+          const baseLikesKey = "sivamani-sample-wish-base-likes-" + index;
           let liked = false;
-          try { liked = localStorage.getItem(storageKey) === "1"; } catch (_) {}
-          let likes = liked ? 1 : 0;
+          let baseLikes = 51 + Math.floor(Math.random() * 49);
+          try {
+            liked = localStorage.getItem(storageKey) === "1";
+            const savedBaseLikes = Number(localStorage.getItem(baseLikesKey));
+            if (savedBaseLikes >= 51 && savedBaseLikes <= 99) baseLikes = savedBaseLikes;
+            else localStorage.setItem(baseLikesKey, String(baseLikes));
+          } catch (_) {}
+          let likes = baseLikes + (liked ? 1 : 0);
           function paintLike() {
             icon.textContent = liked ? "♥" : "♡";
             label.textContent = liked ? "Liked" : "Like";
@@ -2839,7 +2846,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           button.append(icon, label, count);
           button.addEventListener("click", () => {
             liked = !liked;
-            likes = liked ? 1 : 0;
+            likes = baseLikes + (liked ? 1 : 0);
             try { if (liked) localStorage.setItem(storageKey, "1"); else localStorage.removeItem(storageKey); } catch (_) {}
             paintLike();
           });
