@@ -2526,37 +2526,54 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       if (websiteLikeButton && websiteLikeCount && websiteLikeStatus) {
         const websiteLikes = db.collection("websiteLikes");
         const visitorLikeRef = websiteLikes.doc(auth.currentUser.uid);
+
+        // Keep the displayed total synchronized with Firestore.
         websiteLikes.onSnapshot(snapshot => {
-          websiteLikeCount.textContent = snapshot.size.toLocaleString();
+          websiteLikeCount.textContent = String(snapshot.size);
+          websiteLikeStatus.textContent = "Live total from Firebase";
         }, error => {
-          websiteLikeStatus.textContent = "Like count could not load. Check Firebase Firestore rules.";
+          websiteLikeStatus.textContent = "Count error: " + (error.code || error.message || "Check Firestore read rules.");
           console.error("Website like count error:", error);
         });
+
         visitorLikeRef.get().then(doc => {
           const alreadyLiked = doc.exists;
           websiteLikeButton.disabled = alreadyLiked;
           websiteLikeButton.classList.toggle("is-liked", alreadyLiked);
-          websiteLikeButton.innerHTML = alreadyLiked ? "♥ Liked" : "♡ Like this website";
-          websiteLikeStatus.textContent = alreadyLiked ? "Thank you for supporting this website!" : "You can like this website once."; 
+          websiteLikeButton.textContent = alreadyLiked ? "♥ Liked" : "♡ Like this website";
+          if (alreadyLiked) websiteLikeStatus.textContent = "Thank you! Your like is saved.";
         }).catch(error => {
-          websiteLikeStatus.textContent = "Could not check your like. Please refresh.";
+          websiteLikeStatus.textContent = "Like check error: " + (error.code || error.message || "Please refresh.");
           console.error("Website like check error:", error);
         });
+
         websiteLikeButton.addEventListener("click", async () => {
+          if (websiteLikeButton.disabled) return;
           websiteLikeButton.disabled = true;
+          websiteLikeStatus.textContent = "Saving your like…";
           try {
             await db.runTransaction(async transaction => {
               const existing = await transaction.get(visitorLikeRef);
-              if (existing.exists) return;
-              transaction.set(visitorLikeRef, { liked: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+              if (!existing.exists) {
+                transaction.set(visitorLikeRef, {
+                  liked: true,
+                  createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+              }
             });
+
             websiteLikeButton.classList.add("is-liked");
-            websiteLikeButton.innerHTML = "♥ Liked";
-            websiteLikeStatus.textContent = "Thank you for supporting this website!";
+            websiteLikeButton.textContent = "♥ Liked";
+            websiteLikeStatus.textContent = "Like saved! Updating live total…";
+
+            // Confirm the committed total directly from the server as well.
+            const confirmedLikes = await websiteLikes.get({ source: "server" });
+            websiteLikeCount.textContent = String(confirmedLikes.size);
+            websiteLikeStatus.textContent = "Thank you! Live total from Firebase.";
           } catch (error) {
             websiteLikeButton.disabled = false;
-            websiteLikeStatus.textContent = "Like could not be saved. Check Firebase Firestore rules.";
-            console.error("Website like save error:", error);
+            websiteLikeStatus.textContent = "Like not saved: " + (error.code || error.message || "Check Firestore rules.");
+            console.error("Website like save/count error:", error);
           }
         });
       }
