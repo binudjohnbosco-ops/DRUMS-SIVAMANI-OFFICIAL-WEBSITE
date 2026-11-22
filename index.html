@@ -2177,7 +2177,25 @@ table { max-width:100%; }
                     target="_blank" rel="noopener noreferrer">Explore performances ↗</a>
             </div>
         </section>
-    </main>
+    
+    <section class="wishes-section" id="share-your-wishes">
+      <div class="shell wishes-inner">
+        <div class="eyebrow">A celebration of rhythm</div>
+        <h2>Share Your Wishes</h2>
+        <p class="wishes-intro">Send your birthday wishes and messages for Music Director Sivamani. Join the conversation and celebrate the Rhythm Maestro!</p>
+        <div class="wishes-note">To post a wish, sign in with your GitHub account. Your GitHub profile name will appear with your message.</div>
+        <div class="wishes-comments" id="birthday-wishes-comments">
+          <script src="https://utteranc.es/client.js"
+            repo="binudjohnbosco-ops/DRUMS-SIVAMANI-OFFICIAL-WEBSITE"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+          </script>
+        </div>
+      </div>
+    </section>
+</main>
 
     <footer class="shell footer">
         <p style="color:#28765c;">©Sivamani © Copyright 2026. All Rights Reserved</p>
@@ -2403,6 +2421,19 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
             const timer = setInterval(updateCountdown, 1000);
         })();
     </script>
+
+
+<style id="birthday-wishes-comments-style">
+.wishes-section{padding:clamp(48px,7vw,88px) 0;background:#eef1ed;color:#172720}
+.wishes-inner{max-width:980px;margin:0 auto}
+.wishes-section .eyebrow{color:#28765c;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.wishes-section h2{margin:10px 0 12px;color:#172720;font-size:clamp(2rem,5vw,3.3rem);line-height:1.1}
+.wishes-intro{max-width:680px;color:#52635a;line-height:1.8;margin:0 0 18px}
+.wishes-note{padding:13px 16px;margin:0 0 22px;border-left:4px solid #28765c;background:#fff;color:#405148;border-radius:8px;font-size:.92rem;line-height:1.6}
+.wishes-comments{padding:clamp(12px,2.5vw,24px);background:#fff;border:1px solid #d8e0d9;border-radius:16px;box-shadow:0 12px 35px rgba(23,39,32,.07);min-height:180px}
+.wishes-comments iframe{width:100%}
+@media(max-width:600px){.wishes-section{padding:42px 0}.wishes-comments{padding:10px;border-radius:12px}.wishes-note{font-size:.85rem}}
+</style>
 
 </body>
 
