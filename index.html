@@ -966,160 +966,99 @@ html body #legacy .legacy-quote { border-color: rgba(138,100,28,.4) !important; 
 
 <body>
 
-    <!-- Miniature animated drum cursor -->
-    <style id="signature-percussion-cursor">
-        @media (hover: hover) and (pointer: fine) {
-            html.has-percussion-cursor, html.has-percussion-cursor body,
-            html.has-percussion-cursor body * { cursor: none !important; }
-            #percussion-cursor {
-                position: fixed; left: 0; top: 0; width: 116px; height: 116px;
-                z-index: 10000; pointer-events: none; opacity: 0;
-                transform: translate3d(-50%,-50%,0); will-change: transform;
-                transition: opacity .2s ease;
+    <!-- Drums Sivamani face cursor -->
+    <style id="sivamani-face-cursor-style">
+        @media (hover:hover) and (pointer:fine) {
+            html.has-sivamani-cursor, html.has-sivamani-cursor body,
+            html.has-sivamani-cursor body * { cursor:none !important; }
+            #sivamani-face-cursor {
+                position:fixed; left:0; top:0; width:94px; height:94px;
+                z-index:10000; pointer-events:none; opacity:0;
+                transform:translate3d(-50%,-50%,0); will-change:transform;
+                transition:opacity .2s ease;
             }
-            #percussion-cursor.is-visible { opacity: 1; }
-            #percussion-cursor .drum-halo {
-                position:absolute; inset:7px; border:1px solid rgba(190,139,62,.72);
-                border-radius:50%; box-shadow:0 0 20px rgba(190,139,62,.22), inset 0 0 16px rgba(190,139,62,.12);
-                animation: drumHaloPulse 2.6s ease-in-out infinite;
+            #sivamani-face-cursor.visible { opacity:1; }
+            #sivamani-face-cursor .face-orbit {
+                position:absolute; inset:2px; border-radius:50%;
+                border:1.5px solid rgba(205,158,76,.95);
+                box-shadow:0 0 12px rgba(207,160,76,.45), inset 0 0 12px rgba(207,160,76,.18);
             }
-            #percussion-cursor .drum-halo::before {
-                content:""; position:absolute; inset:8px; border:1px dashed rgba(190,139,62,.52);
-                border-radius:50%; animation: drumHaloSpin 16s linear infinite;
+            #sivamani-face-cursor .face-orbit::before {
+                content:""; position:absolute; inset:-6px; border:1px dashed rgba(181,127,47,.72);
+                border-radius:50%; animation:sivFaceOrbit 13s linear infinite;
             }
-            #percussion-cursor .drum-illustration {
-                position:absolute; inset:0; width:100%; height:100%; overflow:visible;
-                filter:drop-shadow(0 5px 5px rgba(0,0,0,.25));
+            #sivamani-face-cursor .face-photo {
+                position:absolute; inset:9px; width:76px; height:76px;
+                border-radius:50%; object-fit:cover; object-position:center 28%;
+                border:3px solid #e4c27f; background:#172720;
+                box-shadow:0 3px 12px rgba(0,0,0,.35);
+                transition:transform .16s cubic-bezier(.2,.8,.2,1), filter .16s ease;
             }
-            #percussion-cursor .drum-shell { transform-origin:58px 65px; transition:transform .12s ease; }
-            #percussion-cursor .drum-skin { transform-origin:58px 47px; transition:transform .1s ease; }
-            #percussion-cursor .drumstick-left, #percussion-cursor .drumstick-right {
-                transform-box:fill-box; transform-origin:50% 100%;
-                transition:transform .13s cubic-bezier(.2,.8,.2,1);
+            #sivamani-face-cursor .face-crown {
+                position:absolute; width:24px; height:24px; top:-7px; right:-5px;
+                display:grid; place-items:center; border-radius:50%;
+                color:#fff3c8; background:linear-gradient(145deg,#f4d58f,#936020);
+                border:1px solid #fff0bf; font:700 13px Georgia,serif;
+                box-shadow:0 2px 8px rgba(0,0,0,.28);
             }
-            #percussion-cursor .drumstick-left { transform:rotate(-28deg); }
-            #percussion-cursor .drumstick-right { transform:rotate(28deg); }
-            #percussion-cursor .drum-jewel {
-                position:absolute; width:8px; height:8px; left:50%; top:49%;
-                transform:translate(-50%,-50%); border-radius:50%;
-                background:radial-gradient(circle at 35% 30%,#fff8d8,#e0ae53 48%,#85531d);
-                box-shadow:0 0 10px rgba(240,190,91,.9);
+            #sivamani-face-cursor .face-beat {
+                position:absolute; left:50%; bottom:-9px; transform:translateX(-50%);
+                padding:2px 7px; border-radius:20px; color:#fff5dc;
+                background:#735020; border:1px solid #e4c27f;
+                font:700 7px "DM Mono",monospace; letter-spacing:.12em; white-space:nowrap;
             }
-            #percussion-cursor.is-striking .drumstick-left { transform:rotate(-7deg) translateY(7px); }
-            #percussion-cursor.is-striking .drumstick-right { transform:rotate(7deg) translateY(7px); }
-            #percussion-cursor.is-striking .drum-skin { transform:scaleY(.91); }
-            #percussion-cursor.is-striking .drum-shell { transform:translateY(2px); }
-            #percussion-cursor.is-hovering { filter:drop-shadow(0 0 7px rgba(225,177,88,.7)); }
-            .percussion-ripple {
-                position:fixed; width:18px; height:18px; border:2px solid rgba(229,180,88,.95);
-                border-radius:50%; z-index:9999; pointer-events:none;
-                transform:translate(-50%,-50%); animation:drumBeatWave .62s ease-out forwards;
+            #sivamani-face-cursor.is-clicked .face-photo { transform:scale(.88); filter:brightness(1.2); }
+            #sivamani-face-cursor.is-hovering .face-photo { transform:scale(1.08); }
+            .sivamani-face-wave {
+                position:fixed; width:24px; height:24px; border:2px solid rgba(219,174,91,.95);
+                border-radius:50%; pointer-events:none; z-index:9999;
+                transform:translate(-50%,-50%); animation:sivFaceWave .62s ease-out forwards;
             }
-            .percussion-spark {
-                position:fixed; width:4px; height:4px; border-radius:50%; z-index:9999;
-                pointer-events:none; background:#ffe7a8; box-shadow:0 0 9px 2px rgba(228,176,80,.85);
-                animation:drumBeatSpark .48s ease-out forwards;
-            }
-            @keyframes drumHaloPulse { 0%,100%{opacity:.62;transform:scale(.94)} 50%{opacity:1;transform:scale(1.04)} }
-            @keyframes drumHaloSpin { to{transform:rotate(360deg)} }
-            @keyframes drumBeatWave { to{opacity:0;width:88px;height:88px;border-width:1px} }
-            @keyframes drumBeatSpark { to{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.15)} }
+            @keyframes sivFaceOrbit { to { transform:rotate(360deg); } }
+            @keyframes sivFaceWave { to { opacity:0; width:92px; height:92px; border-width:1px; } }
         }
-        @media (hover:none), (pointer:coarse), (prefers-reduced-motion:reduce) {
-            #percussion-cursor,.percussion-ripple,.percussion-spark { display:none !important; }
+        @media (hover:none),(pointer:coarse),(prefers-reduced-motion:reduce) {
+            #sivamani-face-cursor,.sivamani-face-wave { display:none !important; }
         }
     </style>
 
-    <div id="percussion-cursor" aria-hidden="true">
-        <div class="drum-halo"></div>
-        <svg class="drum-illustration" viewBox="0 0 116 116" aria-hidden="true">
-            <defs>
-                <linearGradient id="drumShellGold" x1="0" y1="0" x2="1" y2="1">
-                    <stop stop-color="#f3d38d"/><stop offset=".38" stop-color="#a96c2d"/>
-                    <stop offset=".72" stop-color="#633b1d"/><stop offset="1" stop-color="#d6a052"/>
-                </linearGradient>
-                <linearGradient id="drumSkinPearl" x1="0" y1="0" x2=".9" y2="1">
-                    <stop stop-color="#fffdf0"/><stop offset=".55" stop-color="#e7dfc8"/><stop offset="1" stop-color="#b9aa8c"/>
-                </linearGradient>
-                <linearGradient id="drumStickWood" x1="0" y1="0" x2="1" y2="1">
-                    <stop stop-color="#fff0c8"/><stop offset=".45" stop-color="#c68b4d"/><stop offset="1" stop-color="#70421f"/>
-                </linearGradient>
-            </defs>
-            <!-- Drum shell and metallic hoops -->
-            <g class="drum-shell">
-                <path d="M30 45 Q58 57 86 45 L82 77 Q58 91 34 77Z" fill="url(#drumShellGold)" stroke="#70451f" stroke-width="1.5"/>
-                <path d="M32 51 Q58 63 84 51" fill="none" stroke="#f4d28b" stroke-width="2" opacity=".85"/>
-                <path d="M34 75 Q58 87 82 75" fill="none" stroke="#e9c27c" stroke-width="2"/>
-                <path d="M38 54 L40 76 M48 58 L49 81 M68 58 L67 81 M78 54 L76 76" stroke="#f1d18e" stroke-width="2" opacity=".9"/>
-                <path d="M35 52 L32 57 M81 52 L84 57 M36 75 L33 79 M80 75 L83 79" stroke="#fff0c2" stroke-width="3" stroke-linecap="round"/>
-                <ellipse cx="58" cy="46" rx="29" ry="12" fill="#9a672f" stroke="#5c381d" stroke-width="1.5"/>
-            </g>
-            <!-- Drum head -->
-            <g class="drum-skin">
-                <ellipse cx="58" cy="43" rx="25.5" ry="9.5" fill="url(#drumSkinPearl)" stroke="#f7e6bd" stroke-width="2"/>
-                <ellipse cx="58" cy="43" rx="18" ry="6.2" fill="none" stroke="#a58b63" stroke-width="1" opacity=".55"/>
-                <ellipse cx="58" cy="43" rx="8" ry="3.2" fill="#7c6749" opacity=".25"/>
-                <path d="M40 40 Q58 34 76 40" fill="none" stroke="#fff" stroke-width="1.5" opacity=".8"/>
-            </g>
-            <!-- Two beaters poised above the drum -->
-            <g class="drumstick-left">
-                <path d="M43 10 Q48 23 55 43" fill="none" stroke="#57381e" stroke-width="5" stroke-linecap="round"/>
-                <path d="M43 10 Q48 23 55 43" fill="none" stroke="url(#drumStickWood)" stroke-width="3.2" stroke-linecap="round"/>
-                <ellipse cx="42.5" cy="9.5" rx="3.5" ry="5.5" transform="rotate(-22 42.5 9.5)" fill="#ead0a0" stroke="#80532c" stroke-width=".8"/>
-            </g>
-            <g class="drumstick-right">
-                <path d="M73 10 Q68 23 61 43" fill="none" stroke="#57381e" stroke-width="5" stroke-linecap="round"/>
-                <path d="M73 10 Q68 23 61 43" fill="none" stroke="url(#drumStickWood)" stroke-width="3.2" stroke-linecap="round"/>
-                <ellipse cx="73.5" cy="9.5" rx="3.5" ry="5.5" transform="rotate(22 73.5 9.5)" fill="#ead0a0" stroke="#80532c" stroke-width=".8"/>
-            </g>
-            <path d="M25 91 Q58 101 91 91" fill="none" stroke="#c7954d" stroke-width="1" opacity=".5"/>
-        </svg>
-        <span class="drum-jewel"></span>
+    <div id="sivamani-face-cursor" aria-hidden="true">
+        <span class="face-orbit"></span>
+        <img class="face-photo" src="./siv%20own%20mus.avif" alt="">
+        <span class="face-crown">♪</span>
+        <span class="face-beat">SIVAMANI</span>
     </div>
 
     <script>
         (() => {
             if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches ||
                 window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-            const cursor = document.getElementById("percussion-cursor");
-            if (!cursor) return;
-            document.documentElement.classList.add("has-percussion-cursor");
-
-            let tx=-100, ty=-100, x=tx, y=ty, frame=0, lastTrail=0;
+            const cursor=document.getElementById("sivamani-face-cursor");
+            if(!cursor) return;
+            document.documentElement.classList.add("has-sivamani-cursor");
+            let tx=-100,ty=-100,x=tx,y=ty,frame=0;
             const lerp=(a,b,t)=>a+(b-a)*t;
-            function animate() {
-                x=lerp(x,tx,.28); y=lerp(y,ty,.28);
+            function animate(){
+                x=lerp(x,tx,.3); y=lerp(y,ty,.3);
                 cursor.style.transform=`translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
                 frame=requestAnimationFrame(animate);
             }
             frame=requestAnimationFrame(animate);
-
             document.addEventListener("pointermove",event=>{
-                tx=event.clientX; ty=event.clientY; cursor.classList.add("is-visible");
-                const now=performance.now();
-                if(now-lastTrail>110 && Math.hypot(tx-x,ty-y)>25) {
-                    lastTrail=now;
-                    const spark=document.createElement("i");
-                    spark.className="percussion-spark";
-                    spark.style.left=tx+"px"; spark.style.top=ty+"px";
-                    spark.style.setProperty("--sx",((Math.random()-.5)*20)+"px");
-                    spark.style.setProperty("--sy",((Math.random()-.5)*20)+"px");
-                    document.body.appendChild(spark);
-                    window.setTimeout(()=>spark.remove(),500);
-                }
+                tx=event.clientX; ty=event.clientY; cursor.classList.add("visible");
             },{passive:true});
-            document.addEventListener("pointerleave",()=>cursor.classList.remove("is-visible"));
-            document.addEventListener("pointerenter",()=>cursor.classList.add("is-visible"));
+            document.addEventListener("pointerleave",()=>cursor.classList.remove("visible"));
+            document.addEventListener("pointerenter",()=>cursor.classList.add("visible"));
             document.addEventListener("pointerdown",event=>{
-                cursor.classList.add("is-striking");
-                const wave=document.createElement("i");
-                wave.className="percussion-ripple";
+                cursor.classList.add("is-clicked");
+                const wave=document.createElement("span");
+                wave.className="sivamani-face-wave";
                 wave.style.left=event.clientX+"px"; wave.style.top=event.clientY+"px";
                 document.body.appendChild(wave);
                 window.setTimeout(()=>wave.remove(),700);
             });
             ["pointerup","pointercancel"].forEach(type=>
-                document.addEventListener(type,()=>cursor.classList.remove("is-striking")));
+                document.addEventListener(type,()=>cursor.classList.remove("is-clicked")));
             document.addEventListener("pointerover",event=>{
                 if(event.target.closest("a,button,[role='button'],input,select,textarea")) cursor.classList.add("is-hovering");
             });
