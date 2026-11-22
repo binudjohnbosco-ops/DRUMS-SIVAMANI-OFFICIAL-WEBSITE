@@ -2665,6 +2665,137 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       // Include the complete multilingual greetings in the visible sample list.
       sampleMessages.push(...additionalMultilingualWishes);
 
+      // Add 870 more English demo greetings so the sample collection reaches 1,000.
+      // The existing 30 greetings in Indian languages remain included above.
+      const extraWishOpenings = [
+        "Happy birthday, Sivamani sir! May the next chapter of your life",
+        "To the maestro whose rhythm speaks louder than words: may you",
+        "Sivamani anna, here's wishing that every day ahead",
+        "Your music has given so many people a reason to celebrate; may life",
+        "On your birthday, sir, may the world return a little of the joy you",
+        "A very happy birthday to an artist who never stands still. May you",
+        "May the hands that create such unforgettable rhythms always",
+        "Sivamani sir, may every new morning bring",
+        "For all the happiness your performances have given us, I hope you",
+        "Wishing you a year in which every plan",
+        "The stage is brighter whenever you are on it. May your life",
+        "Anna, may your passion keep opening doors and your heart",
+        "Happy birthday to a musician who turns moments into memories. May you",
+        "May the applause fade after the show, but may the love around you",
+        "Your talent is extraordinary, but your dedication is what inspires us. May you",
+        "Today the celebration is for you. I hope the coming year",
+        "Sivamani sir, may every beat you play be matched by",
+        "Sending birthday wishes to a true original. May you always",
+        "May this birthday mark the beginning of a season filled with",
+        "You have made rhythm a language everyone understands. May life",
+        "A fan's simple wish today: may you",
+        "Sir, I hope the year ahead gives you time to create, rest and",
+        "May your next adventure be as exciting as the music you make, and may it",
+        "Happy birthday, anna! May your energy stay high and your days",
+        "Your journey is proof that passion can travel far. May your next steps",
+        "Wishing the rhythm maestro a day filled with people who",
+        "May every concert bring fresh inspiration and every quiet moment",
+        "Sivamani sir, I hope you keep discovering new sounds and",
+        "A heartfelt birthday wish for a musician whose work",
+        "May the coming year bring stories worth telling and",
+        "The joy you create on stage is priceless. May you receive",
+        "Today, may you put the schedule aside and simply",
+        "Happy birthday! May your home be filled with laughter and your work",
+        "To more collaborations, surprises and unforgettable performances. May you",
+        "May your creativity remain fearless and your days",
+        "A wonderful birthday to you, sir. I hope life keeps",
+        "Your beats have crossed borders; may your happiness",
+        "Wishing you a year with fewer worries, more music and",
+        "May the people who cheer for you from the crowd also",
+        "Sivamani anna, may you always find a reason to smile and",
+        "Here's to another year of making the impossible look effortless. May you",
+        "May every new rhythm lead to a beautiful opportunity and",
+        "Sir, your music brings people together. May your own days",
+        "Happy birthday to the heartbeat of so many stages. May you",
+        "I hope this birthday brings a pause to enjoy how far you've come and",
+        "May your talent keep surprising the world while life gives you",
+        "Wishing you good health for every journey and",
+        "Your performances leave lasting memories. May this year leave you",
+        "May every challenge become a new rhythm and every success",
+        "Sivamani sir, may your days be as vibrant as",
+        "A birthday wish from one admirer among many: may you",
+        "May you continue to inspire young musicians and also",
+        "The world knows the performer; I hope this year celebrates",
+        "May your calendar have exciting shows, but also plenty of time for",
+        "Happy birthday, maestro. May every season bring",
+        "Your music has its own passport. May your happiness",
+        "I hope the year ahead is generous with good news, kind people and",
+        "May you keep doing what you love while finding new reasons to",
+        "For the artist who makes every beat count, may life",
+        "Wishing you a birthday that feels personal, peaceful and",
+        "May the next chapter be full of bold ideas and",
+        "You make the drums tell stories. May your own story",
+        "May every road you travel lead to good memories and",
+        "A big birthday salute to you, sir. May you always",
+        "May the rhythm in your heart stay strong and your days",
+        "Thank you for sharing your gift with the world. I hope the world gives you",
+        "May your family, friends and fans remind you today that",
+        "Happy birthday, Sivamani! May the coming months bring",
+        "May your curiosity never run out and your creativity",
+        "Wishing you many more years of health, happiness and",
+        "May the next performance be exciting, the next journey refreshing and",
+        "Sir, may every little moment today remind you",
+        "May the music never stop and may life keep offering",
+        "Here's wishing you a year that is rich in experiences and",
+        "May your achievements keep growing while your days remain",
+        "Your dedication is a lesson to all of us. May you receive",
+        "May the world keep discovering your art and you keep discovering",
+        "Happy birthday to a legend in motion. May your next year",
+        "May you always be surrounded by honest smiles and",
+        "Wishing you new stages to conquer and peaceful places to",
+        "May the joy you bring to audiences return to you as",
+        "Sivamani sir, keep creating magic; may life keep giving you",
+        "A birthday is a new beginning. May yours open the door to",
+        "May your hands stay strong, your spirit stay young and your heart",
+        "To a performer who gives every show everything: may you",
+        "May every note, beat and journey ahead bring",
+        "I hope today is filled with warm wishes, favourite food and",
+        "May this year be remembered for its beautiful surprises and"
+      ];
+      const extraWishEndings = [
+        " bring you peace, good health and plenty of reasons to smile.",
+        " be surrounded by genuine friends and the people you love.",
+        " open up wonderful opportunities and unforgettable journeys.",
+        " keep your spirit curious, fearless and full of life.",
+        " give you time to enjoy the simple things beyond the spotlight.",
+        " fill your home with laughter and your heart with contentment.",
+        " reward your hard work with happiness that lasts.",
+        " bring fresh inspiration and exciting musical adventures.",
+        " remind you how deeply your art is appreciated.",
+        " be kinder, brighter and more beautiful than you imagined.",
+        " leave you with memories you will treasure for years.",
+        " bring success without stress and celebrations without end.",
+        " keep you healthy, cheerful and surrounded by love.",
+        " give you new reasons to be proud of the journey.",
+        " make room for rest, family time and spontaneous fun.",
+        " bring people and possibilities that make life richer.",
+        " keep the rhythm alive in every part of your life.",
+        " be full of meaningful moments, big and small.",
+        " reward your generosity with kindness from every direction.",
+        " take you to places where your music can inspire new hearts.",
+        " bring calm mornings, joyful evenings and wonderful surprises.",
+        " keep your smile bright and your dreams moving forward.",
+        " be filled with memorable collaborations and happy reunions.",
+        " give you the freedom to explore every creative idea.",
+        " bring strength for challenges and gratitude for every blessing.",
+        " surround you with people who value you beyond your talent.",
+        " be an exciting mix of new beginnings and treasured traditions.",
+        " let you celebrate life as enthusiastically as you celebrate music.",
+        " bring another year of health, laughter and beautiful rhythms."
+      ];
+      const extraEnglishWishes = [];
+      extraWishOpenings.forEach((opening, openingIndex) => {
+        extraWishEndings.forEach((ending, endingIndex) => {
+          extraEnglishWishes.push(opening + ending);
+        });
+      });
+      sampleMessages.push(...extraEnglishWishes);
+
       const sampleWishes = sampleMessages.map((message, index) => ({
         name: sampleNames[index] || ("Music fan " + String(index + 1).padStart(4, "0")),
         message
@@ -2719,7 +2850,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         });
       }
       appendSampleWishes();
-      if (wishesCount) wishesCount.textContent = "100";
+      if (wishesCount) wishesCount.textContent = String(sampleWishes.length);
 
       const wishes = db.collection("birthdayWishes");
       const likeListeners = new Map();
