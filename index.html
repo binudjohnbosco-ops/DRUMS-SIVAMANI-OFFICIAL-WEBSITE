@@ -2549,15 +2549,13 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         "May this birthday start another wonderful chapter in your journey.",
         "Stay healthy, stay happy and keep rocking the world!"
       ];
-      // 10 x 10 combinations give every one of the 100 wishes a different ending emoji pair.
-      const emojiFirst = ["🎶","🎂","🥁","🌟","🎉","❤️","🎸","🎤","✨","🏆"];
-      const emojiSecond = ["🌈","🎊","💐","🔥","🙏","🎧","🕺","🌺","🚀","😊"];
+      // Every sample wish receives its own unique ending emoji (100 different emojis).
+      const uniqueEndingEmojis = ["🎵","🎶","🥁","🎂","🎉","🎊","🎈","🎁","🎤","🎧","🎸","🎹","🎺","🎷","🪘","🪇","🎻","🪕","📯","🔔","🌟","⭐","✨","💫","🌠","🌈","☀️","🌞","🌻","🌺","🌹","🌷","🪷","💐","🍀","🌿","🌴","🌳","🌼","🪻","❤️","🧡","💛","💚","💙","💜","🤍","🩷","💖","💝","💎","👑","🏆","🥇","🏅","🎖️","🚀","🛸","🔥","⚡","👏","🙌","🙏","🤝","🫶","😊","🥳","😎","🤩","😍","🕺","💃","🪩","🎇","🎆","🕊️","🦋","🐬","🦚","🦁","🌍","🌎","🌏","🌙","☄️","❄️","☘️","🍉","🍓","🍍","🥭","🍒","🍇","🍋","🧿","🪄","🎯","🎀","🧸","💯"];
       const sampleWishes = sampleNames.map((name, index) => ({
         name,
         message: sampleStarts[index % sampleStarts.length] + " " +
           sampleEndings[Math.floor(index / sampleStarts.length) % sampleEndings.length] +
-          " " + emojiFirst[index % emojiFirst.length] +
-          emojiSecond[Math.floor(index / emojiFirst.length) % emojiSecond.length]
+          " " + uniqueEndingEmojis[index]
       }));
       const wishesCount = document.getElementById("wishes-count");
       function appendSampleWishes() {
