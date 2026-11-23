@@ -3011,6 +3011,46 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;"><span id="website-like-count" aria-live="polite">Loading…</span><span style="font-size:12px;font-weight:700;color:#333;letter-spacing:.3px;">TOTAL WEBSITE LIKES</span><span style="font-size:11px;color:#68756d;">12K starting count + new visitor likes</span></div>
       <div id="website-like-status" aria-live="polite">Loading like button…</div>
     </div>
+
+<script id="sivamani-click-drum-sound">
+(() => {
+  let audioContext;
+  let lastHit = 0;
+
+  function playDrumHit() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    try {
+      audioContext ||= new AudioContextClass();
+      if (audioContext.state === "suspended") audioContext.resume();
+
+      const now = audioContext.currentTime;
+      if (now - lastHit < 0.075) return;
+      lastHit = now;
+
+      // A short, warm double-tom style hit synthesized in the browser.
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(145, now);
+      oscillator.frequency.exponentialRampToValueAtTime(48, now + 0.22);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.48, now + 0.008);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      oscillator.start(now);
+      oscillator.stop(now + 0.29);
+    } catch (error) {
+      // Keep the website fully usable if audio is unavailable.
+    }
+  }
+
+  document.addEventListener("click", playDrumHit, true);
+})();
+</script>
+
 </body>
 
 </html>
