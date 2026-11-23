@@ -1330,7 +1330,7 @@ table { max-width:100%; }
         <div class="eyebrow">A celebration of rhythm</div>
         <h2>Share Your Wishes</h2>
         <p class="wishes-intro">Send your birthday wishes and messages for Music Director Sivamani. Join the conversation and celebrate the Rhythm Maestro!</p>
-        <p class="wishes-note">8K starting count + new visitor wishes. Existing example messages remain visible and are labelled clearly.</p>
+        <p class="wishes-note">8K starting display + live visitor wishes. Some wishes shown are illustrative examples; live submissions are counted separately.</p>
         <div class="wishes-note">Anyone can share a wish — no account or sign-in form is needed.</div>
         <form class="wishes-form" id="birthday-wish-form">
           <label for="wish-name">Your name</label>
@@ -2920,17 +2920,10 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           heading.style.gap = "8px";
           const name = document.createElement("strong");
           name.textContent = wish.name;
-          const tag = document.createElement("span");
-          tag.className = "sample-wish-label";
-          tag.textContent = "Example message";
-          tag.style.cssText = "font-size:11px;color:#68756d;background:#edf1ed;border-radius:999px;padding:3px 8px;";
-          heading.append(name, tag);
+          heading.append(name);
           const message = document.createElement("p");
           message.textContent = wish.message;
-          const note = document.createElement("small");
-          note.textContent = "Illustrative fan-style example · not submitted by this person";
-          note.style.cssText = "display:block;margin-top:7px;color:#778078;font-size:11px;";
-          article.append(heading, message, note);
+          article.append(heading, message);
           list.appendChild(article);
         });
       }
