@@ -1401,6 +1401,33 @@ table { max-width:100%; }
       </div>
     </section>
 
+    <section class="sivamani-playlist-section" id="sivamani-playlist" aria-label="Sivamani YouTube playlist">
+      <div class="shell sivamani-playlist-inner">
+        <div class="eyebrow">Keep the rhythm going</div>
+        <h2>Watch the <span>Playlist</span></h2>
+        <p class="sivamani-playlist-intro">Enjoy the full YouTube playlist. Choose a track and continue listening to the collection.</p>
+        <div class="playlist-horizontal" tabindex="0" aria-label="Horizontally scrollable playlist player">
+          <article class="playlist-player-card">
+            <div class="playlist-player-heading">
+              <span class="playlist-live-dot" aria-hidden="true"></span>
+              <strong>Drums Sivamani · Full Playlist</strong>
+              <span class="playlist-scroll-hint">Swipe / scroll</span>
+            </div>
+            <div class="playlist-video-frame">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/videoseries?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw"
+                title="Drums Sivamani YouTube playlist"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+            <a class="playlist-open-link" href="https://www.youtube.com/playlist?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw" target="_blank" rel="noopener noreferrer">Open full playlist on YouTube ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
         <section class="shell hero">
             <div class="reveal">
                 
@@ -2528,6 +2555,26 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         })();
     </script>
 
+
+<style id="sivamani-playlist-horizontal-style">
+.sivamani-playlist-section{padding:clamp(42px,6vw,76px) 0;background:#f0eee7;color:#172720;overflow:hidden}
+.sivamani-playlist-inner{max-width:1120px;margin:0 auto}
+.sivamani-playlist-section .eyebrow{color:#28765c;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.sivamani-playlist-section h2{margin:10px 0 12px;color:#172720;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1}
+.sivamani-playlist-section h2 span{color:#28765c}
+.sivamani-playlist-intro{max-width:680px;color:#52635a;line-height:1.75;margin:0 0 22px}
+.playlist-horizontal{display:flex;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:4px 2px 18px;scrollbar-width:thin;scrollbar-color:#28765c #d9ddd7}
+.playlist-player-card{flex:0 0 min(880px,92vw);scroll-snap-align:start;background:#fff;border:1px solid #d8ded8;border-radius:20px;padding:14px;box-shadow:0 12px 32px rgba(23,39,32,.10)}
+.playlist-player-heading{display:flex;align-items:center;gap:10px;min-height:30px;margin:0 2px 12px;color:#172720}
+.playlist-player-heading strong{font-size:14px}
+.playlist-live-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#28765c;box-shadow:0 0 0 4px rgba(40,118,92,.13)}
+.playlist-scroll-hint{margin-left:auto;color:#718078;font-size:11px;white-space:nowrap}
+.playlist-video-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:13px;background:#101915}
+.playlist-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.playlist-open-link{display:inline-flex;margin:13px 2px 2px;color:#24694f;font-weight:800;font-size:13px;text-decoration:none}
+.playlist-open-link:hover{text-decoration:underline}
+@media(max-width:600px){.sivamani-playlist-section{padding:38px 0}.playlist-player-card{flex-basis:88vw;padding:10px;border-radius:15px}.playlist-player-heading strong{font-size:12px}.playlist-scroll-hint{font-size:10px}}
+</style>
 
 <style id="birthday-wishes-comments-style">
 .wishes-section{padding:clamp(48px,7vw,88px) 0;background:#d3d3d3;color:#172720}
