@@ -1098,6 +1098,51 @@ table { max-width:100%; }
             letter-spacing: .08em;
         }
         .countdown-finished { flex-basis: 100%; margin: 0; color: #e2c18d; font-weight: 700; }
+
+        /* Drum-inspired countdown motion */
+        .countdown-unit {
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+        }
+        .countdown-unit.is-ticking {
+            border-color: rgba(226,193,141,.85);
+            background: rgba(226,193,141,.14);
+            box-shadow: 0 0 0 3px rgba(226,193,141,.08), 0 8px 24px rgba(0,0,0,.16);
+        }
+        .countdown-unit strong.digit-flip {
+            animation: countdownDrumFlip .48s cubic-bezier(.2,.75,.25,1);
+            transform-origin: 50% 65%;
+        }
+        #count-seconds {
+            text-shadow: 0 0 16px rgba(226,193,141,.28);
+        }
+        #countdown-clock-pulse {
+            position: absolute;
+            inset: -5px;
+            border: 1px solid rgba(226,193,141,.45);
+            border-radius: 17px;
+            pointer-events: none;
+            opacity: 0;
+        }
+        .countdown-unit.is-ticking #countdown-clock-pulse {
+            animation: countdownDrumRipple .55s ease-out;
+        }
+        @keyframes countdownDrumFlip {
+            0% { transform: perspective(180px) rotateX(65deg) translateY(7px); opacity: .25; filter: blur(2px); }
+            55% { transform: perspective(180px) rotateX(-8deg) translateY(-2px); opacity: 1; filter: blur(0); }
+            100% { transform: perspective(180px) rotateX(0) translateY(0); opacity: 1; }
+        }
+        @keyframes countdownDrumRipple {
+            0% { transform: scale(.94); opacity: .8; }
+            100% { transform: scale(1.18); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .countdown-unit strong.digit-flip,
+            .countdown-unit.is-ticking #countdown-clock-pulse { animation: none !important; }
+            .countdown-unit { transition: none; }
+        }
         @media (max-width: 600px) {
             .countdown-section { margin: 20px auto 32px; padding: 22px 16px; }
             .countdown-clock { width: 100%; justify-content: space-between; gap: 6px; }
@@ -2430,6 +2475,31 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
             };
             const finished = document.getElementById("countdown-finished");
             const pad = value => String(value).padStart(2, "0");
+            const unitCards = Object.values(fields).map(field => field.closest(".countdown-unit"));
+            function animateValue(field, value) {
+                const next = pad(value);
+                if (field.textContent === next) return;
+                field.textContent = next;
+                const card = field.closest(".countdown-unit");
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                field.classList.remove("digit-flip");
+                card.classList.remove("is-ticking");
+                void field.offsetWidth;
+                field.classList.add("digit-flip");
+                card.classList.add("is-ticking");
+                window.setTimeout(() => {
+                    field.classList.remove("digit-flip");
+                    card.classList.remove("is-ticking");
+                }, 560);
+            }
+            unitCards.forEach(card => {
+                if (card && !card.querySelector("#countdown-clock-pulse")) {
+                    const ripple = document.createElement("span");
+                    ripple.id = "countdown-clock-pulse";
+                    ripple.setAttribute("aria-hidden", "true");
+                    card.appendChild(ripple);
+                }
+            });
             function updateCountdown() {
                 let remaining = Math.max(0, target - Date.now());
                 const days = Math.floor(remaining / 86400000);
@@ -2438,10 +2508,10 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
                 remaining %= 3600000;
                 const minutes = Math.floor(remaining / 60000);
                 const seconds = Math.floor((remaining % 60000) / 1000);
-                fields.days.textContent = pad(days);
-                fields.hours.textContent = pad(hours);
-                fields.minutes.textContent = pad(minutes);
-                fields.seconds.textContent = pad(seconds);
+                animateValue(fields.days, days);
+                animateValue(fields.hours, hours);
+                animateValue(fields.minutes, minutes);
+                animateValue(fields.seconds, seconds);
                 if (target <= Date.now()) {
                     finished.hidden = false;
                     clearInterval(timer);
