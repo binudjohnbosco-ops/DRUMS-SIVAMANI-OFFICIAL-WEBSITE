@@ -1329,7 +1329,7 @@ table { max-width:100%; }
       <div class="shell wishes-inner">
         <div class="eyebrow">A celebration of rhythm</div>
         <h2>Share Your Wishes</h2>
-        <p class="wishes-intro">Send your birthday wishes and messages for Music Director Sivamani. Join the conversation and celebrate the Rhythm Maestro!</p>
+        <p class="wishes-intro">Send your birthday wishes and messages for Music Director Sivamani. Join the conversation and celebrate the Rhythm Maestro!</p>\n        <p class="wishes-note">Community goal: 8K wishes · The live total below counts only submitted visitor wishes. Example messages are clearly labelled.</p>
         <div class="wishes-note">Anyone can share a wish — no account or sign-in form is needed.</div>
         <form class="wishes-form" id="birthday-wish-form">
           <label for="wish-name">Your name</label>
@@ -2541,7 +2541,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 
         websiteLikes.onSnapshot(snapshot => {
           visitorHasLiked = snapshot.docs.some(likeDoc => likeDoc.id === auth.currentUser.uid);
-          websiteLikeCount.textContent = (5000 + snapshot.size).toLocaleString("en-IN");
+          websiteLikeCount.textContent = snapshot.size.toLocaleString("en-IN");
           websiteLikeButton.textContent = visitorHasLiked ? "♥ Liked" : "♡ Like this website";
           websiteLikeButton.classList.toggle("is-liked", visitorHasLiked);
           websiteLikeButton.setAttribute("aria-pressed", String(visitorHasLiked));
@@ -2909,7 +2909,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       });
       const wishesCount = document.getElementById("wishes-count");
       function appendSampleWishes() {
-        sampleWishes.forEach((wish, index) => {
+        sampleWishes.forEach(wish => {
           const article = document.createElement("article");
           article.className = "wish-item sample-wish";
           const heading = document.createElement("div");
@@ -2919,57 +2919,27 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           heading.style.gap = "8px";
           const name = document.createElement("strong");
           name.textContent = wish.name;
-          heading.appendChild(name);
+          const tag = document.createElement("span");
+          tag.className = "sample-wish-label";
+          tag.textContent = "Example message";
+          tag.style.cssText = "font-size:11px;color:#68756d;background:#edf1ed;border-radius:999px;padding:3px 8px;";
+          heading.append(name, tag);
           const message = document.createElement("p");
           message.textContent = wish.message;
-          const actions = document.createElement("div");
-          actions.className = "wish-actions";
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "wish-like";
-          button.setAttribute("aria-label", "Like this sample birthday wish");
-          const icon = document.createElement("span");
-          icon.className = "wish-like-icon";
-          const label = document.createElement("span");
-          const count = document.createElement("span");
-          const storageKey = "sivamani-sample-wish-like-" + index;
-          const baseLikesKey = "sivamani-sample-wish-base-likes-" + index;
-          let liked = false;
-          let baseLikes = 51 + Math.floor(Math.random() * 49);
-          try {
-            liked = localStorage.getItem(storageKey) === "1";
-            const savedBaseLikes = Number(localStorage.getItem(baseLikesKey));
-            if (savedBaseLikes >= 51 && savedBaseLikes <= 99) baseLikes = savedBaseLikes;
-            else localStorage.setItem(baseLikesKey, String(baseLikes));
-          } catch (_) {}
-          let likes = baseLikes + (liked ? 1 : 0);
-          function paintLike() {
-            icon.textContent = liked ? "♥" : "♡";
-            label.textContent = liked ? "Liked" : "Like";
-            count.textContent = String(likes);
-            button.classList.toggle("liked", liked);
-            button.setAttribute("aria-pressed", String(liked));
-          }
-          button.append(icon, label, count);
-          button.addEventListener("click", () => {
-            liked = !liked;
-            likes = baseLikes + (liked ? 1 : 0);
-            try { if (liked) localStorage.setItem(storageKey, "1"); else localStorage.removeItem(storageKey); } catch (_) {}
-            paintLike();
-          });
-          paintLike();
-          actions.appendChild(button);
-          article.append(heading, message, actions);
+          const note = document.createElement("small");
+          note.textContent = "Illustrative fan-style example · not submitted by this person";
+          note.style.cssText = "display:block;margin-top:7px;color:#778078;font-size:11px;";
+          article.append(heading, message, note);
           list.appendChild(article);
         });
       }
       appendSampleWishes();
-      if (wishesCount) wishesCount.textContent = String(sampleWishes.length);
+      if (wishesCount) wishesCount.textContent = "0";
 
       const wishes = db.collection("birthdayWishes");
       const likeListeners = new Map();
       wishes.orderBy("createdAt","desc").limit(100).onSnapshot(snapshot => {
-        if (wishesCount) wishesCount.textContent = String(sampleWishes.length + snapshot.size);
+        if (wishesCount) wishesCount.textContent = snapshot.size.toLocaleString("en-IN");
         likeListeners.forEach(unsubscribe => unsubscribe());
         likeListeners.clear();
         list.replaceChildren();
@@ -3044,7 +3014,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
     </style>
     <div id="website-like-widget" aria-label="Like this website">
       <button id="website-like-button" type="button">♡ Like this website</button>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;"><span id="website-like-count" aria-live="polite">Loading…</span><span style="font-size:12px;font-weight:700;color:#333;letter-spacing:.3px;">TOTAL WEBSITE LIKES</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;"><span id="website-like-count" aria-live="polite">Loading…</span><span style="font-size:12px;font-weight:700;color:#333;letter-spacing:.3px;">VERIFIED VISITOR LIKES</span><span style="font-size:11px;color:#68756d;">Community goal: 12K likes</span></div>
       <div id="website-like-status" aria-live="polite">Loading like button…</div>
     </div>
 </body>
