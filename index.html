@@ -1424,7 +1424,11 @@ table { max-width:100%; }
           </div>
           <div class="playlist-gallery-toolbar">
             <span>Choose a video</span>
-            <span class="playlist-scroll-hint">Scroll / swipe →</span>
+            <div class="playlist-gallery-controls">
+              <span class="playlist-scroll-hint">Browse all 11 videos</span>
+              <button class="playlist-gallery-arrow" type="button" id="playlist-prev" aria-label="Previous videos">‹</button>
+              <button class="playlist-gallery-arrow" type="button" id="playlist-next" aria-label="Next videos">›</button>
+            </div>
           </div>
           <div class="playlist-horizontal" id="sivamani-video-gallery" tabindex="0" aria-label="Scroll horizontally through 11 videos">
           <button class="playlist-video-card is-active" type="button" data-video-id="uLiyb3yH2_I" data-playlist-index="1" aria-pressed="true" aria-label="Play video 1">
@@ -1514,7 +1518,16 @@ table { max-width:100%; }
       const gallery = document.getElementById("sivamani-video-gallery");
       const player = document.getElementById("sivamani-playlist-player");
       const currentTitle = document.getElementById("playlist-current-title");
+      const previous = document.getElementById("playlist-prev");
+      const next = document.getElementById("playlist-next");
       if (!gallery || !player) return;
+      const scrollGallery = direction => {
+        const card = gallery.querySelector(".playlist-video-card");
+        const step = card ? card.getBoundingClientRect().width + 13 : gallery.clientWidth * 0.8;
+        gallery.scrollBy({ left: direction * step, behavior: "smooth" });
+      };
+      if (previous) previous.addEventListener("click", () => scrollGallery(-1));
+      if (next) next.addEventListener("click", () => scrollGallery(1));
       gallery.addEventListener("click", event => {
         const card = event.target.closest(".playlist-video-card");
         if (!card) return;
@@ -2690,7 +2703,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 .playlist-card-caption strong{font-size:13px}
 .playlist-open-link{display:inline-flex;margin:15px 2px 2px;color:#24694f;font-weight:800;font-size:13px;text-decoration:none}
 .playlist-open-link:hover{text-decoration:underline}
-@media(max-width:600px){.sivamani-playlist-section{padding:38px 0}.playlist-player-card{padding:10px;border-radius:15px}.playlist-player-heading strong{font-size:12px}.playlist-scroll-hint{font-size:10px}.playlist-video-card{flex-basis:72vw}}
+@media(max-width:600px){.sivamani-playlist-section{padding:38px 0}.playlist-player-card{padding:10px;border-radius:15px}.playlist-player-heading strong{font-size:12px}.playlist-scroll-hint{font-size:10px}.playlist-video-card{flex-basis:72vw!important;width:72vw!important;min-width:72vw!important}.playlist-gallery-arrow{width:32px;height:32px}.playlist-gallery-controls{gap:6px}}
 </style>
 
 <style id="birthday-wishes-comments-style">
