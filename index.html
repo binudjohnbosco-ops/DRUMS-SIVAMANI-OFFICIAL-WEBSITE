@@ -1330,7 +1330,7 @@ table { max-width:100%; }
         <div class="eyebrow">A celebration of rhythm</div>
         <h2>Share Your Wishes</h2>
         <p class="wishes-intro">Send your birthday wishes and messages for Music Director Sivamani. Join the conversation and celebrate the Rhythm Maestro!</p>
-        <p class="wishes-note">Community goal: 8K wishes · The live total below counts only submitted visitor wishes. Example messages are clearly labelled.</p>
+        <p class="wishes-note">8K starting count + new visitor wishes. Existing example messages remain visible and are labelled clearly.</p>
         <div class="wishes-note">Anyone can share a wish — no account or sign-in form is needed.</div>
         <form class="wishes-form" id="birthday-wish-form">
           <label for="wish-name">Your name</label>
@@ -2542,7 +2542,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 
         websiteLikes.onSnapshot(snapshot => {
           visitorHasLiked = snapshot.docs.some(likeDoc => likeDoc.id === auth.currentUser.uid);
-          websiteLikeCount.textContent = snapshot.size.toLocaleString("en-IN");
+          websiteLikeCount.textContent = (12000 + snapshot.size).toLocaleString("en-IN");
           websiteLikeButton.textContent = visitorHasLiked ? "♥ Liked" : "♡ Like this website";
           websiteLikeButton.classList.toggle("is-liked", visitorHasLiked);
           websiteLikeButton.setAttribute("aria-pressed", String(visitorHasLiked));
@@ -2940,7 +2940,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const wishes = db.collection("birthdayWishes");
       const likeListeners = new Map();
       wishes.orderBy("createdAt","desc").limit(100).onSnapshot(snapshot => {
-        if (wishesCount) wishesCount.textContent = snapshot.size.toLocaleString("en-IN");
+        if (wishesCount) wishesCount.textContent = (8000 + snapshot.size).toLocaleString("en-IN");
         likeListeners.forEach(unsubscribe => unsubscribe());
         likeListeners.clear();
         list.replaceChildren();
@@ -3015,7 +3015,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
     </style>
     <div id="website-like-widget" aria-label="Like this website">
       <button id="website-like-button" type="button">♡ Like this website</button>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;"><span id="website-like-count" aria-live="polite">Loading…</span><span style="font-size:12px;font-weight:700;color:#333;letter-spacing:.3px;">VERIFIED VISITOR LIKES</span><span style="font-size:11px;color:#68756d;">Community goal: 12K likes</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;"><span id="website-like-count" aria-live="polite">Loading…</span><span style="font-size:12px;font-weight:700;color:#333;letter-spacing:.3px;">TOTAL WEBSITE LIKES</span><span style="font-size:11px;color:#68756d;">12K starting count + new visitor likes</span></div>
       <div id="website-like-status" aria-live="polite">Loading like button…</div>
     </div>
 </body>
