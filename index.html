@@ -2519,15 +2519,52 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const auth = firebase.auth();
       const db = firebase.firestore();
       await auth.signInAnonymously();
-      // Temporary display while the Firebase quota is exhausted.
+      // Live, shared website-wide likes stored in Firestore.
       const websiteLikeButton = document.getElementById("website-like-button");
       const websiteLikeCount = document.getElementById("website-like-count");
       const websiteLikeStatus = document.getElementById("website-like-status");
       if (websiteLikeButton && websiteLikeCount && websiteLikeStatus) {
-        websiteLikeCount.textContent = "5,250";
+        const websiteLikes = db.collection("websiteLikes");
+        const visitorLikeRef = websiteLikes.doc(auth.currentUser.uid);
         websiteLikeButton.disabled = true;
-        websiteLikeButton.textContent = "♡ Likes temporarily paused";
-        websiteLikeStatus.textContent = "Temporary display — live likes will return when Firebase is available.";
+        websiteLikeCount.textContent = "…";
+        websiteLikeStatus.textContent = "Connecting to live likes…";
+
+        websiteLikes.onSnapshot(snapshot => {
+          const totalLikes = snapshot.size;
+          const hasLiked = snapshot.docs.some(likeDoc => likeDoc.id === auth.currentUser.uid);
+          websiteLikeCount.textContent = totalLikes.toLocaleString("en-IN");
+          websiteLikeButton.textContent = hasLiked ? "♥ Liked" : "♡ Like this website";
+          websiteLikeButton.classList.toggle("is-liked", hasLiked);
+          websiteLikeButton.setAttribute("aria-pressed", String(hasLiked));
+          websiteLikeButton.disabled = false;
+          websiteLikeStatus.textContent = "Live count · shared with everyone";
+        }, error => {
+          websiteLikeCount.textContent = "—";
+          websiteLikeButton.disabled = true;
+          websiteLikeStatus.textContent = "Live likes unavailable: " + (error.code || error.message || "Firestore error");
+        });
+
+        websiteLikeButton.addEventListener("click", async () => {
+          if (websiteLikeButton.disabled) return;
+          websiteLikeButton.disabled = true;
+          websiteLikeStatus.textContent = "Updating your like…";
+          try {
+            const existingLike = await visitorLikeRef.get();
+            if (existingLike.exists) {
+              await visitorLikeRef.delete();
+            } else {
+              await visitorLikeRef.set({
+                uid: auth.currentUser.uid,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+              });
+            }
+          } catch (error) {
+            websiteLikeStatus.textContent = "Like could not be saved: " + (error.code || error.message || "Firestore error");
+          } finally {
+            websiteLikeButton.disabled = false;
+          }
+        });
       }
 
       // These are demonstration wishes, not messages submitted by real visitors.
