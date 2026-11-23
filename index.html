@@ -1401,32 +1401,139 @@ table { max-width:100%; }
       </div>
     </section>
 
-    <section class="sivamani-playlist-section" id="sivamani-playlist" aria-label="Sivamani YouTube playlist">
+    <section class="sivamani-playlist-section" id="sivamani-playlist" aria-label="Drums Sivamani video gallery">
       <div class="shell sivamani-playlist-inner">
         <div class="eyebrow">Keep the rhythm going</div>
         <h2>Watch the <span>Playlist</span></h2>
-        <p class="sivamani-playlist-intro">Enjoy the full YouTube playlist. Choose a track and continue listening to the collection.</p>
-        <div class="playlist-horizontal" tabindex="0" aria-label="Horizontally scrollable playlist player">
-          <article class="playlist-player-card">
-            <div class="playlist-player-heading">
-              <span class="playlist-live-dot" aria-hidden="true"></span>
-              <strong>Drums Sivamani · Full Playlist</strong>
-              <span class="playlist-scroll-hint">Swipe / scroll</span>
-            </div>
-            <div class="playlist-video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/videoseries?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw"
-                title="Drums Sivamani YouTube playlist"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-            <a class="playlist-open-link" href="https://www.youtube.com/playlist?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw" target="_blank" rel="noopener noreferrer">Open full playlist on YouTube ↗</a>
-          </article>
+        <p class="sivamani-playlist-intro">Explore the videos one by one. Select any thumbnail to play it here, or swipe horizontally to browse the collection.</p>
+
+        <div class="playlist-player-card">
+          <div class="playlist-player-heading">
+            <span class="playlist-live-dot" aria-hidden="true"></span>
+            <strong id="playlist-current-title">Now playing · Video 01</strong>
+            <span class="playlist-scroll-hint">11 videos</span>
+          </div>
+          <div class="playlist-video-frame">
+            <iframe id="sivamani-playlist-player"
+              src="https://www.youtube-nocookie.com/embed/uLiyb3yH2_I?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw"
+              title="Drums Sivamani playlist video 1"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="playlist-gallery-toolbar">
+            <span>Choose a video</span>
+            <span class="playlist-scroll-hint">Scroll / swipe →</span>
+          </div>
+          <div class="playlist-horizontal" id="sivamani-video-gallery" tabindex="0" aria-label="Scroll horizontally through 11 videos">
+          <button class="playlist-video-card is-active" type="button" data-video-id="uLiyb3yH2_I" data-playlist-index="1" aria-pressed="true" aria-label="Play video 1">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/uLiyb3yH2_I/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 01</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="VlxtrFt2eYI" data-playlist-index="2" aria-pressed="false" aria-label="Play video 2">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/VlxtrFt2eYI/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 02</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="IIXtdjDuzYU" data-playlist-index="3" aria-pressed="false" aria-label="Play video 3">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/IIXtdjDuzYU/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 03</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="FmUZ6ZretnE" data-playlist-index="4" aria-pressed="false" aria-label="Play video 4">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/FmUZ6ZretnE/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 04</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="5eXMTfvFtaw" data-playlist-index="5" aria-pressed="false" aria-label="Play video 5">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/5eXMTfvFtaw/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 05</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="b19IFqCb1JI" data-playlist-index="6" aria-pressed="false" aria-label="Play video 6">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/b19IFqCb1JI/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 06</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="lBtxEdSRcJM" data-playlist-index="8" aria-pressed="false" aria-label="Play video 7">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/lBtxEdSRcJM/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 07</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="os6OYV51jmE" data-playlist-index="9" aria-pressed="false" aria-label="Play video 8">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/os6OYV51jmE/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 08</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="l-ElMBHDFC0" data-playlist-index="10" aria-pressed="false" aria-label="Play video 9">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/l-ElMBHDFC0/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 09</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="Tvc3JIHehcs" data-playlist-index="11" aria-pressed="false" aria-label="Play video 10">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/Tvc3JIHehcs/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 10</span><strong>Drums Sivamani</strong></span>
+          </button>
+          <button class="playlist-video-card" type="button" data-video-id="a2_QlX7vrF0" data-playlist-index="12" aria-pressed="false" aria-label="Play video 11">
+            <span class="playlist-thumb-wrap">
+              <img src="https://i.ytimg.com/vi/a2_QlX7vrF0/hqdefault.jpg" alt="" loading="lazy">
+              <span class="playlist-play-icon" aria-hidden="true">▶</span>
+            </span>
+            <span class="playlist-card-caption"><span>VIDEO 11</span><strong>Drums Sivamani</strong></span>
+          </button>
+          </div>
+          <a class="playlist-open-link" href="https://www.youtube.com/playlist?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw" target="_blank" rel="noopener noreferrer">Open the complete playlist on YouTube ↗</a>
         </div>
       </div>
     </section>
+    <script id="sivamani-playlist-gallery-script">
+    (() => {
+      const gallery = document.getElementById("sivamani-video-gallery");
+      const player = document.getElementById("sivamani-playlist-player");
+      const currentTitle = document.getElementById("playlist-current-title");
+      if (!gallery || !player) return;
+      gallery.addEventListener("click", event => {
+        const card = event.target.closest(".playlist-video-card");
+        if (!card) return;
+        const videoId = card.dataset.videoId;
+        const playlistIndex = card.dataset.playlistIndex;
+        const cards = gallery.querySelectorAll(".playlist-video-card");
+        cards.forEach(item => {
+          const active = item === card;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
+        const displayIndex = Array.from(cards).indexOf(card) + 1;
+        player.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(videoId) +
+          "?autoplay=1&list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw&index=" + encodeURIComponent(playlistIndex);
+        player.title = "Drums Sivamani playlist video " + displayIndex;
+        if (currentTitle) currentTitle.textContent = "Now playing · Video " + String(displayIndex).padStart(2, "0");
+      });
+    })();
+    </script>
 
         <section class="shell hero">
             <div class="reveal">
@@ -2563,17 +2670,27 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
 .sivamani-playlist-section h2{margin:10px 0 12px;color:#172720;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1}
 .sivamani-playlist-section h2 span{color:#28765c}
 .sivamani-playlist-intro{max-width:680px;color:#52635a;line-height:1.75;margin:0 0 22px}
-.playlist-horizontal{display:flex;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:4px 2px 18px;scrollbar-width:thin;scrollbar-color:#28765c #d9ddd7}
-.playlist-player-card{flex:0 0 min(880px,92vw);scroll-snap-align:start;background:#fff;border:1px solid #d8ded8;border-radius:20px;padding:14px;box-shadow:0 12px 32px rgba(23,39,32,.10)}
+.playlist-player-card{background:#fff;border:1px solid #d8ded8;border-radius:20px;padding:14px;box-shadow:0 12px 32px rgba(23,39,32,.10)}
 .playlist-player-heading{display:flex;align-items:center;gap:10px;min-height:30px;margin:0 2px 12px;color:#172720}
 .playlist-player-heading strong{font-size:14px}
 .playlist-live-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#28765c;box-shadow:0 0 0 4px rgba(40,118,92,.13)}
 .playlist-scroll-hint{margin-left:auto;color:#718078;font-size:11px;white-space:nowrap}
 .playlist-video-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:13px;background:#101915}
 .playlist-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.playlist-open-link{display:inline-flex;margin:13px 2px 2px;color:#24694f;font-weight:800;font-size:13px;text-decoration:none}
+.playlist-gallery-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 2px 10px;color:#172720;font-size:13px;font-weight:800}
+.playlist-horizontal{display:flex;gap:13px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:5px 2px 16px;scrollbar-width:thin;scrollbar-color:#28765c #e2e5df}
+.playlist-video-card{flex:0 0 clamp(190px,24vw,245px);min-width:0;padding:8px;text-align:left;scroll-snap-align:start;border:1px solid #d8ded8;border-radius:14px;background:#f8f8f2;color:#172720;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.playlist-video-card:hover{transform:translateY(-3px);border-color:#28765c}
+.playlist-video-card.is-active{border:2px solid #28765c;padding:7px;box-shadow:0 0 0 3px rgba(40,118,92,.12)}
+.playlist-thumb-wrap{position:relative;display:block;overflow:hidden;aspect-ratio:16/9;border-radius:9px;background:#172720}
+.playlist-thumb-wrap img{display:block;width:100%;height:100%;object-fit:cover}
+.playlist-play-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(20,35,29,.82);color:white;font-size:15px;padding-left:3px}
+.playlist-card-caption{display:flex;flex-direction:column;gap:4px;padding:10px 3px 3px}
+.playlist-card-caption span{color:#28765c;font:10px "DM Mono",monospace;letter-spacing:.12em}
+.playlist-card-caption strong{font-size:13px}
+.playlist-open-link{display:inline-flex;margin:15px 2px 2px;color:#24694f;font-weight:800;font-size:13px;text-decoration:none}
 .playlist-open-link:hover{text-decoration:underline}
-@media(max-width:600px){.sivamani-playlist-section{padding:38px 0}.playlist-player-card{flex-basis:88vw;padding:10px;border-radius:15px}.playlist-player-heading strong{font-size:12px}.playlist-scroll-hint{font-size:10px}}
+@media(max-width:600px){.sivamani-playlist-section{padding:38px 0}.playlist-player-card{padding:10px;border-radius:15px}.playlist-player-heading strong{font-size:12px}.playlist-scroll-hint{font-size:10px}.playlist-video-card{flex-basis:72vw}}
 </style>
 
 <style id="birthday-wishes-comments-style">
