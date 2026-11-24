@@ -3312,7 +3312,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       const wishes = db.collection("birthdayWishes");
       const likeListeners = new Map();
       wishes.orderBy("createdAt","desc").limit(100).onSnapshot(snapshot => {
-        if (wishesCount) wishesCount.textContent = (8000 + snapshot.size).toLocaleString("en-IN");
+        if (wishesCount) wishesCount.textContent = (25000 + snapshot.size).toLocaleString("en-IN");
         likeListeners.forEach(unsubscribe => unsubscribe());
         likeListeners.clear();
         list.replaceChildren();
