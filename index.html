@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="theme-color" content="#edf2ec">
     <meta name="description"
         content="An appreciation of Anandan Drums Sivamani — percussionist, composer and performer.">
@@ -1541,7 +1542,7 @@ table { max-width:100%; }
           </div>
           <div class="playlist-video-frame">
             <iframe id="sivamani-playlist-player"
-              src="https://www.youtube-nocookie.com/embed/uLiyb3yH2_I?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw"
+              src="https://www.youtube.com/embed/uLiyb3yH2_I?list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw&origin=https%3A%2F%2Fbinudjohnbosco-ops.github.io"
               title="Drums Sivamani playlist video 1"
               loading="lazy"
               referrerpolicy="strict-origin-when-cross-origin"
@@ -1666,8 +1667,8 @@ table { max-width:100%; }
           item.setAttribute("aria-pressed", String(active));
         });
         const displayIndex = Array.from(cards).indexOf(card) + 1;
-        player.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(videoId) +
-          "?autoplay=1&list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw&index=" + encodeURIComponent(playlistIndex);
+        player.src = "https://www.youtube.com/embed/" + encodeURIComponent(videoId) +
+          "?autoplay=1&list=PLlNSSCoXIUm0cY2lCCQ5ROzBEcEwaoObw&origin=" + encodeURIComponent(location.origin) + "&index=" + encodeURIComponent(playlistIndex);
         player.title = "Drums Sivamani playlist video " + displayIndex;
         if (currentTitle) currentTitle.textContent = "Now playing · Video " + String(displayIndex).padStart(2, "0");
       });
