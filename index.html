@@ -3317,10 +3317,7 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           heading.style.gap = "8px";
           const name = document.createElement("strong");
           name.textContent = wish.name;
-          const tag = document.createElement("span");
-          tag.textContent = "SAMPLE";
-          tag.style.cssText = "font:10px 'DM Mono',monospace;letter-spacing:.1em;padding:3px 7px;border-radius:99px;background:#edf3ee;color:#28765c;";
-          heading.append(name, tag);
+
           const message = document.createElement("p");
           message.textContent = wish.message;
           article.append(heading, message);
