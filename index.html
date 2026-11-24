@@ -3281,23 +3281,53 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       // Fictional display names for the illustrative wishes below.
       // The section heading clearly explains that these are generated examples.
       const displayFirstNames = [
-        "Arun", "Priya", "Karthik", "Divya", "Vijay", "Meena", "Rahul", "Ananya",
-        "Suresh", "Kavya", "Prakash", "Sneha", "Ajay", "Lakshmi", "Rohan", "Nithya",
-        "Manoj", "Aishwarya", "Santhosh", "Keerthana", "Vignesh", "Harini", "Gokul",
-        "Deepa", "Surya", "Madhavi", "Naveen", "Pooja", "Bala", "Shalini"
+        "Arun","Priya","Karthik","Divya","Vijay","Meena","Rahul","Ananya","Suresh","Kavya",
+        "Prakash","Sneha","Ajay","Lakshmi","Rohan","Nithya","Manoj","Aishwarya","Santhosh","Keerthana",
+        "Vignesh","Harini","Gokul","Deepa","Surya","Madhavi","Naveen","Pooja","Bala","Shalini",
+        "Aarav","Aadhya","Aarushi","Abhinav","Akash","Amala","Arjun","Bhavana","Charan","Chitra",
+        "Deepak","Devika","Dhanush","Diya","Eshan","Gautham","Geetha","Hema","Ishaan","Jeeva",
+        "Keshav","Krishna","Madhav","Mahima","Maya","Nikhil","Nila","Niranjan","Pallavi","Parth",
+        "Pranav","Preethi","Raghav","Rithika","Sanjay","Saranya","Shreya","Siddharth","Tarun","Tejas",
+        "Varsha","Vedant","Vidhya","Yash","Yamini","Zoya","Akhila","Amrita","Anirudh","Arvind",
+        "Ashwin","Bhuvana","Chandni","Darshan","Ezhil","Girish","Indira","Jasmin","Karthika","Lavanya",
+        "Madhan","Oviya","Prithvi","Ranjani","Sahana","Tharun","Uday","Vaishnavi","Yuvan","Zubin",
+        "Aishani","Bharath","Chetan","Dharini","Elango","Feroz","Harinath","Ira","Jayanth","Logesh",
+        "Mithun","Nandita","Rohini","Sathya","Thenmozhi","Uma","Vimal","Yazhini","Zainab","Abirami",
+        "Aditya","Akila","Amirtha","Anand","Anitha","Anjali","Aravind","Ashika","Bhuvan","Bharathi",
+        "Chandru","Dinesh","Elakkiya","Gokila","Hari","Indhu","Jeevitha","Kabilan","Kalai","Kavin",
+        "Kishore","Malar","Monisha","Mukesh","Nandhini","Naren","Nirmal","Pavithra","Praveen","Ramesh",
+        "Reshma","Revathi","Sathish","Siva","Sowmya","Tamil","Tharani","Vaishali","Varun","Yogesh",
+        "Ahamed","Afsana","Alwin","Angel","Antony","Ashok","Benedict","Catherine","Charles","Christy",
+        "David","Esther","Fathima","Francis","Grace","Imran","Jerome","Joseph","Maria","Merlin",
+        "Michael","Nisha","Noor","Rebecca","Samuel","Sharon","Amit","Ishita","Kunal","Neha",
+        "Riya","Ritwik","Snehal","Vikram","Aarohi","Anushka","Dev","Ishan","Kiara","Mira",
+        "Neil","Rhea","Samar","Tanvi","Veer","Zara","Akhil","Anupama","Girish","Harsha"
       ];
       const displayLastNames = [
-        "Kumar", "R", "Prasad", "S", "Raj", "M", "Krishnan", "Devi", "Babu", "N",
-        "Sharma", "Menon", "Rao", "Das", "Joseph", "Pillai", "Iyer", "Singh",
-        "Patel", "Fernandes", "Thomas", "Reddy", "Mohan", "Anand", "D"
+        "Kumar","Raj","Prasad","Krishnan","Devi","Babu","Sharma","Menon","Rao","Das",
+        "Joseph","Pillai","Iyer","Singh","Patel","Fernandes","Thomas","Reddy","Mohan","Anand",
+        "Nair","Varghese","Mathew","Samuel","Xavier","Murugan","Pandian","Selvan","Balan","Subramanian",
+        "Venkatesh","Narayanan","Srinivasan","Chandrasekar","Ravichandran","Balakrishnan","Gopal","Sundaram","Mani","Kannan",
+        "Kapoor","Mishra","Gupta","Mehta","Shah","Jain","Agarwal","Verma","Malhotra","Chopra",
+        "Kulkarni","Joshi","Desai","Naidu","Gowda","Shetty","Hegde","Khan","Ansari","Shaikh",
+        "Pereira","D'Souza","Davis","George","Paul","Peter","Rajkumar","Muthukumar","Arumugam","Saravanan",
+        "Madhavan","Sankar","Prabhu","Ranganathan","Shanmugam","Elangovan","Manoharan","Parthiban","Sakthivel","Thirumalai",
+        "Chatterjee","Banerjee","Bose","Mukherjee","Ghosh","Sarkar","Sen","Roy","Saha","Dutta",
+        "Mohanty","Patnaik","Swain","Pawar","Jadhav","Deshmukh","Shinde","More","Trivedi","Dave",
+        "Modi","Vyas","Parmar","Solanki","Saini","Yadav","Thakur","Rawat","Biswas","Rathore",
+        "Kaur","Gill","Sethi","Chauhan","Chakraborty","Rath","Saikia","Kashyap","Khatri","Arora",
+        "Bhat","Bhatia","Choudhary","Lal","Rana"
       ];
-      const displayNames = displayFirstNames.flatMap(first =>
-        displayLastNames.map(last => first + " " + last)
+      // 200 first names x 125 surnames = 25,000 distinct full display names.
+      // First names rotate on every card so the list does not show long repeated runs.
+      const displayNames = Array.from({ length: 25000 }, (_, index) =>
+        displayFirstNames[index % displayFirstNames.length] + " " +
+        displayLastNames[Math.floor(index / displayFirstNames.length)]
       );
       // Create 25,000 illustrative wishes with natural-looking fictional display names.
       // These are never written to Firestore or represented as verified visitor submissions.
       const sampleWishes = Array.from({ length: 25000 }, (_, index) => ({
-        name: displayNames[index % displayNames.length],
+        name: displayNames[index],
         message: distributedMessages[index % distributedMessages.length]
       }));
       const wishesCount = document.getElementById("wishes-count");
