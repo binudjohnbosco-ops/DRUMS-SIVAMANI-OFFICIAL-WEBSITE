@@ -1488,7 +1488,7 @@ table { max-width:100%; }
         <div class="eyebrow">A celebration of rhythm</div>
         <h2>Share Your Wishes</h2>
         <p class="wishes-intro">Send your birthday wishes and messages for Music Director Sivamani. Join the conversation and celebrate the Rhythm Maestro!</p>
-        <p class="wishes-note">8K starting display + live visitor wishes. Some wishes shown are illustrative examples; live submissions are counted separately.</p>
+        <p class="wishes-note">25,000 clearly labelled sample wishes are provided for display, alongside genuine wishes submitted by visitors. Sample wishes are not real visitor submissions.</p>
         <div class="wishes-note">Anyone can share a wish — no account or sign-in form is needed.</div>
         <form class="wishes-form" id="birthday-wish-form">
           <label for="wish-name">Your name</label>
@@ -3279,17 +3279,35 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
       });
 
       let englishNameIndex = 0;
-      const sampleWishes = distributedMessages.map(message => {
-        const multilingualName = multilingualNameByMessage.get(message);
-        const name = multilingualName || (englishNameIndex < sampleNames.length
-          ? sampleNames[englishNameIndex]
-          : generatedHumanNames[englishNameIndex - sampleNames.length]);
-        if (!multilingualName) englishNameIndex++;
-        return { name, message };
-      });
+      // Create 25,000 clearly labelled display-only sample wishes.
+      // These are never written to Firestore and are not presented as real visitor posts.
+      const sampleWishes = Array.from({ length: 25000 }, (_, index) => ({
+        name: "Sample wish #" + String(index + 1).padStart(5, "0"),
+        message: distributedMessages[index % distributedMessages.length]
+      }));
       const wishesCount = document.getElementById("wishes-count");
-      function appendSampleWishes() {
-        sampleWishes.forEach(wish => {
+      const SAMPLE_PAGE_SIZE = 50;
+      let renderedSampleCount = 0;
+      let sampleContainer = null;
+
+      function appendSampleWishes(reset = false) {
+        if (!sampleContainer) {
+          sampleContainer = document.createElement("section");
+          sampleContainer.id = "sample-wishes-container";
+          sampleContainer.setAttribute("aria-label", "Illustrative sample birthday wishes");
+          const heading = document.createElement("p");
+          heading.className = "wishes-note";
+          heading.textContent = "ILLUSTRATIVE SAMPLE WISHES — These generated examples are not messages from real visitors.";
+          sampleContainer.appendChild(heading);
+          list.appendChild(sampleContainer);
+        }
+        if (reset) {
+          renderedSampleCount = 0;
+          sampleContainer.querySelectorAll(".sample-wish").forEach(item => item.remove());
+        }
+        const nextEnd = Math.min(renderedSampleCount + SAMPLE_PAGE_SIZE, sampleWishes.length);
+        for (let index = renderedSampleCount; index < nextEnd; index++) {
+          const wish = sampleWishes[index];
           const article = document.createElement("article");
           article.className = "wish-item sample-wish";
           const heading = document.createElement("div");
@@ -3299,14 +3317,31 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
           heading.style.gap = "8px";
           const name = document.createElement("strong");
           name.textContent = wish.name;
-          heading.append(name);
+          const tag = document.createElement("span");
+          tag.textContent = "SAMPLE";
+          tag.style.cssText = "font:10px 'DM Mono',monospace;letter-spacing:.1em;padding:3px 7px;border-radius:99px;background:#edf3ee;color:#28765c;";
+          heading.append(name, tag);
           const message = document.createElement("p");
           message.textContent = wish.message;
           article.append(heading, message);
-          list.appendChild(article);
-        });
+          sampleContainer.appendChild(article);
+        }
+        renderedSampleCount = nextEnd;
+
+        let moreButton = sampleContainer.querySelector("#load-more-sample-wishes");
+        if (moreButton) moreButton.remove();
+        if (renderedSampleCount < sampleWishes.length) {
+          moreButton = document.createElement("button");
+          moreButton.id = "load-more-sample-wishes";
+          moreButton.type = "button";
+          moreButton.textContent = "Load 50 more sample wishes · " +
+            (sampleWishes.length - renderedSampleCount).toLocaleString("en-IN") + " remaining";
+          moreButton.style.cssText = "display:block;width:100%;margin:16px 0;padding:13px 16px;border:1px solid #28765c;border-radius:10px;background:#f3f8f3;color:#28765c;font-weight:800;cursor:pointer;";
+          moreButton.addEventListener("click", () => appendSampleWishes(false));
+          sampleContainer.appendChild(moreButton);
+        }
       }
-      appendSampleWishes();
+      appendSampleWishes(true);
       if (wishesCount) wishesCount.textContent = "0";
 
       const wishes = db.collection("birthdayWishes");
@@ -3316,7 +3351,8 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         likeListeners.forEach(unsubscribe => unsubscribe());
         likeListeners.clear();
         list.replaceChildren();
-        appendSampleWishes();
+        sampleContainer = null;
+        appendSampleWishes(true);
         if (snapshot.empty) return;
         snapshot.forEach(doc => {
           const data=doc.data();
