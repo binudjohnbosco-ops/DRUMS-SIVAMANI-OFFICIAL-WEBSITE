@@ -3278,11 +3278,26 @@ main,header,footer,section,article,nav,.shell,.section{max-width:100%}
         distributedMessages.splice(position, 0, message);
       });
 
-      let englishNameIndex = 0;
-      // Create 25,000 clearly labelled display-only sample wishes.
-      // These are never written to Firestore and are not presented as real visitor posts.
+      // Fictional display names for the illustrative wishes below.
+      // The section heading clearly explains that these are generated examples.
+      const displayFirstNames = [
+        "Arun", "Priya", "Karthik", "Divya", "Vijay", "Meena", "Rahul", "Ananya",
+        "Suresh", "Kavya", "Prakash", "Sneha", "Ajay", "Lakshmi", "Rohan", "Nithya",
+        "Manoj", "Aishwarya", "Santhosh", "Keerthana", "Vignesh", "Harini", "Gokul",
+        "Deepa", "Surya", "Madhavi", "Naveen", "Pooja", "Bala", "Shalini"
+      ];
+      const displayLastNames = [
+        "Kumar", "R", "Prasad", "S", "Raj", "M", "Krishnan", "Devi", "Babu", "N",
+        "Sharma", "Menon", "Rao", "Das", "Joseph", "Pillai", "Iyer", "Singh",
+        "Patel", "Fernandes", "Thomas", "Reddy", "Mohan", "Anand", "D"
+      ];
+      const displayNames = displayFirstNames.flatMap(first =>
+        displayLastNames.map(last => first + " " + last)
+      );
+      // Create 25,000 illustrative wishes with natural-looking fictional display names.
+      // These are never written to Firestore or represented as verified visitor submissions.
       const sampleWishes = Array.from({ length: 25000 }, (_, index) => ({
-        name: "Sample wish #" + String(index + 1).padStart(5, "0"),
+        name: displayNames[index % displayNames.length],
         message: distributedMessages[index % distributedMessages.length]
       }));
       const wishesCount = document.getElementById("wishes-count");
